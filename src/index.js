@@ -30,7 +30,6 @@ app.get('/create-blog', (req, res)=>{
 })
 app.post('/create-blog', (req, res)=>{
     const data = req.body;
-    console.log(data)
     const blog = new BlogCreator(data.design, data.title, data.content);
     blogs.push(blog);
     res.redirect(`/blog/${blog.id}`)
