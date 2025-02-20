@@ -1,0 +1,12 @@
+<%-include('partials/header.ejs')  %>
+<main>
+    <div class="wraper">
+        <%=blogs  %>
+        <%blogs.map(e =>{%>
+            <div class="blog">
+                <a href="/blog/<%=e.id %>"><%=e.title %></a>
+            </div>
+        <%})%>
+    </div>
+</main>
+<%-include('partials/footer.ejs')  %>

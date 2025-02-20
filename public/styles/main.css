@@ -1,0 +1,12 @@
+.wraper{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-columns: 1fr;
+    gap: 2rem;
+    padding: 0 1em 0 1em;
+}
+
+.blog{
+    background-color: aquamarine;
+    height: 100px;
+}
