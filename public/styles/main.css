@@ -1,3 +1,10 @@
+.italiana-regular {
+    font-family: "Italiana", serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 4rem;
+  }
+  
 .wraper{
     display: grid;
     grid-template-columns: 1fr;
@@ -9,4 +16,16 @@
 .blog{
     background-color: aquamarine;
     height: 100px;
+}
+
+.navbar{
+    box-shadow: -1px -10px 17px 14px rgba(60,60,60,0.75);
+    -webkit-box-shadow: -1px -10px 17px 14px rgba(60,60,60,0.75);
+    -moz-box-shadow: -1px -10px 17px 14px rgba(60,60,60,0.75);
+}
+
+@media(max-width:768px){
+    .italiana-regular{
+        font-size: 2rem !important;
+    }
 }

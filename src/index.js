@@ -20,7 +20,6 @@ const BlogCreator= (()=>{
 })();
 
 app.get('/', (req, res)=>{
-    console.log(blogs)
     res.render('home.ejs',{blogs});
 })
 
@@ -35,6 +34,12 @@ app.post('/create-blog', (req, res)=>{
     res.redirect(`/blog/${blog.id}`)
 
 })
+
+app.get('/blog', (req, res)=>{
+    res.render('blogs.ejs');
+
+})
+
 app.get(`/blog/:id`, (req, res)=>{
     const blogId = parseInt(req.params.id,10)
     const blog = blogs.find((e)=>e.id===blogId);
