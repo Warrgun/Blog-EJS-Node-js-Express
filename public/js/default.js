@@ -7,6 +7,8 @@ $('.dropdown-toggle').on('click',()=>{
 })
 
 $(document).ready(function() {
+    if(window.innerWidth<768) $('.home-img').addClass('img-fluid');
+
     $(document).on('click', function(e){
         if(!$('.dropdown').is(e.target)&& $('.dropdown').has(e.target).length === 0){
             $('.dropdown-menu').slideUp()
@@ -39,3 +41,4 @@ $(document).ready(function() {
         }
     });
 });
+

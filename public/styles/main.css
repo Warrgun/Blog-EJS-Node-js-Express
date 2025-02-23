@@ -19,9 +19,28 @@
 }
 
 .navbar{
-    box-shadow: -1px -10px 17px 14px rgba(60,60,60,0.75);
-    -webkit-box-shadow: -1px -10px 17px 14px rgba(60,60,60,0.75);
-    -moz-box-shadow: -1px -10px 17px 14px rgba(60,60,60,0.75);
+    box-shadow: -1px -10px 10px 6px rgb(28, 28, 28);
+    -webkit-box-shadow: -1px -10px 10px 6px rgb(28, 28, 28);
+    -moz-box-shadow: -1px -10px 10px 6px rgb(28, 28, 28);
+}
+
+footer{
+    box-shadow: 1px 10px 10px 6px rgb(28, 28, 28);
+    -webkit-box-shadow: 1px 10px 10px 6px rgb(28, 28, 28);
+    -moz-box-shadow: 1px 10px 10px 6px rgb(28, 28, 28);
+}
+
+.bg-header{
+    background: url(/images/bg.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.grid-container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: max-content;
+    gap: 1em;
 }
 
 @media(max-width:768px){

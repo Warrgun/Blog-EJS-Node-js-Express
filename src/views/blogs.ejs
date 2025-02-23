@@ -1,4 +1,21 @@
 <%-include('partials/header.ejs')  %>
 <main>
+    <div class="container my-5">
+        <div class="grid-container mx-auto">
+            <%[...blogs].reverse().map((e,i) =>{%>
+
+                <div class="card mb-3 mb-md-0 rounded-0 " style="width: 18rem;">
+                    <img src="<%=e.thumbNail%>" class="card-img-top rounded-0" alt="<%=e.title%>">
+                    <div class="card-body">
+                        <h5 class="card-title"><%=e.title%></h5>
+                        <p class="card-text "><%= e.content.length > 100? e.content.slice(0,e.content.lastIndexOf(" ",100))+"..." : e.content %></p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Last updated 3 mins ago</small>
+                    </div>
+                </div>
+            <%})%>
+        </div>
+    </div>
 </main>
 <%-include('partials/footer.ejs')  %>

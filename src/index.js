@@ -10,16 +10,25 @@ app.use(express.urlencoded({extended: true}));
 const BlogCreator= (()=>{  
     let nextId = 0
     return class BlogCreator{
-        constructor(design, title, content){
+        constructor(design, thumbNail, title, content){
             this.id= nextId++;
             this.design= design;
+            this.thumbNail= thumbNail;
             this.title= title;
             this.content= content;
         }
     };
 })();
 
+blogs.push(new BlogCreator('main','https://placehold.co/600x400','Homelander','Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis aut provident aliquam illo consectetur labore ea. Quaerat, odio at consectetur animi voluptatem ipsum dignissimos reprehenderit consequuntur unde sit? Doloremque, consequatur.'));
+blogs.push(new BlogCreator('main','https://placehold.co/600x400','Invincable','Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis aut provident aliquam illo consectetur labore ea. Quaerat, odio at consectetur animi voluptatem ipsum dignissimos reprehenderit consequuntur unde sit? Doloremque, consequatur.'));
+blogs.push(new BlogCreator('main','https://placehold.co/600x400','The reacher','Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis aut provident aliquam illo consectetur labore ea. Quaerat, odio at consectetur animi voluptatem ipsum dignissimos reprehenderit consequuntur unde sit? Doloremque, consequatur.'));
+blogs.push(new BlogCreator('main','https://placehold.co/600x400','Jobs 2025','Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis aut provident aliquam illo consectetur labore ea. Quaerat, odio at consectetur animi voluptatem ipsum dignissimos reprehenderit consequuntur unde sit? Doloremque, consequatur.'));
+blogs.push(new BlogCreator('main','https://placehold.co/600x400','Businuess','Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis aut provident aliquam illo consectetur labore ea. Quaerat, odio at consectetur animi voluptatem ipsum dignissimos reprehenderit consequuntur unde sit? Doloremque, consequatur.'));
+blogs.push(new BlogCreator('main','https://placehold.co/600x400','The reacher','Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis aut provident aliquam illo consectetur labore ea. Quaerat, odio at consectetur animi voluptatem ipsum dignissimos reprehenderit consequuntur unde sit? Doloremque, consequatur.'));
+
 app.get('/', (req, res)=>{
+    console.log(blogs)
     res.render('home.ejs',{blogs});
 })
 
@@ -27,17 +36,19 @@ app.get('/create-blog', (req, res)=>{
     res.render('createBlog.ejs');
 
 })
+debugger;
 app.post('/create-blog', (req, res)=>{
     const data = req.body;
-    const blog = new BlogCreator(data.design, data.title, data.content);
+    console.log(data)
+    if(!data.thumbNail) data.thumbNail='https://placehold.co/600x400';
+    const blog = new BlogCreator(data.design, data.thumbNail,data.title, data.blog);
     blogs.push(blog);
     res.redirect(`/blog/${blog.id}`)
 
 })
 
 app.get('/blog', (req, res)=>{
-    res.render('blogs.ejs');
-
+    res.render('blogs.ejs',{blogs});
 })
 
 app.get(`/blog/:id`, (req, res)=>{
@@ -73,4 +84,8 @@ app.delete(`/blog/:id`, (req, res)=>{
 app.listen(port, ()=>{
     console.log(`Server is running on port ${port}.`);
 })
+
+app.use((req, res, next) => {
+    res.status(404).render('error.ejs', { title: 'Page Not Found' });
+  });
 

@@ -1,34 +1,53 @@
 <%-include('partials/header.ejs')  %>
 <main>
-    <div class="px-4 pt-5 my-5 text-center border-bottom">
-        <h1 class="display-4 fw-bold text-body-emphasis">Centered screenshot</h1>
-        <div class="col-lg-6 mx-auto">
-            <p class="lead mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
-            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
-            <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">Primary button</button>
-            <button type="button" class="btn btn-outline-secondary btn-lg px-4">Secondary</button>
-            </div>
-        </div>
-        <div class="overflow-hidden" style="max-height: 30vh;">
-            <div class="container px-5">
-            <img src="" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" width="700" height="500" loading="lazy">
+    <div class="px-4 py-5 mt-1 mb-5 text-center border-bottom bg-header">
+        <div class="container py-4 py-md-5" style="background-color: #d6cfc8d9;">
+            <h1 class="display-4 fw-bold text-body-emphasis">Create and Share Your Own Blog</h1>
+            <div class="col-lg-8 mx-auto">
+                <p class="lead mb-4 d-none d-md-block">Welcome to The Calm Corner, ultimate platform where your ideas come to life! Our web app empowers you to create, customize, and share your own blogs effortlessly. Whether you're a seasoned writer or just starting out, our intuitive tools and sleek design make it easy to showcase your stories, thoughts, and passions with the world. Start crafting your blog today and let your voice be heard!</p>
+                <p class="lead mb-4 d-block d-md-none fs-6">Welcome to The Calm Corner, platform where your ideas come to life! Easily create, customize, and share blogs with intuitive tools designed for writers of all levels. Start sharing your stories today!</p>
+                <div class="d-flex justify-content-sm-center mb-md-5">
+                <a href="/create-blog" target="_blank" class="btn btn-primary btn-lg px-md-4 me-sm-3">Get Started</a>
+                </div>
             </div>
         </div>
     </div>
     <div class="container">
+        <div class="row ">
+            <%[...blogs].reverse().map((e,i) =>{%>
+                <%if(i<3){%>
+                <div style="max-width: 880px;" class="col-12 col-lg-10 offset-lg-1 d-flex flex-column align-items-center  flex-md-row<%=i%2!==0?"-reverse":""%> mb-5 mx-auto">
+                    <div class="<%=i%2!==0?"ms-md-4":"me-md-4"%>">
+                        <a href="/blog/<%=e.id %>" target="_blank">
+                            <img class="home-img" src="<%=e.thumbNail  %>" width="450" alt="<%=e.title  %>">
+                        </a>
+                    </div>
+                    <div class="">
+                        <h2><%= e.title %></h2>
+                        <p class="lead fs-6"><%= e.content %></p>
+                    </div>
+                </div>
+            <%}})%>
+        </div>
+        <div class="w-100 text-center mb-5">
+            <h1 class="mb-4">Discover More Stories</h1>
+            <a href="/blog" target="_blank" class="btn btn-lg btn-primary px-md-4 me-sm-3">Blogs</a>
+        </div>
         <div class="row">
-            <div class="col-6">
-            
+            <div class="col-12 d-flex flex-column align-items-center flex-md-row mb-2 mb-md-5 w-100 justify-content-center">
+            <%[...blogs].reverse().map((e,i) =>{%>
+                <%if(i>2 && i<7){%>
+                    <a href="/blog/<%=e.id %>" class="text-decoration-none" target="_blank">
+                        <div class="card me-md-4 mb-3 mb-md-0" style="width: 18rem;">
+                            <img src="<%=e.thumbNail%>" class="card-img-top" alt="<%=e.title%>">
+                            <div class="card-body">
+                                <h5 class="card-title"><%=e.title%></h5>
+                            </div>
+                        </div>
+                    </a>
+                 <%}})%>
             </div>
         </div>
-    </div>
-    <div class="wraper">
-        <%=blogs  %>
-        <%blogs.map(e =>{%>
-            <div class="blog">
-                <a href="/blog/<%=e.id %>"><%=e.title %></a>
-            </div>
-        <%})%>
     </div>
 </main>
 <%-include('partials/footer.ejs')  %>
