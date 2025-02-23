@@ -7,6 +7,16 @@ $('.dropdown-toggle').on('click',()=>{
 })
 
 $(document).ready(function() {
+    $(document).on('click', function(e){
+        if(!$('.dropdown').is(e.target)&& $('.dropdown').has(e.target).length === 0){
+            $('.dropdown-menu').slideUp()
+        }
+
+        if(!$('header').is(e.target)&& $('header').has(e.target).length === 0 && window.innerWidth<768){
+            $('#navbarSupportedContent').slideUp('300')
+        }
+    })
+
     let currentPath = window.location.pathname.replace(/\/$/, ''); 
     $('.nav-link').each(function() {
         let href = $(this).attr('href');
@@ -14,8 +24,10 @@ $(document).ready(function() {
 
         let linkPath = $(this).attr('href').replace(/\/$/, '');
 
-        if(href ==='#contact'){
-            $('.dropdown-menu').slideUp()
+        if(href ==='#contact' && window.innerWidth<768){
+            $(this).click(()=>{
+                $('#navbarSupportedContent').slideUp()
+            })
         }
         else if (href === '#blog') {
             if (currentPath === '/blog' || currentPath === '/create-blog') {
