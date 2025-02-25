@@ -28,7 +28,6 @@ blogs.push(new BlogCreator('main','https://placehold.co/600x400','Businuess','Lo
 blogs.push(new BlogCreator('main','https://placehold.co/600x400','The reacher','Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis aut provident aliquam illo consectetur labore ea. Quaerat, odio at consectetur animi voluptatem ipsum dignissimos reprehenderit consequuntur unde sit? Doloremque, consequatur.'));
 
 app.get('/', (req, res)=>{
-    console.log(blogs)
     res.render('home.ejs',{blogs});
 })
 

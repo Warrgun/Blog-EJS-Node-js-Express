@@ -2,7 +2,7 @@
 <main>
     <div class="px-4 py-5 mt-1 mb-5 text-center border-bottom bg-header">
         <div class="container py-4 py-md-5" style="background-color: #d6cfc8d9;">
-            <h1 class="display-4 fw-bold text-body-emphasis">Create and Share Your Own Blog</h1>
+            <h1 class="display-4 trirong-regular-italic fw-bold text-body-emphasis">Create and Share Your Own Blog</h1>
             <div class="col-lg-8 mx-auto">
                 <p class="lead mb-4 d-none d-md-block">Welcome to The Calm Corner, ultimate platform where your ideas come to life! Our web app empowers you to create, customize, and share your own blogs effortlessly. Whether you're a seasoned writer or just starting out, our intuitive tools and sleek design make it easy to showcase your stories, thoughts, and passions with the world. Start crafting your blog today and let your voice be heard!</p>
                 <p class="lead mb-4 d-block d-md-none fs-6">Welcome to The Calm Corner, platform where your ideas come to life! Easily create, customize, and share blogs with intuitive tools designed for writers of all levels. Start sharing your stories today!</p>
@@ -23,25 +23,25 @@
                         </a>
                     </div>
                     <div class="">
-                        <h2><%= e.title %></h2>
+                        <h2 class="trirong-light-italic"><%= e.title %></h2>
                         <p class="lead fs-6"><%= e.content %></p>
                     </div>
                 </div>
             <%}})%>
         </div>
         <div class="w-100 text-center mb-5">
-            <h1 class="mb-4">Discover More Stories</h1>
+            <h1 class="mb-4 trirong-semibold-italic">Discover More Stories</h1>
             <a href="/blog" target="_blank" class="btn btn-lg btn-primary px-md-4 me-sm-3">Blogs</a>
         </div>
         <div class="row">
-            <div class="col-12 d-flex flex-column align-items-center flex-md-row mb-2 mb-md-5 w-100 justify-content-center">
+            <div class="grid-container w-auto columns mx-auto mb-2 mb-md-5">
             <%[...blogs].reverse().map((e,i) =>{%>
                 <%if(i>2 && i<7){%>
                     <a href="/blog/<%=e.id %>" class="text-decoration-none" target="_blank">
-                        <div class="card me-md-4 mb-3 mb-md-0" style="width: 18rem;">
+                        <div class="card mb-3 mb-md-0" style="width: 18rem;">
                             <img src="<%=e.thumbNail%>" class="card-img-top" alt="<%=e.title%>">
                             <div class="card-body">
-                                <h5 class="card-title"><%=e.title%></h5>
+                                <h5 class="card-title trirong-medium-italic"><%=e.title%></h5>
                             </div>
                         </div>
                     </a>

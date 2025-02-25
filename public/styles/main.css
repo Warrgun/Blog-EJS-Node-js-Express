@@ -4,6 +4,115 @@
     font-style: normal;
     font-size: 4rem;
   }
+
+  .trirong-thin {
+    font-family: "Trirong", serif;
+    font-weight: 100;
+    font-style: normal;
+  }
+  
+  .trirong-extralight {
+    font-family: "Trirong", serif;
+    font-weight: 200;
+    font-style: normal;
+  }
+  
+  .trirong-light {
+    font-family: "Trirong", serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  .trirong-regular {
+    font-family: "Trirong", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .trirong-medium {
+    font-family: "Trirong", serif;
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+  .trirong-semibold {
+    font-family: "Trirong", serif;
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+  .trirong-bold {
+    font-family: "Trirong", serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  .trirong-extrabold {
+    font-family: "Trirong", serif;
+    font-weight: 800;
+    font-style: normal;
+  }
+  
+  .trirong-black {
+    font-family: "Trirong", serif;
+    font-weight: 900;
+    font-style: normal;
+  }
+  
+  .trirong-thin-italic {
+    font-family: "Trirong", serif;
+    font-weight: 100;
+    font-style: italic;
+  }
+  
+  .trirong-extralight-italic {
+    font-family: "Trirong", serif;
+    font-weight: 200;
+    font-style: italic;
+  }
+  
+  .trirong-light-italic {
+    font-family: "Trirong", serif;
+    font-weight: 300;
+    font-style: italic;
+  }
+  
+  .trirong-regular-italic {
+    font-family: "Trirong", serif;
+    font-weight: 400;
+    font-style: italic;
+  }
+  
+  .trirong-medium-italic {
+    font-family: "Trirong", serif;
+    font-weight: 500;
+    font-style: italic;
+  }
+  
+  .trirong-semibold-italic {
+    font-family: "Trirong", serif;
+    font-weight: 600;
+    font-style: italic;
+  }
+  
+  .trirong-bold-italic {
+    font-family: "Trirong", serif;
+    font-weight: 700;
+    font-style: italic;
+  }
+  
+  .trirong-extrabold-italic {
+    font-family: "Trirong", serif;
+    font-weight: 800;
+    font-style: italic;
+  }
+  
+  .trirong-black-italic {
+    font-family: "Trirong", serif;
+    font-weight: 900;
+    font-style: italic;
+  }
+  
   
 .wraper{
     display: grid;
@@ -43,8 +152,42 @@ footer{
     gap: 1em;
 }
 
+.card{
+    width: 18rem;
+}
+
+.columns{
+    grid-template-columns: repeat(3,1fr);   
+}
+
+@media(max-width:991px){
+    .columns{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media(max-width:768px){
     .italiana-regular{
         font-size: 2rem !important;
+    }
+    .grid-container{
+        gap: 0.5em;
+        width: 100%;
+    }
+    .card{
+        width: 100%;
+    }
+    .columns{
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width:575px){
+    .grid-container{
+        grid-template-columns: 1fr;
+    }
+
+    .grid-container>*h1{
+        font-size: 3rem;
     }
 }
