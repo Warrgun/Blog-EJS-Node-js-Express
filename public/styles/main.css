@@ -219,6 +219,35 @@ footer{
   box-shadow: #d57a6659 0 -25px 18px -14px inset,#d57a6640 0 1px 2px,#d57a6640 0 2px 4px,#d57a6640 0 4px 8px,#d57a6640 0 8px 16px,#d57a6640 0 16px 32px;
 }
 
+.img-upload{
+  border-style:dashed !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.img-upload:active{
+  border-style: solid !important;
+  filter: sepia(100%) hue-rotate(200deg) brightness(0.7);
+}
+
+.img-upload input[type='file']{
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: scale(10);
+  opacity: 0;
+}
+
+input[type='file']::-webkit-file-upload-button{
+  cursor: pointer;
+}
+
+.hover-effect:active{
+  cursor: pointer;
+  background-color: #ededed;
+}
+
+
 @media(max-width:991px){
     .columns{
         grid-template-columns: repeat(2, 1fr);
@@ -226,6 +255,11 @@ footer{
 }
 
 @media(min-width:769px){
+  .hover-effect:hover{
+    cursor: pointer;
+    background-color: #ededed;
+  }
+
   footer .nav-item:hover{
     text-decoration: underline;
   }
@@ -239,11 +273,12 @@ footer{
     border-color: #c49d70;
     transform: rotate(15deg) translateY(14px);
   }
-  
-}
 
-.img-upload{
-  border-style: dashed !important;
+  .img-upload:hover{
+    color: lighten(#555, 20%);
+    border-style:solid !important;
+    filter: sepia(100%) hue-rotate(200deg) brightness(0.7);
+  }
 }
 
 @media(max-width:768px){
