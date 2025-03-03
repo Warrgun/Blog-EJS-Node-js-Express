@@ -16,8 +16,92 @@
         <label for="blog">
             Blog
         </label>
-        <input type="text" id="blog" name="blog" required>
+        <input type="text" name="blog" required>
         <button type="submit">Submit</button>
     </form>
+    <div class="container" style="max-width: 960px;">
+        <div class="py-5 text-center">
+          <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+          <h2>Checkout form</h2>
+          <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+        </div>
+  
+        <div class="row">
+          <div class="col-md-4 order-md-2 mb-4">
+            <h4 class="text-muted mb-3">Design selector</h4>
+            <ul class="list-group mb-3">
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-0">Product name</h6>
+                  <small class="text-muted">Brief description</small>
+                </div>
+              </li>
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-0">Second product</h6>
+                  <small class="text-muted">Brief description</small>
+                </div>
+              </li>
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-0">Third item</h6>
+                  <small class="text-muted">Brief description</small>
+                </div>
+              </li>
+              <li class="list-group-item d-flex justify-content-between bg-light">
+                <div class="text-success">
+                  <h6 class="my-0">Promo code</h6>
+                  <small>EXAMPLECODE</small>
+                </div>
+              </li>
+              <li class="list-group-item d-flex justify-content-between">
+                <span>Design</span>
+                <strong>modern</strong>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-8 order-md-1 d-flex flex-column mb-5">
+            <h4 class="mb-3">Heading</h4>
+            <form class="needs-validation flex-grow-1 d-flex flex-column" novalidate="">
+              <div class="mb-3">
+                <label for="title">Title <span class="text-muted">(Required)</span></label>
+                <input class="form-control" name="title" id="title" placeholder="The way cat's see the world" required>
+              </div>
+              <div class="img-upload d-flex align-items-center flex-column justify-content-center  flex-grow-1 rounded border border-secondary-subtle p-5">
+                <i class="bi bi-card-image fs-1 text-secondary"></i>
+                <div class="">
+                    <input class="form-control w-auto" type="file" id="formFile" accept=".jpg,.gif,.png">
+                </div>
+
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-12">
+            <textarea name="textarea" id="editor"></textarea>
+            <hr class="mb-4">
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Create</button>
+        </div>
+      </div>
 </main>
+<script>
+    tinymce.init({
+      selector: '#editor',
+      plugins: [
+        // Core editing features
+        'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'image', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
+        // Your account includes a free trial of TinyMCE premium features
+        // Try the most popular premium features until Mar 17, 2025:
+        'checklist', 'mediaembed', 'casechange', 'export', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'editimage', 'advtemplate', 'ai', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown','importword', 'exportword', 'exportpdf'
+      ],
+      toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+      tinycomments_mode: 'embedded',
+      tinycomments_author: 'Author name',
+      mergetags_list: [
+        { value: 'First.Name', title: 'First Name' },
+        { value: 'Email', title: 'Email' },
+      ],
+      ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
+    });
+  </script>
 <%-include('partials/footer.ejs')  %>
