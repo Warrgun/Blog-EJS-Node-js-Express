@@ -7,7 +7,13 @@ $('.dropdown-toggle').on('click',()=>{
 })
 
 $(document).ready(function() {
-    if(window.innerWidth<768) $('.home-img').addClass('img-fluid');
+    if(window.innerWidth<768){
+        $('.home-img').addClass('img-fluid');
+
+       $('#home-card a .card .card-body').removeClass('card-body').addClass('card-img-overlay');
+
+       $('#home-card a .card, #home-card a .card img').addClass('rounded-0');
+    }
 
     $(document).on('click', function(e){
         if(!$('.dropdown').is(e.target)&& $('.dropdown').has(e.target).length === 0){
