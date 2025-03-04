@@ -16,3 +16,4 @@ $('.delete-blog').on('click',function(){
 })
 
 
+

@@ -1,18 +1,3 @@
-const quill = new Quill('#editor', {
-    theme: 'snow',
-    placeholder: 'Start typing your blog here...',
-    modules: {
-      toolbar: [
-        [{ 'font': [] }],
-        [{ 'size': ['small', false, 'large', 'huge'] }],
-        ['bold', 'italic', 'underline', 'strike'],
-        [{ 'color': [] }, { 'background': [] }],
-        [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'align': [] }],
-        ['link', 'image', 'video'],
-      ] 
-    }
-  });
-
 
 $('.navbar-toggler').on('click',()=>{
     $('#navbarSupportedContent').slideToggle('300')
@@ -43,7 +28,7 @@ $(document).ready(function() {
         !fileName? label.html(prevLabel): fileName.length >45?label.html(fileName.slice(0,45)+"..."): label.html(fileName);
     })
 
-    let newDesignText = '';
+    let newDesignText = ''
 
     $('.list-group-item').each(function(){
         let item = $(this);
@@ -83,15 +68,18 @@ $(document).ready(function() {
       html = quill.getSemanticHTML();
 
       const formData = new FormData(e.target)
+      formData.append('design', newDesignText.toLowerCase().trim());
+      formData.append('content', html);
 
-      axios.post('/create-blog', {
-        design: formData.get('design'),
-        title: newDesignText,
-        thumbNail: formData.get('thumbNail'),
-        content: html,
+      axios.post('/create-blog', formData,{
+        headers:{
+            'Content-Type': 'multipart/form-data'
+        }
       })
       .then(function (response) {
-        console.log(response);
+        if (response.data.redirectUrl) {
+            window.location.href = response.data.redirectUrl; 
+          }
       })
       .catch(function (error) {
         console.log(error);
@@ -152,3 +140,17 @@ $(document).ready(function() {
     });
 });
 
+const quill = new Quill('#editor', {
+    theme: 'snow',
+    placeholder: 'Start typing your blog here...',
+    modules: {
+      toolbar: [
+        [{ 'font': [] }],
+        [{ 'size': ['small', false, 'large', 'huge'] }],
+        ['bold', 'italic', 'underline', 'strike'],
+        [{ 'color': [] }, { 'background': [] }],
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'align': [] }],
+        ['link', 'image', 'video'],
+      ] 
+    }
+  });

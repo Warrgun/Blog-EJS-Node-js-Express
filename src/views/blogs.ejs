@@ -3,7 +3,7 @@
     <div class="container my-5">
         <div class="grid-container mx-auto">
             <%[...blogs].reverse().map((e,i) =>{%>
-                <%if(e.length){%>
+                <%if(e.content){%>
                     <div class="card mb-3 mb-md-0 rounded-0 ">
                         <img src="<%=e.thumbNail%>" class="card-img-top rounded-0" alt="<%=e.title%>">
                         <div class="card-body">

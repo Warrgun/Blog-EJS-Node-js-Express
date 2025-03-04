@@ -1,11 +1,30 @@
 import express from 'express';
+import multer from 'multer';
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const app=express();
 const port = 3000;
 let blogs = []
 
+app.use(express.json())
 app.use(express.static('../public'));
 app.use(express.urlencoded({extended: true}));
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, path.join(__dirname,'../public/images'))
+    },
+    filename: function (req, file, cb) {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+      const ext = path.extname(file.originalname);
+      cb(null, file.fieldname + '-' + uniqueSuffix+ext)
+    }
+})
+
+const upload = multer({ storage: storage })
+
 
 const BlogCreator= (()=>{  
     let nextId = 0
@@ -35,15 +54,18 @@ app.get('/create-blog', (req, res)=>{
     res.render('createBlog.ejs');
 
 })
-debugger;
-app.post('/create-blog', (req, res)=>{
-    const data = req.body;
-    console.log(data)
-    if(!data.thumbNail) data.thumbNail='https://placehold.co/600x400';
-    const blog = new BlogCreator(data.design, data.thumbNail,data.title, data.blog);
-    blogs.push(blog);
-    res.redirect(`/blog/${blog.id}`)
 
+app.post('/create-blog',upload.single('thumbNail'), (req, res)=>{
+    const data = req.body;
+    const thumbNail = req.file ? `/images/${req.file.filename}` : 'https://placehold.co/600x400';
+
+    console.log(data)
+
+    const blog = new BlogCreator(data.design,thumbNail,data.title, data.content);
+
+
+    blogs.push(blog);
+    res.json({redirectUrl: `/blog/${blog.id}`})
 })
 
 app.get('/blog', (req, res)=>{

@@ -257,6 +257,10 @@ input[type='file']::-webkit-file-upload-button{
   justify-content: center !important;
 }
 
+.home-img{
+  object-fit: cover;
+  object-position: center;
+}
 
 @media(max-width:991px){
     .columns{
