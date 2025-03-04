@@ -1,3 +1,19 @@
+const quill = new Quill('#editor', {
+    theme: 'snow',
+    placeholder: 'Start typing your blog here...',
+    modules: {
+      toolbar: [
+        [{ 'font': [] }],
+        [{ 'size': ['small', false, 'large', 'huge'] }],
+        ['bold', 'italic', 'underline', 'strike'],
+        [{ 'color': [] }, { 'background': [] }],
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'align': [] }],
+        ['link', 'image', 'video'],
+      ] 
+    }
+  });
+
+
 $('.navbar-toggler').on('click',()=>{
     $('#navbarSupportedContent').slideToggle('300')
 })
@@ -7,6 +23,7 @@ $('.dropdown-toggle').on('click',()=>{
 })
 
 $(document).ready(function() {
+
     let inputFile = $('input[type="file"]')
     let label = $('#file-content')
     let prevLabel = label.html();
@@ -26,24 +43,24 @@ $(document).ready(function() {
         !fileName? label.html(prevLabel): fileName.length >45?label.html(fileName.slice(0,45)+"..."): label.html(fileName);
     })
 
+    let newDesignText = '';
+
     $('.list-group-item').each(function(){
         let item = $(this);
         let checkLast = item.children("span").text().trim() === "Design";
-        let designText = 'modern'
 
         if(!checkLast){
             item.on('click',function(){
-                let prev = $('.list-group-item').filter('.bg-light');
+                let prev = $('.list-group-item.bg-light')
 
-                if($(this).attr('class') !== prev.attr('class')){
+                if(!$(this).is(prev)){
                     prev.removeClass("bg-light").addClass('lh-condensed hover-effect')
-                    prev.find('.text-success').removeClass('text-success').children('small').addClass('text-muted')
+                    prev.find('.text-primary').removeClass('text-primary').children('small').addClass('text-muted')
 
                     $(this).addClass("bg-light").removeClass('lh-condensed hover-effect')
-                    $(this).children('div').addClass('text-success').children('small').removeClass('text-muted')
+                    $(this).children('div').addClass('text-primary').children('small').removeClass('text-muted')
                     
-                    let newDesignText = $(this).children('div').find('h6').text();
-                    console.log(newDesignText);
+                    newDesignText = $(this).children('div').find('h6').text();
 
                     $('.list-group-item').filter(function(){
                         return $(this).children('span').text().trim() === "Design";
@@ -52,19 +69,56 @@ $(document).ready(function() {
             })
         }
         else{
-            item.children("strong").text("modern");
+            let prev = $('.list-group-item.bg-light')
+            newDesignText = prev.children('div').find('h6').text();
+            item.children("strong").text(newDesignText);
         }
         
     })
 
-    if(window.innerWidth<768){
-        $('.home-img').addClass('img-fluid');
+    let html = ''
 
-       $('#home-card a .card .card-body').removeClass('card-body').addClass('card-img-overlay');
+    $('#new-blog').on('submit', e=>{
+      e.preventDefault();
+      html = quill.getSemanticHTML();
 
-       $('#home-card a .card, #home-card a .card img').addClass('rounded-0');
-    }
+      const formData = new FormData(e.target)
 
+      axios.post('/create-blog', {
+        design: formData.get('design'),
+        title: newDesignText,
+        thumbNail: formData.get('thumbNail'),
+        content: html,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    } )
+
+    $(window).on('resize load', function() {
+        if (window.innerWidth < 768) {
+            $('.home-img').addClass('img-fluid');
+            
+            $('#home-card a .card .card-body')
+                .removeClass('card-body')
+                .addClass('card-img-overlay');
+            
+            $('#home-card a .card, #home-card a .card img')
+                .addClass('rounded-0');
+        } else {
+            $('.home-img').removeClass('img-fluid');
+            $('#home-card a .card .card-img-overlay')
+                .removeClass('card-img-overlay')
+                .addClass('card-body');
+            
+            $('#home-card a .card, #home-card a .card img')
+                .removeClass('rounded-0');
+        }
+    });
+    
     $(document).on('click', function(e){
         if(!$('.dropdown').is(e.target)&& $('.dropdown').has(e.target).length === 0){
             $('.dropdown-menu').slideUp()

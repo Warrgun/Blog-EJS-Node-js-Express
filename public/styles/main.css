@@ -196,6 +196,10 @@ footer{
   transform: rotate(15deg) translateY(14px);
 }
 
+/* .text-primary{
+  color: #e09e8f !important;
+} */
+
 
 .button-33 {
   background-color: #E9BB86;
@@ -245,6 +249,12 @@ input[type='file']::-webkit-file-upload-button{
 .hover-effect:active{
   cursor: pointer;
   background-color: #ededed;
+}
+
+.ql-picker-label{
+  display: flex !important;
+  align-items: center  !important;
+  justify-content: center !important;
 }
 
 
