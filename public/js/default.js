@@ -42,14 +42,19 @@ $(document).ready(function() {
                     $(this).addClass("bg-light").removeClass('lh-condensed hover-effect')
                     $(this).children('div').addClass('text-success').children('small').removeClass('text-muted')
                     
-                    designText = prev.children('div').find('h6').text();
-                    item.children("strong").text(designText)
+                    let newDesignText = $(this).children('div').find('h6').text();
+                    console.log(newDesignText);
+
+                    $('.list-group-item').filter(function(){
+                        return $(this).children('span').text().trim() === "Design";
+                    }).children("strong").text(newDesignText);
                 }
             })
         }
         else{
-            
+            item.children("strong").text("modern");
         }
+        
     })
 
     if(window.innerWidth<768){

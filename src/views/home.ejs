@@ -37,7 +37,7 @@
         <div class="row">
             <div id="home-card" class="grid-container w-auto columns mx-auto mb-2 mb-md-5">
             <%[...blogs].reverse().map((e,i) =>{%>
-                <%if(i>2 && i<7){%>
+                <%if(i>2 && i<6){%>
                     <a href="/blog/<%=e.id %>" class="text-decoration-none" target="_blank">
                         <div class="card mb-3 mb-md-0" style="width: 18rem;">
                             <img src="<%=e.thumbNail%>" class="card-img-top" alt="<%=e.title%>">
