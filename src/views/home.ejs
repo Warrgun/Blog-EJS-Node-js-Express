@@ -6,7 +6,7 @@
             <div class="col-lg-8 mx-auto">
                 <p class="lead mb-4 d-none d-md-block">Welcome to The Calm Corner, ultimate platform where your ideas come to life! Our web app empowers you to create, customize, and share your own blogs effortlessly. Whether you're a seasoned writer or just starting out, our intuitive tools and sleek design make it easy to showcase your stories, thoughts, and passions with the world. Start crafting your blog today and let your voice be heard!</p>
                 <p class="lead mb-4 d-block d-md-none fs-6">Welcome to The Calm Corner, platform where your ideas come to life! Easily create, customize, and share blogs with intuitive tools designed for writers of all levels. Start sharing your stories today!</p>
-                <div class="d-flex justify-content-sm-center mb-md-5">
+                <div class="d-flex justify-description-sm-center mb-md-5">
                 <a href="/create-blog" class="button-33 btn-lg px-md-4 me-sm-3">Get Started</a>
                 </div>
             </div>
@@ -25,8 +25,8 @@
                     <div class="mt-md-5 mx-md-3">
                         <h2 class="trirong-light-italic"><%= e.title %></h2>
                         <p class="trirong-light-italic opacity-75 fs-6 ">
-                            <%if(e.content){%>
-                                <%= e.content.length > 200? e.content.slice(0,e.content.lastIndexOf(" ",200))+"..." : e.content %>
+                            <%if(e.description){%>
+                                <%= e.description.length > 200? e.description.slice(0,e.description.lastIndexOf(" ",200))+"..." : e.description %>
                             <%}%>
                         </p>
                         <a href="/blog/<%=e.id %>" target="_blank" class="link-secondary">Read More</a>

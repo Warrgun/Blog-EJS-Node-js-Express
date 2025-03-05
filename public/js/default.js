@@ -61,15 +61,15 @@ $(document).ready(function() {
         
     })
 
-    let html = ''
-
     $('#new-blog').on('submit', e=>{
       e.preventDefault();
-      html = quill.getSemanticHTML();
+      const html = quill.getSemanticHTML();
+      const text = quill.getText(0,400);
 
       const formData = new FormData(e.target)
       formData.append('design', newDesignText.toLowerCase().trim());
       formData.append('content', html);
+      formData.append('description', text)
 
       axios.post('/create-blog', formData,{
         headers:{
