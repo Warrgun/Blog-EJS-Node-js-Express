@@ -45,7 +45,7 @@ $(document).ready(function() {
                     $(this).addClass("bg-light").removeClass('lh-condensed hover-effect')
                     $(this).children('div').addClass('text-primary').children('small').removeClass('text-muted')
                     
-                    newDesignText = $(this).children('div').find('h6').text();
+                    newDesignText = $(this).data('design');
 
                     $('.list-group-item').filter(function(){
                         return $(this).children('span').text().trim() === "Design";
@@ -55,7 +55,7 @@ $(document).ready(function() {
         }
         else{
             let prev = $('.list-group-item.bg-light')
-            newDesignText = prev.children('div').find('h6').text();
+            newDesignText = prev.data('design');
             item.children("strong").text(newDesignText);
         }
         
@@ -67,7 +67,7 @@ $(document).ready(function() {
       const text = quill.getText(0,400);
 
       const formData = new FormData(e.target)
-      formData.append('design', newDesignText.toLowerCase().trim());
+      formData.append('design', newDesignText);
       formData.append('content', html);
       formData.append('description', text)
 
@@ -88,8 +88,7 @@ $(document).ready(function() {
 
     $(window).on('resize load', function() {
         if (window.innerWidth < 768) {
-            $('.home-img').addClass('img-fluid');
-            
+            $('#home-card a .card').removeClass('h-100')
             $('#home-card a .card .card-body')
                 .removeClass('card-body')
                 .addClass('card-img-overlay');
@@ -97,6 +96,7 @@ $(document).ready(function() {
             $('#home-card a .card, #home-card a .card img')
                 .addClass('rounded-0');
         } else {
+            $('#home-card a .card').addClass('h-100')
             $('.home-img').removeClass('img-fluid');
             $('#home-card a .card .card-img-overlay')
                 .removeClass('card-img-overlay')
@@ -116,6 +116,7 @@ $(document).ready(function() {
             $('#navbarSupportedContent').slideUp('300')
         }
     })
+
 
     let currentPath = window.location.pathname.replace(/\/$/, ''); 
     $('.nav-link').each(function() {

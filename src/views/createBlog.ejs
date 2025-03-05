@@ -1,6 +1,6 @@
 <%-include('partials/header.ejs')  %>
-<main class="mb-4 bg-body-tertiary">
-  <div class="container" style="max-width: 960px;">
+<main class="bg-body-tertiary">
+  <div class="container mb-4" style="max-width: 960px;">
       <div class="py-5 mb-5 text-center">
         <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
         <h1 class="display-3 fw-bold ">Start creating!</h1>
@@ -14,28 +14,28 @@
             <h4 class="text-muted mb-3">Design selector</h4>
             <ul class="list-group mb-3">
               
-              <li class="list-group-item d-flex justify-content-between bg-light">
+              <li class="list-group-item d-flex justify-content-between bg-light" data-design ='modern'>
                 <div class="text-primary">
                   <h6 class="my-0">Modern</h6>
-                  <small>Brief description</small>
+                  <small>Sleek, minimal, bold, clean.</small>
                 </div>
               </li>
-              <li class="list-group-item d-flex justify-content-between lh-condensed hover-effect">
+              <li class="list-group-item d-flex justify-content-between lh-condensed hover-effect" data-design ='retro'>
                 <div>
-                  <h6 class="my-0">Spring</h6>
-                  <small class="text-muted">Brief description</small>
+                  <h6 class="my-0">Retro</h6>
+                  <small class="text-muted">Nostalgic and vintage aesthetics.</small>
                 </div>
               </li>
-              <li class="list-group-item d-flex justify-content-between lh-condensed hover-effect">
+              <li class="list-group-item d-flex justify-content-between lh-condensed hover-effect" data-design="subtle">
                 <div>
                   <h6 class="my-0">Subtle</h6>
-                  <small class="text-muted">Brief description</small>
+                  <small class="text-muted">Soft, elegant, and muted tones.</small>
                 </div>
               </li>
-              <li class="list-group-item d-flex justify-content-between lh-condensed hover-effect">
+              <li class="list-group-item d-flex justify-content-between lh-condensed hover-effect" data-design="magazine">
                 <div>
-                  <h6 class="my-0">Old news paper</h6>
-                  <small class="text-muted">Brief description</small>
+                  <h6 class="my-0">Magazine</h6>
+                  <small class="text-muted">Grid-based and structured.</small>
                 </div>
               </li>
               <li class="list-group-item d-flex justify-content-between">
@@ -48,7 +48,7 @@
             <h4 class="mb-3">Heading</h4>
               <div class="mb-3">
                 <label for="title">Title <span class="text-muted">(Required)</span></label>
-                <input class="form-control" name="title" id="title" placeholder="The way cats see the world" required>
+                <input class="form-control" name="title" id="title" maxlength="50" placeholder="The way cats see the world" required>
               </div>
               <div class="img-upload bg-light-subtle d-flex align-items-center flex-column justify-content-center  flex-grow-1 rounded border border-secondary-subtle p-5">
                 <i class="bi bi-card-image fs-1 text-secondary"></i>

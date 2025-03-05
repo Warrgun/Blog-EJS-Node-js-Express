@@ -3,12 +3,15 @@
     <div class="container my-5">
         <div class="grid-container mx-auto">
             <%[...blogs].reverse().map((e,i) =>{%>
-                <%if(e.description){%>
-                    <div class="card mb-3 mb-md-0 rounded-0 ">
-                        <img src="<%=e.thumbNail%>" class="card-img-top rounded-0" alt="<%=e.title%>" height="200" style="object-fit: cover;">
+                <%if(e.description && e.description.trim()){%>
+                    <div class="card mb-3 mb-md-0 rounded-0 h-100">
+                        <img src="<%=e.thumbNail%>" class="card-img-top rounded-0" alt="<%=e.title%>" height="200" loading="lazy" style="object-fit: cover;">
                         <div class="card-body">
-                            <h5 class="card-title trirong-medium-italic"><%=e.title%></h5>
-                            <p class="card-text trirong-light-italic"><%= e.description.length > 100? e.description.slice(0,e.description.lastIndexOf(" ",100))+"..." : e.description %></p>
+                            <a href="/blog/<%= e.id %>" class="card-link" target="_blank">
+                                <h5 class="card-title trirong-light-italic mb-0"><%= e.title.length > 25? e.title.slice(0,e.title.lastIndexOf(" ",40))+"..." : e.title %></h5>
+                            </a>
+                            <small class=" text-secondary"><%=e.date %></small>
+                            <p class="card-text trirong-light-italic mt-2"><%= e.description.length > 100? e.description.slice(0,e.description.lastIndexOf(" ",100))+"..." : e.description %></p>
                         </div>
                         <div class="card-footer">
                             <small class="text-muted">Last updated 3 mins ago</small>

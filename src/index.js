@@ -17,6 +17,7 @@ clearFolder()
 
 import express from 'express';
 import multer from 'multer';
+import exampleBlogs from '../public/js/exampleBlogs.js';
 
 const app=express();
 const port = 3000;
@@ -43,20 +44,25 @@ const upload = multer({ storage: storage })
 const BlogCreator= (()=>{  
     let nextId = 0
     return class BlogCreator{
-        constructor(design, thumbNail, title, content, description){
+        constructor(design, thumbNail, title, content, description, date){
             this.id= nextId++;
             this.design= design;
             this.thumbNail= thumbNail;
             this.title= title;
             this.content= content;
             this.description = description;
+            this.date = date;
         }
     };
 })();
 
+const jsonPath = path.join(__dirname,'../public');
+
+fs.writeFile(path.join(jsonPath,'exampleBlogs.json'),exampleBlogs(), 'utf-8',(err)=>{if(err) console.error(err)})
+
 fetch('http://localhost:3000/exampleBlogs.json')
     .then(response => response.json())
-    .then(value => value.map(e=> blogs.push(new BlogCreator(e.design,e.thumbNail,e.title,e.content,e.description))))
+    .then(value => value.map(e=> blogs.push(new BlogCreator(e.design,e.thumbNail,e.title,e.content,e.description,e.date))))
 
 
 app.get('/', (req, res)=>{
@@ -71,10 +77,10 @@ app.get('/create-blog', (req, res)=>{
 app.post('/create-blog',upload.single('thumbNail'), (req, res)=>{
     const data = req.body;
     const thumbNail = req.file ? `/images/temp/${req.file.filename}` : 'https://placehold.co/600x400';
+    const today = new Date();
+    const date = `${today.getDate()<10?new String(0)+today.getDate():today.getDate()}-${(today.getMonth()+1)<10?new String(0)+(today.getMonth()+1):today.getMonth()+1}-${today.getFullYear()}`;
 
-    console.log(data)
-
-    const blog = new BlogCreator(data.design,thumbNail,data.title, data.content, data.description);
+    const blog = new BlogCreator(data.design,thumbNail,data.title, data.content, data.description, date);
 
 
     blogs.push(blog);
@@ -106,6 +112,10 @@ app.put(`/blog/:id`, (req, res)=>{
 app.delete(`/blog/:id`, (req, res)=>{
     const blogId = parseInt(req.params.id,10);
     const beforeLength = blogs.length;
+    const thubmNailPath = path.join(__dirname,'../public');
+
+    fs.unlink(path.join(thubmNailPath,blogs.filter(e=> e.id===blogId)[0].thumbNail),err=> console.log(`file ${err}`))
+
     blogs = blogs.filter(e => e.id !== blogId);
 
     if (blogs.length < beforeLength) {

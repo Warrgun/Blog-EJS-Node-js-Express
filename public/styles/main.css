@@ -200,6 +200,12 @@ footer{
   color: #e09e8f !important;
 } */
 
+.card-link{
+  color: #e09e8f !important;
+  text-underline-offset: 5px;
+  transition: text-shadow 100ms ease ;
+}
+
 
 .button-33 {
   background-color: #E9BB86;
@@ -269,6 +275,10 @@ input[type='file']::-webkit-file-upload-button{
 }
 
 @media(min-width:769px){
+  .card-link:hover{
+    text-shadow: 0px 0px 1px  #e09e8f;
+  }
+
   .hover-effect:hover{
     cursor: pointer;
     background-color: #ededed;
@@ -320,9 +330,14 @@ input[type='file']::-webkit-file-upload-button{
 @media(max-width:575px){
     .grid-container{
         grid-template-columns: 1fr;
+        gap: 2em;
     }
 
     .grid-container>*h1{
         font-size: 3rem;
+    }
+
+    .home-img{
+      height: 300px;
     }
 }
