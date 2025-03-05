@@ -206,6 +206,9 @@ footer{
   transition: text-shadow 100ms ease ;
 }
 
+.card-link:active{
+  text-shadow: 0 0 1px #e09e8f;
+}
 
 .button-33 {
   background-color: #E9BB86;

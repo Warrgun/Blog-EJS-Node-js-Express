@@ -5,7 +5,9 @@
             <%[...blogs].reverse().map((e,i) =>{%>
                 <%if(e.description && e.description.trim()){%>
                     <div class="card mb-3 mb-md-0 rounded-0 h-100">
-                        <img src="<%=e.thumbNail%>" class="card-img-top rounded-0" alt="<%=e.title%>" height="200" loading="lazy" style="object-fit: cover;">
+                        <a href="/blog/<%= e.id %>" target="_blank">
+                            <img src="<%=e.thumbNail%>" class="card-img-top rounded-0" alt="<%=e.title%>" height="200" loading="lazy" style="object-fit: cover;">
+                        </a>
                         <div class="card-body">
                             <a href="/blog/<%= e.id %>" class="card-link" target="_blank">
                                 <h5 class="card-title trirong-light-italic mb-0"><%= e.title.length > 25? e.title.slice(0,e.title.lastIndexOf(" ",40))+"..." : e.title %></h5>

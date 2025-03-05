@@ -79,8 +79,10 @@ app.post('/create-blog',upload.single('thumbNail'), (req, res)=>{
     const thumbNail = req.file ? `/images/temp/${req.file.filename}` : 'https://placehold.co/600x400';
     const today = new Date();
     const date = `${today.getDate()<10?new String(0)+today.getDate():today.getDate()}-${(today.getMonth()+1)<10?new String(0)+(today.getMonth()+1):today.getMonth()+1}-${today.getFullYear()}`;
+    let title=data.title.trim();
+    title = title[0].toUpperCase()+title.slice(1)
 
-    const blog = new BlogCreator(data.design,thumbNail,data.title, data.content, data.description, date);
+    const blog = new BlogCreator(data.design,thumbNail,title, data.content, data.description, date);
 
 
     blogs.push(blog);
