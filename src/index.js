@@ -23,7 +23,7 @@ const port = 3000;
 let blogs = []
 
 app.use(express.json())
-app.use(express.static('../public'));
+app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.urlencoded({extended: true}));
 
 const storage = multer.diskStorage({
@@ -54,12 +54,10 @@ const BlogCreator= (()=>{
     };
 })();
 
-blogs.push(new BlogCreator('main','https://placehold.co/600x400','Homelander','Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis aut provident aliquam illo consectetur labore ea. Quaerat, odio at consectetur animi voluptatem ipsum dignissimos reprehenderit consequuntur unde sit? Doloremque, consequatur.','Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis aut provident aliquam illo consectetur labore ea. Quaerat, odio at consectetur animi voluptatem ipsum dignissimos reprehenderit consequuntur unde sit? Doloremque, consequatur.'));
-blogs.push(new BlogCreator('main','https://placehold.co/600x400','Invincable','Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis aut provident aliquam illo consectetur labore ea. Quaerat, odio at consectetur animi voluptatem ipsum dignissimos reprehenderit consequuntur unde sit? Doloremque, consequatur.','Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis aut provident aliquam illo consectetur labore ea. Quaerat, odio at consectetur animi voluptatem ipsum dignissimos reprehenderit consequuntur unde sit? Doloremque, consequatur.'));
-blogs.push(new BlogCreator('main','https://placehold.co/600x400','The reacher','Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis aut provident aliquam illo consectetur labore ea. Quaerat, odio at consectetur animi voluptatem ipsum dignissimos reprehenderit consequuntur unde sit? Doloremque, consequatur.','Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis aut provident aliquam illo consectetur labore ea. Quaerat, odio at consectetur animi voluptatem ipsum dignissimos reprehenderit consequuntur unde sit? Doloremque, consequatur.'));
-blogs.push(new BlogCreator('main','https://placehold.co/600x400','Jobs 2025','Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis aut provident aliquam illo consectetur labore ea. Quaerat, odio at consectetur animi voluptatem ipsum dignissimos reprehenderit consequuntur unde sit? Doloremque, consequatur.','Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis aut provident aliquam illo consectetur labore ea. Quaerat, odio at consectetur animi voluptatem ipsum dignissimos reprehenderit consequuntur unde sit? Doloremque, consequatur.'));
-blogs.push(new BlogCreator('main','https://placehold.co/600x400','Businuess','Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis aut provident aliquam illo consectetur labore ea. Quaerat, odio at consectetur animi voluptatem ipsum dignissimos reprehenderit consequuntur unde sit? Doloremque, consequatur.','Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis aut provident aliquam illo consectetur labore ea. Quaerat, odio at consectetur animi voluptatem ipsum dignissimos reprehenderit consequuntur unde sit? Doloremque, consequatur.'));
-blogs.push(new BlogCreator('main','https://placehold.co/600x400','The reacher','Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis aut provident aliquam illo consectetur labore ea. Quaerat, odio at consectetur animi voluptatem ipsum dignissimos reprehenderit consequuntur unde sit? Doloremque, consequatur.Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis aut provident aliquam illo consectetur labore ea. Quaerat, odio at consectetur animi voluptatem ipsum dignissimos reprehenderit consequuntur unde sit? Doloremque, consequatur.Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis aut provident aliquam illo consectetur labore ea. Quaerat, odio at consectetur animi voluptatem ipsum dignissimos reprehenderit consequuntur unde sit? Doloremque, consequatur.','Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis aut provident aliquam illo consectetur labore ea. Quaerat, odio at consectetur animi voluptatem ipsum dignissimos reprehenderit consequuntur unde sit? Doloremque, consequatur.'));
+fetch('http://localhost:3000/exampleBlogs.json')
+    .then(response => response.json())
+    .then(value => value.map(e=> blogs.push(new BlogCreator(e.design,e.thumbNail,e.title,e.content,e.description))))
+
 
 app.get('/', (req, res)=>{
     res.render('home.ejs',{blogs});
