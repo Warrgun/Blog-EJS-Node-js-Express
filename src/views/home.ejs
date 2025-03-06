@@ -46,7 +46,7 @@
             <%[...blogs].reverse().map((e,i) =>{%>
                 <%if(i>lastIndex && i<=(lastIndex+3)){%>
                     <a href="/blog/<%=e.id %>" class="text-decoration-none" target="_blank">
-                        <div class="card mb-3 mb-md-0 h-100" style="width: 18rem;">
+                        <div class="card h-100" style="width: 18rem;">
                             <img src="<%=e.thumbNail%>" class="card-img-top" loading="lazy" alt="<%=e.title%>" height="200" style="object-fit: cover;">
                             <div class="card-body">
                                 <h5 class="card-title trirong-medium-italic"><%=e.title%></h5>

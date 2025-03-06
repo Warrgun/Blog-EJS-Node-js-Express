@@ -48,7 +48,8 @@
             <h4 class="mb-3">Heading</h4>
               <div class="mb-3">
                 <label for="title">Title <span class="text-muted">(Required)</span></label>
-                <input class="form-control" name="title" id="title" maxlength="50" placeholder="The way cats see the world" required>
+                <input class="form-control" name="title" id="title" maxlength="50" placeholder="The way cats see the world">
+                <small class="text-danger" data-field = 'title'></small>
               </div>
               <div class="img-upload bg-light-subtle d-flex align-items-center flex-column justify-content-center  flex-grow-1 rounded border border-secondary-subtle p-5">
                 <i class="bi bi-card-image fs-1 text-secondary"></i>
@@ -62,6 +63,7 @@
         </div>
         <div class="row">
           <div class="col-12">
+            <small class="text-danger" data-field = 'content'></small>
             <div class="h-auto" style=" min-height: 25em;" id="editor">
             </div>
             <hr class="mb-4">

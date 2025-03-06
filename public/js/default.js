@@ -83,6 +83,15 @@ $(document).ready(function() {
       })
       .catch(function (error) {
         console.log(error);
+        const errors = error.response?.data || {};
+            $('small.text-danger').each(function() {
+            const field = $(this).data('field'); 
+            $(this).text(errors[`${field}Err`] || '');
+         });
+         const firstError = $('small.text-danger:visible').first();
+            if (firstError.length) {
+                firstError.get(0).scrollIntoView()
+            }
       });
     } )
 

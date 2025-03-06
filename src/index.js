@@ -75,18 +75,35 @@ app.get('/create-blog', (req, res)=>{
 })
 
 app.post('/create-blog',upload.single('thumbNail'), (req, res)=>{
+    const checkWhiteSpace = (e) => e && e.trim().length > 0;
     const data = req.body;
     const thumbNail = req.file ? `/images/temp/${req.file.filename}` : 'https://placehold.co/600x400';
+    const isTitleValid = checkWhiteSpace(data.title) && /^\w+$/.test(data.title);
+    const isContentValid = checkWhiteSpace(data.descriptiont);
+
+    let errors = {};
+    if (!isTitleValid) {
+        errors.titleErr = "Provide a valid title!";
+    }
+    if (!isContentValid) {
+        errors.contentErr = "Your blog cannot be empty!";
+    }
+
+    if (Object.keys(errors).length > 0) {
+        return res.status(400).json(errors);
+    }
+
     const today = new Date();
     const date = `${today.getDate()<10?new String(0)+today.getDate():today.getDate()}-${(today.getMonth()+1)<10?new String(0)+(today.getMonth()+1):today.getMonth()+1}-${today.getFullYear()}`;
-    let title=data.title.trim();
-    title = title[0].toUpperCase()+title.slice(1)
+    let title = data.title.trim();
+    title[0].toUpperCase()+title.slice(1)
 
     const blog = new BlogCreator(data.design,thumbNail,title, data.content, data.description, date);
 
 
     blogs.push(blog);
     res.json({redirectUrl: `/blog/${blog.id}`})
+
 })
 
 app.get('/blog', (req, res)=>{
