@@ -79,7 +79,7 @@ app.post('/create-blog',upload.single('thumbNail'), (req, res)=>{
     const data = req.body;
     const thumbNail = req.file ? `/images/temp/${req.file.filename}` : 'https://placehold.co/600x400';
     const isTitleValid = checkWhiteSpace(data.title) && /^\w+$/.test(data.title);
-    const isContentValid = checkWhiteSpace(data.descriptiont);
+    const isContentValid = checkWhiteSpace(data.description);
 
     let errors = {};
     if (!isTitleValid) {
