@@ -271,6 +271,10 @@ input[type='file']::-webkit-file-upload-button{
   object-position: center;
 }
 
+.cursor{
+  cursor: pointer;
+}
+
 @media(max-width:991px){
     .columns{
         grid-template-columns: repeat(2, 1fr);
