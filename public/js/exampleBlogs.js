@@ -15,13 +15,13 @@ function exampleBlogs(){
     
     const blogs=[];
     
-    blogs.push(new BlogCreator('modern','https://plus.unsplash.com/premium_photo-1680543345245-89ac63571b68?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D','Embracing Minimalism: A Journey to Simplicity',`<article>
+    blogs.push(new BlogCreator('modern','/images/simple.jpg','Embracing Minimalism: A Journey to Simplicity',`<article>
       <header>
         <h1>Embracing Minimalism: A Journey to Simplicity</h1>
         <p><em>Published on: March 5, 2025</em></p>
         <!-- Thumbnail for the blog post -->
         <div class="thumbnail">
-          <img src="https://plus.unsplash.com/premium_photo-1680543345245-89ac63571b68?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Thumbnail: Embracing Minimalism">
+          <img src="/images/simple.jpg" alt="Thumbnail: Embracing Minimalism">
         </div>
       </header>
       <p>Minimalism is more than an aesthetic; it is a deliberate way of living that prioritizes clarity, purpose, and intention. In a world where consumerism often reigns supreme, choosing minimalism means making a conscious effort to eliminate excess and focus on what truly matters.</p>
@@ -39,13 +39,13 @@ function exampleBlogs(){
       </footer>
     </article>
     `,`Minimalism is more than just a design choice—it’s a lifestyle shift toward clarity, purpose, and intentional living. In a world driven by consumerism, minimalism encourages people to remove unnecessary clutter, whether physical or mental, and focus on what truly matters. This blog explores the philosophy behind minimalism, its benefits in reducing stress, and practical ways to adopt a simpler, more meaningful lifestyle. From decluttering your home to prioritizing experiences over material possessions, this guide offers valuable insights into how minimalism can lead to greater happiness and fulfillment. Whether you're new to the concept or looking to refine your minimalist approach, this blog provides actionable steps to help you embrace a more intentional way of living.`,'04-10-2016'));
-    blogs.push(new BlogCreator('modern','https://plus.unsplash.com/premium_photo-1661421687248-7bb863c60723?q=80&w=2138&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D','The Digital Revolution: How Technology Is Shaping Our Future',`<article>
+    blogs.push(new BlogCreator('modern','/images/technology.jpg','The Digital Revolution: How Technology Is Shaping Our Future',`<article>
       <header>
         <h1>The Digital Revolution: How Technology Is Shaping Our Future</h1>
         <p><em>Published on: March 5, 2025</em></p>
         <!-- Thumbnail for the blog post -->
         <div class="thumbnail">
-          <img src="https://plus.unsplash.com/premium_photo-1661421687248-7bb863c60723?q=80&w=2138&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Thumbnail: Digital Revolution">
+          <img src="/images/technology.jpg" alt="Thumbnail: Digital Revolution">
         </div>
       </header>
       <p>The digital revolution has transformed every facet of our lives, reshaping how we work, communicate, and entertain ourselves. This era of rapid technological advancement is redefining traditional boundaries and opening up a world of possibilities.</p>
@@ -63,13 +63,13 @@ function exampleBlogs(){
       </footer>
     </article>
     `,`Artificial Intelligence (AI) is no longer a futuristic concept—it’s already deeply integrated into our daily lives. From voice assistants like Siri and Alexa to advanced machine learning in healthcare, AI is transforming the way we work, communicate, and interact with technology. But with its rapid development come questions about ethics, automation, and the future of employment. This blog dives into the evolution of AI, its most groundbreaking applications, and the debates surrounding its risks and benefits. Whether it's self-driving cars, AI-generated art, or medical breakthroughs, the influence of artificial intelligence is undeniable. If you're curious about where AI is headed and what it means for humanity, this blog provides a comprehensive look into the world of intelligent machines.`,'15-08-2019'));
-    blogs.push(new BlogCreator('modern','https://images.unsplash.com/photo-1601751911508-fd69ffc08fa2?q=80&w=2028&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D','Culinary Delights: Discovering the Flavors of Italy',`<article>
+    blogs.push(new BlogCreator('modern','/images/pasta.jpg','Culinary Delights: Discovering the Flavors of Italy',`<article>
       <header>
         <h1>Culinary Delights: Discovering the Flavors of Italy</h1>
         <p><em>Published on: March 5, 2025</em></p>
         <!-- Thumbnail for the blog post -->
         <div class="thumbnail">
-          <img src="https://images.unsplash.com/photo-1601751911508-fd69ffc08fa2?q=80&w=2028&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Thumbnail: Culinary Delights">
+          <img src="/images/pasta.jpg" alt="Thumbnail: Culinary Delights">
         </div>
       </header>
       <p>Italy's culinary heritage is a celebration of tradition, passion, and a deep respect for fresh, natural ingredients. Each region in Italy has its own distinct flavors and culinary techniques, passed down through generations.</p>
@@ -87,13 +87,13 @@ function exampleBlogs(){
       </footer>
     </article>
     `,`Success isn’t built overnight—it’s the result of small, consistent actions taken daily. From waking up early to reading a few pages of a book, daily habits shape who we are and where we’re headed. This blog explores the science behind habit formation, explaining how routines influence our productivity, mindset, and overall well-being. Learn how to break bad habits, establish positive ones, and create a system that supports long-term growth. Whether you want to improve your health, focus better, or achieve personal goals, understanding the power of habits can be life-changing. By making small adjustments to your daily routine, you can create lasting improvements in your life and set yourself up for success.`,'18-11-2022'));
-    blogs.push(new BlogCreator('modern','https://images.unsplash.com/photo-1611244134466-d3e292c76aab?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D','Mindfulness and Meditation: Unlocking Inner Peace',`<article>
+    blogs.push(new BlogCreator('modern','/images/shadow.jpg','Mindfulness and Meditation: Unlocking Inner Peace',`<article>
       <header>
         <h1>Mindfulness and Meditation: Unlocking Inner Peace</h1>
         <p><em>Published on: March 5, 2025</em></p>
         <!-- Thumbnail for the blog post -->
         <div class="thumbnail">
-          <img src="https://images.unsplash.com/photo-1611244134466-d3e292c76aab?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Thumbnail: Mindfulness and Meditation">
+          <img src="/images/shadow.jpg" alt="Thumbnail: Mindfulness and Meditation">
         </div>
       </header>
       <p>In today’s fast-paced world, finding a moment of peace can seem nearly impossible. Yet, mindfulness and meditation offer powerful methods for grounding ourselves amid the chaos.</p>
@@ -111,13 +111,13 @@ function exampleBlogs(){
       </footer>
     </article>
     `,'In today’s fast-paced world, finding a moment of peace can seem nearly impossible. Yet, mindfulness and meditation offer powerful methods for grounding ourselves amid the chaos Mindfulness is about being fully present in each moment—observing our thoughts and emotions without judgment. This practice helps reduce stress, sharpen our focus, and foster a deeper connection with our inner selves. Meditation builds on mindfulness by creating a dedicated time for reflection and stillness. Regular meditation can lower blood pressure, enhance concentration, and even bolster the immune system. One of the most transformative aspects of mindfulness is its ability to change our perspective. By learning to observe our internal dialogue, we begin to understand and reframe our reactions, cultivating a sense of calm and clarity.','27-02-2023'));
-    blogs.push(new BlogCreator('modern','https://images.unsplash.com/photo-1521336575822-6da63fb45455?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',' Wanderlust on a Budget: Travel Tips for the Adventurous',`<article>
+    blogs.push(new BlogCreator('modern','/images/water.jpg',' Wanderlust on a Budget: Travel Tips for the Adventurous',`<article>
       <header>
         <h1>Wanderlust on a Budget: Travel Tips for the Adventurous</h1>
         <p><em>Published on: March 5, 2025</em></p>
         <!-- Thumbnail for the blog post -->
         <div class="thumbnail">
-          <img src="https://images.unsplash.com/photo-1521336575822-6da63fb45455?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Thumbnail: Wanderlust on a Budget">
+          <img src="/images/water.jpg" alt="Thumbnail: Wanderlust on a Budget">
         </div>
       </header>
       <p>Travel is one of life’s most enriching experiences, offering opportunities to explore new cultures, cuisines, and landscapes. For the budget-conscious adventurer, the dream of exploring the world is closer than it seems.</p>
@@ -135,13 +135,13 @@ function exampleBlogs(){
       </footer>
     </article>
     `,'Travel is one of life’s most enriching experiences, offering opportunities to explore new cultures, cuisines, and landscapes. For the budget-conscious adventurer, the dream of exploring the world is closer than it seems. Flexibility is key when traveling on a budget. Being open to different destinations, dates, and accommodations can unlock unexpected deals and hidden gems that are often overlooked by mainstream travelers. Accommodations no longer need to be expensive. Options like hostels, vacation rentals, and even home exchanges provide not only cost savings but also a chance to experience local life up close. These alternatives can lead to deeper cultural exchanges and lifelong friendships.','26-02-2024'));
-    blogs.push(new BlogCreator('modern','https://images.unsplash.com/photo-1575489272413-cb506258027e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D','Green Energy: The Future of Renewable Resources',`<article>
+    blogs.push(new BlogCreator('modern','/images/forest.jpg','Green Energy: The Future of Renewable Resources',`<article>
       <header>
         <h1>Green Energy: The Future of Renewable Resources</h1>
         <p><em>Published on: March 5, 2025</em></p>
         <!-- Thumbnail for the blog post -->
         <div class="thumbnail">
-          <img src="https://images.unsplash.com/photo-1575489272413-cb506258027e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Thumbnail: Green Energy">
+          <img src="/images/forest.jpg" alt="Thumbnail: Green Energy">
         </div>
       </header>
       <p>With climate change becoming an ever-pressing global issue, the shift to green energy has never been more crucial. Renewable resources such as solar, wind, and hydroelectric power are transforming the energy landscape and offering a sustainable path forward.</p>
