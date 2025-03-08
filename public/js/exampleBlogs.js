@@ -39,7 +39,7 @@ function exampleBlogs(){
       </footer>
     </article>
     `,`Minimalism is more than just a design choice—it’s a lifestyle shift toward clarity, purpose, and intentional living. In a world driven by consumerism, minimalism encourages people to remove unnecessary clutter, whether physical or mental, and focus on what truly matters. This blog explores the philosophy behind minimalism, its benefits in reducing stress, and practical ways to adopt a simpler, more meaningful lifestyle. From decluttering your home to prioritizing experiences over material possessions, this guide offers valuable insights into how minimalism can lead to greater happiness and fulfillment. Whether you're new to the concept or looking to refine your minimalist approach, this blog provides actionable steps to help you embrace a more intentional way of living.`,'04-10-2016'));
-    blogs.push(new BlogCreator('modern','/images/technology.jpg','The Digital Revolution: How Technology Is Shaping Our Future',`<article>
+    blogs.push(new BlogCreator('magazine','/images/technology.jpg','The Digital Revolution: How Technology Is Shaping Our Future',`<article>
       <header>
         <h1>The Digital Revolution: How Technology Is Shaping Our Future</h1>
         <p><em>Published on: March 5, 2025</em></p>
@@ -63,7 +63,7 @@ function exampleBlogs(){
       </footer>
     </article>
     `,`Artificial Intelligence (AI) is no longer a futuristic concept—it’s already deeply integrated into our daily lives. From voice assistants like Siri and Alexa to advanced machine learning in healthcare, AI is transforming the way we work, communicate, and interact with technology. But with its rapid development come questions about ethics, automation, and the future of employment. This blog dives into the evolution of AI, its most groundbreaking applications, and the debates surrounding its risks and benefits. Whether it's self-driving cars, AI-generated art, or medical breakthroughs, the influence of artificial intelligence is undeniable. If you're curious about where AI is headed and what it means for humanity, this blog provides a comprehensive look into the world of intelligent machines.`,'15-08-2019'));
-    blogs.push(new BlogCreator('modern','/images/pasta.jpg','Culinary Delights: Discovering the Flavors of Italy',`<article>
+    blogs.push(new BlogCreator('retro','/images/pasta.jpg','Culinary Delights: Discovering the Flavors of Italy',`<article>
       <header>
         <h1>Culinary Delights: Discovering the Flavors of Italy</h1>
         <p><em>Published on: March 5, 2025</em></p>
@@ -87,7 +87,7 @@ function exampleBlogs(){
       </footer>
     </article>
     `,`Success isn’t built overnight—it’s the result of small, consistent actions taken daily. From waking up early to reading a few pages of a book, daily habits shape who we are and where we’re headed. This blog explores the science behind habit formation, explaining how routines influence our productivity, mindset, and overall well-being. Learn how to break bad habits, establish positive ones, and create a system that supports long-term growth. Whether you want to improve your health, focus better, or achieve personal goals, understanding the power of habits can be life-changing. By making small adjustments to your daily routine, you can create lasting improvements in your life and set yourself up for success.`,'18-11-2022'));
-    blogs.push(new BlogCreator('modern','/images/shadow.jpg','Mindfulness and Meditation: Unlocking Inner Peace',`<article>
+    blogs.push(new BlogCreator('subtle','/images/shadow.jpg','Mindfulness and Meditation: Unlocking Inner Peace',`<article>
       <header>
         <h1>Mindfulness and Meditation: Unlocking Inner Peace</h1>
         <p><em>Published on: March 5, 2025</em></p>
@@ -135,7 +135,7 @@ function exampleBlogs(){
       </footer>
     </article>
     `,'Travel is one of life’s most enriching experiences, offering opportunities to explore new cultures, cuisines, and landscapes. For the budget-conscious adventurer, the dream of exploring the world is closer than it seems. Flexibility is key when traveling on a budget. Being open to different destinations, dates, and accommodations can unlock unexpected deals and hidden gems that are often overlooked by mainstream travelers. Accommodations no longer need to be expensive. Options like hostels, vacation rentals, and even home exchanges provide not only cost savings but also a chance to experience local life up close. These alternatives can lead to deeper cultural exchanges and lifelong friendships.','26-02-2024'));
-    blogs.push(new BlogCreator('modern','/images/forest.jpg','Green Energy: The Future of Renewable Resources',`<article>
+    blogs.push(new BlogCreator('retro','/images/forest.jpg','Green Energy: The Future of Renewable Resources',`<article>
       <header>
         <h1>Green Energy: The Future of Renewable Resources</h1>
         <p><em>Published on: March 5, 2025</em></p>

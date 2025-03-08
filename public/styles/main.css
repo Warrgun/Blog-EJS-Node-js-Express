@@ -275,6 +275,12 @@ input[type='file']::-webkit-file-upload-button{
   cursor: pointer;
 }
 
+.ql-editor p>img{
+  max-width: 50% !important;
+  max-height: 200px !important;
+  object-fit: cover;
+}
+
 @media(max-width:991px){
     .columns{
         grid-template-columns: repeat(2, 1fr);
