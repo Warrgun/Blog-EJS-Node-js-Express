@@ -5,3 +5,9 @@ img{
     width: 100%;
     object-fit: cover;
 }
+
+@media(max-width:992px){
+    .container{
+        max-width: 600px;
+    }
+}

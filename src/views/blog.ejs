@@ -10,9 +10,18 @@
 <body>
     <!-- <h1><%=blog.id %></h1>
     <button class="delete-blog" data-id="<%=blog.id %>">delete</button> -->
-    <div class="container">
-      <%-blog.content%>
+    <div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 overflow-hidden">
+      <div class="my-3 py-3 text-center mx-auto" style="max-width: 800px;">
+        <h2 class="display-5" ><%=blog.title %></h2>
+        <p class="lead"><%=blog.description.length>200? blog.description.slice(0,blog.description.lastIndexOf(" ",200))+'...': blog.description %></p>
+      </div>
+      <div class="bg-body-tertiary text-dark shadow-sm mx-auto" style="width: 80%; border-radius: 21px 21px 0 0;">
+        <div class="container py-5">
+          <%-blog.content%>
+        </div>
+      </div>
     </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script
   src="https://code.jquery.com/jquery-3.7.1.js"
