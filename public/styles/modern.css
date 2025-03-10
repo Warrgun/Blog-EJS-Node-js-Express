@@ -1,4 +1,4 @@
-.container{
+.max-width{
     max-width: 800px
 }
 img{
@@ -6,8 +6,51 @@ img{
     object-fit: cover;
 }
 
+.background{
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    height: 60vh;
+}
+
+.heading{
+    background-color: rgba(236, 215, 250, 0.233);
+    border-top-left-radius: 5em;
+    border-bottom-right-radius: 5em;
+}
+
+.text-shadow {
+    text-shadow: 0px 0px 5px rgb(0, 0, 0);
+  }
+
+.btn-outline-success{
+    border-color: rgb(255, 115, 0);
+    color:rgb(255, 115, 0) ;
+}
+
+.btn-outline-success:active{
+    background-color: rgb(255, 115, 0) !important;
+    border-color:rgb(255, 140, 0) !important;
+}
+
 @media(max-width:992px){
     .container{
         max-width: 600px;
+    }
+    .background{
+        min-height: 40vh;
+    }
+}
+
+@media(min-width:769px){
+    .btn-outline-success:hover{
+        background-color: rgb(255, 115, 0);
+        border-color:rgb(255, 140, 0) ;
+    }
+}
+
+@media(max-width:768px){
+    .lead{
+        font-size: 1rem;
     }
 }

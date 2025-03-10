@@ -78,7 +78,7 @@ app.post('/create-blog',upload.single('thumbNail'), (req, res)=>{
     const checkWhiteSpace = (e) => e && e.trim().length > 0;
     const data = req.body;
     const thumbNail = req.file ? `/images/temp/${req.file.filename}` : 'https://placehold.co/600x400';
-    const isTitleValid = checkWhiteSpace(data.title) && /^\w+$/.test(data.title);
+    const isTitleValid = checkWhiteSpace(data.title);
     const isContentValid = checkWhiteSpace(data.description);
 
     let errors = {};

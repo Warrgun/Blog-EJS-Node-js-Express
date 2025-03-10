@@ -224,7 +224,7 @@ const quill = new Quill('#editor', {
     modules: {
       toolbar: [
         [{ 'font': [] }],
-        [{ 'size': ['small', false, 'large', 'huge'] }],
+        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
         ['bold', 'italic', 'underline', 'strike'],
         [{ 'color': [] }, { 'background': [] }],
         [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'align': [] }],
