@@ -14,7 +14,14 @@
     <link rel="stylesheet" href="/styles/main.css">
     <title>The Calm Corner</title>
 </head>
-<body data-bs-theme="light" class="h-100 d-flex flex-column">
+<body class="h-100 d-flex flex-column">
+    <div class="position-fixed z-1" style="bottom: 1em; right: 1em;">
+        <input class="switch" type="checkbox" role="switch" id="darkSwitch">
+        <label class="label-switch" for="darkSwitch">
+            <i class="bi bi-brightness-alt-high sun"></i>
+            <i class="bi bi-moon-stars moon"></i>
+        </label>
+    </div>
     <header>
         <nav class="navbar navbar-expand-md bg-body-tertiary border-bottom">
             <div class="container-fluid d-md-flex flex-md-column">

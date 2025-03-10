@@ -1,4 +1,5 @@
 
+
 $('.delete-blog').on('click',function(){
     const blogId=$(this).data('id');
     if(confirm('Are you sure you want to delete this blog?')){
@@ -13,6 +14,23 @@ $('.delete-blog').on('click',function(){
             });
     }
     
+})
+
+$(document).ready(function(){
+    $('.navbar-toggler').on('click',()=>{
+        $('#navbarSupportedContent').slideToggle('300')
+    })
+
+    $(document).on('click', function(e){
+        if(!$('nav').is(e.target)&& $('nav').has(e.target).length === 0 && window.innerWidth<768){
+            $('#navbarSupportedContent').slideUp('300')
+        }
+    })
+
+    let content = document.querySelector('#blogContent').innerHTML;
+    content = content.replace(/&nbsp;/g, ' ');
+    document.querySelector('#blogContent').innerHTML = content;
+
 })
 
 

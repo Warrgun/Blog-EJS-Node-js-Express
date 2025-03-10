@@ -7,7 +7,22 @@ $('.dropdown-toggle').on('click',()=>{
     $('.dropdown-menu').slideToggle()
 })
 
+
 $(document).ready(function() {
+    if(Cookies.get('nightmode')==="true"){
+        $('#darkSwitch').prop('checked', true);
+        $(document.documentElement).attr('data-bs-theme','dark')
+    }
+    else{
+        $('#darkSwitch').prop('checked', false);
+        $(document.documentElement).attr('data-bs-theme','light')
+    }
+
+    $('#darkSwitch').on('change', function(){
+        let isDark =$(this).prop('checked')
+        Cookies.set('nightmode',isDark,{path:'/'})
+        $(document.documentElement).attr('data-bs-theme', isDark ? 'dark' : 'light');
+    })
 
     let inputFile = $('input[type="file"]')
     let label = $('#file-content')
@@ -216,6 +231,8 @@ $(document).ready(function() {
             $(this).addClass('active');
         }
     });
+
+
 });
 
 const quill = new Quill('#editor', {

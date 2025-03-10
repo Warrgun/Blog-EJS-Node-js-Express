@@ -17,6 +17,7 @@ img{
     background-color: rgba(236, 215, 250, 0.233);
     border-top-left-radius: 5em;
     border-bottom-right-radius: 5em;
+    
 }
 
 .text-shadow {
@@ -33,6 +34,22 @@ img{
     border-color:rgb(255, 140, 0) !important;
 }
 
+.filter{
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0px 0px 400px 100px rgb(0, 0, 0);
+}
+
+.container *{
+    overflow-wrap: break-word !important;
+    white-space: normal;
+    word-break: keep-all;
+}
+
+.container p{
+    font-size: clamp(1rem, 0.3333rem + 2.0833vw, 1.375rem);
+}
+
+
 @media(max-width:992px){
     .container{
         max-width: 600px;
@@ -47,10 +64,41 @@ img{
         background-color: rgb(255, 115, 0);
         border-color:rgb(255, 140, 0) ;
     }
+    
 }
 
 @media(max-width:768px){
     .lead{
         font-size: 1rem;
     }
+    .background{
+        height: auto;
+    }
+}
+
+@media(min-width:420px){
+    .container h1{
+        font-size: clamp(1.5rem, 0rem + 7.5vw, 3.75rem);
+    }
+    
+    .container h2{
+        font-size: clamp(1.25rem, -0.0833rem + 6.6667vw, 3.25rem);
+    }
+    
+    .container h3{
+        font-size: clamp(1.125rem, -0.125rem + 6.25vw, 3rem);
+    }
+    
+    .container h4{
+        font-size: clamp(1rem, -0.0833rem + 5.4167vw, 2.625rem);
+    }
+    
+    .container h5{
+        font-size: clamp(0.875rem, -0.0417rem + 4.5833vw, 2.25rem);
+    }
+    
+    .container h6{
+        font-size: clamp(0.75rem, -0.0833rem + 4.1667vw, 2rem);
+    }
+    
 }

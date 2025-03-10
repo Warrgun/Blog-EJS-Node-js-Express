@@ -8,43 +8,44 @@
     <title><%=blog.title %></title>
 </head>
 <body class="bg-body-tertiary">
-    <!-- <h1><%=blog.id %></h1>
-    <button class="delete-blog" data-id="<%=blog.id %>">delete</button> -->
-    <div class="background text-bg-dark d-flex flex-column mb-5" style="background: url(<%=blog.thumbNail%>);">
-      <nav class="navbar navbar-expand-md navbar-dark bg-dark bg-opacity-25">
-        <div class="container">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" href="/">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/blog">Other Blogs</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/create-blog">Create</a>
-              </li>
-            </ul>
-            <form class="d-flex" role="search">
-              <button class="btn btn-outline-success me-2">Update</button>
-              <button class="btn btn-outline-danger delete-blog"" data-id="<%=blog.id %>">Delete</button>
-            </form>
+    <div class="background text-bg-dark mb-5" style="background: url(<%=blog.thumbNail%>);">
+      <div class="filter h-100 d-flex flex-column">
+        <nav class="navbar navbar-expand-md navbar-dark">
+          <div class="container">
+            <a class="navbar-brand" href="#">BLOG</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/blog">Other Blogs</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/create-blog">Create</a>
+                </li>
+              </ul>
+              <form class="d-flex" role="search">
+                <button class="btn btn-outline-success me-2">Update</button>
+                <button class="btn btn-outline-danger delete-blog"" data-id="<%=blog.id %>">Delete</button>
+              </form>
+            </div>
           </div>
-        </div>
-      </nav>
-      <div class="d-flex flex-grow-1 justify-content-center align-items-center pt-3 px-3 pt-md-5 px-md-5" >
-        <div class="my-3 py-3 px-5 text-center mx-auto heading" style="max-width: 800px;">
-          <h2 class="display-5" ><%=blog.title %></h2>
-          <p class="lead text-shadow"><%=blog.description.length>200? blog.description.slice(0,blog.description.lastIndexOf(" ",200))+'...': blog.description %></p>
+        </nav>
+        <div class="d-flex flex-grow-1 justify-content-center align-items-center pt-3 px-3 pt-md-5 px-md-5" >
+          <div class="my-3 py-3 px-5 text-center mx-auto heading" style="max-width: 800px;">
+            <h2 class="display-5" ><%=blog.title %></h2>
+            <p class="lead text-shadow"><%=blog.description.length>200? blog.description.slice(0,blog.description.lastIndexOf(" ",200))+'...': blog.description %></p>
+          </div>
         </div>
       </div>
     </div>
-    <div class=" container max-width py-5">
-        <%-blog.content%>
+    <div id="blogContent" class=" container max-width py-5 text-wrap">
+      <small class="text-muted"><%=blog.date %></small>
+      <%-blog.content%>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script
