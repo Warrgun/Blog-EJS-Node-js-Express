@@ -31,6 +31,24 @@ $(document).ready(function(){
     content = content.replace(/&nbsp;/g, ' ');
     document.querySelector('#blogContent').innerHTML = content;
 
+    const style = $('body').data('style')
+
+    if(style==='modern'){
+        $('.background').css('background',`url(${$('.background').data('bg')})`)
+    }
+    else if(style ==='subtle'){
+        let scrollTimeout
+
+        $('.max-width').on('scroll', ()=>{
+            $(':root').css('--background','rgba(0,0,0,0.2)')
+
+            clearTimeout(scrollTimeout)
+
+            scrollTimeout= setTimeout(()=>{
+                $(':root').css('--background','rgba(0,0,0,0)')
+            },300)
+        })
+    }
 })
 
 

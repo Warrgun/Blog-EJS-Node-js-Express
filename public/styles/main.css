@@ -260,6 +260,14 @@ input[type='file']::-webkit-file-upload-button{
   background-color: #ededed;
 }
 
+.hover-effect:active h6{
+  color: #262626;
+}
+
+.hover-effect:active small{
+  color: #484848 !important;
+}
+
 .ql-picker-label{
   display: flex !important;
   align-items: center  !important;
