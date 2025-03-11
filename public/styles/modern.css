@@ -1,9 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Outfit:wght@100..900&display=swap');
+
+
+.default-font{
+    font-family: "Outfit", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+  }
+
+.default-font h1, h2, h3, h4, h5, h6{
+    line-height: 1em;
+    font-weight: 700;
+}
+
+.default-font p{
+    font-weight: 400;
+    color: rgb(100, 100, 100);
+    line-height: 1.325em;
+}
+
+
+.fancy-font {
+    font-family: "Dancing Script", cursive;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
 .max-width{
     max-width: 800px
 }
 img{
     width: 100%;
     object-fit: cover;
+    max-height: 600px;
 }
 
 .background{
@@ -34,6 +62,11 @@ img{
     border-color:rgb(255, 140, 0) !important;
 }
 
+.btn-outline-success:hover{
+    background-color: rgb(255, 115, 0);
+    border-color:rgb(255, 140, 0) ;
+}
+
 .filter{
     background-color: rgba(0, 0, 0, 0.5);
     box-shadow: inset 0px 0px 400px 100px rgb(0, 0, 0);
@@ -46,7 +79,7 @@ img{
 }
 
 .container p{
-    font-size: clamp(1rem, 0.3333rem + 2.0833vw, 1.375rem);
+    font-size: clamp(1.3rem, 0.3333rem + 2.0833vw, 1.375rem);
 }
 
 
@@ -57,14 +90,6 @@ img{
     .background{
         min-height: 40vh;
     }
-}
-
-@media(min-width:769px){
-    .btn-outline-success:hover{
-        background-color: rgb(255, 115, 0);
-        border-color:rgb(255, 140, 0) ;
-    }
-    
 }
 
 @media(max-width:768px){

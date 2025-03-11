@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="/styles/<%=blog.design  %>.css">
     <title><%=blog.title %></title>
 </head>
-<body class="bg-body-tertiary">
-    <div class="background text-bg-dark mb-5" style="background: url(<%=blog.thumbNail%>);">
+<body class="bg-body-tertiary d-flex flex-column h-100">
+    <div class="background text-bg-dark mb-5 flex-shrink-0" style="background: url(<%=blog.thumbNail%>);">
       <div class="filter h-100 d-flex flex-column">
         <nav class="navbar navbar-expand-md navbar-dark">
           <div class="container">
-            <a class="navbar-brand" href="#">BLOG</a>
+            <a class="navbar-brand fancy-font" href="#">BLOG</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -43,10 +43,15 @@
         </div>
       </div>
     </div>
-    <div id="blogContent" class=" container max-width py-5 text-wrap">
+    <div id="blogContent" class=" container max-width py-5 text-wrap default-font flex-shrink-0 px-4 px-md-0">
       <small class="text-muted"><%=blog.date %></small>
       <%-blog.content%>
     </div>
+    <footer class="footer mt-auto py-3 bg-body-tertiary">
+      <div class="container">
+        <span class="text-body-secondary"><%=blog.date%>: <%=blog.title%></span>
+      </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script
   src="https://code.jquery.com/jquery-3.7.1.js"

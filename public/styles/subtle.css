@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Outfit:wght@100..900&display=swap');
+
+
+.default-font{
+    font-family: "Outfit", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+  }
+
+.default-font h1, h2, h3, h4, h5, h6{
+    line-height: 1em;
+    font-weight: 700;
+}
+
+.default-font p{
+    font-weight: 400;
+    color: rgb(100, 100, 100);
+    line-height: 1.325em;
+}
+
+
+.fancy-font {
+    font-family: "Dancing Script", cursive;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.max-width{
+    max-width: 800px
+}
+img{
+    width: 100%;
+    object-fit: cover;
+    max-height: 600px;
+}  
+
+.heading{
+    display: none;
+}
+
+.text-shadow {
+    text-shadow: 0px 0px 5px rgb(0, 0, 0);
+  }
+
+.btn-outline-success{
+    border-color: rgb(255, 115, 0);
+    color:rgb(255, 115, 0) ;
+}
+
+.btn-outline-success:active{
+    background-color: rgb(255, 115, 0) !important;
+    border-color:rgb(255, 140, 0) !important;
+}
+
+.btn-outline-success:hover{
+    background-color: rgb(255, 115, 0);
+    border-color:rgb(255, 140, 0) ;
+}
+
+.filter{
+    background: rgb(248, 249, 250);
+}
+
+.navbar-dark{
+    --bs-navbar-color: rgba(29, 29, 29, 0.55);
+    --bs-navbar-hover-color: rgba(0, 0, 0, 0.75);
+    --bs-navbar-disabled-color: rgba(124, 86, 86, 0.25);
+    --bs-navbar-active-color: #0f0e0e;
+    --bs-navbar-brand-color: #252525;
+    --bs-navbar-brand-hover-color: #373737;
+    --bs-navbar-toggler-border-color: rgba(255, 255, 255, 0.1);
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.container *{
+    overflow-wrap: break-word !important;
+    white-space: normal;
+    word-break: keep-all;
+}
+
+.container p{
+    font-size: clamp(1rem, 0.3333rem + 2.0833vw, 1.3rem);
+}
+
+
+@media(max-width:992px){
+    .container{
+        max-width: 600px;
+    }
+}
+
+
+@media(max-width:768px){
+    .lead{
+        font-size: 1rem;
+    }
+    .background{
+        height: auto;
+    }
+}
