@@ -206,20 +206,25 @@ footer{
   transition: text-shadow 100ms ease ;
 }
 
-.text-primary, .btn-outline-primary, .btn-primary:active{
+.text-primary, .btn-outline-primary, .btn-primary:active, .btn-primary:focus{
   color: #6262ba !important;
 }
 
-.btn-outline-primary , .btn-outline-primary:active, .btn-primary, .btn-primary:active{
+.btn-outline-primary , 
+.btn-outline-primary:active, 
+.btn-outline-primary:focus, 
+.btn-primary:focus, 
+.btn-primary, 
+.btn-primary:active{
   border-color: #6262ba !important;
 }
 
-.btn-outline-primary:active, .btn-primary{
+.btn-outline-primary:active, .btn-outline-primary:focus, .btn-primary{
   color: white !important;
   background-color: #6262ba !important;
 }
 
-.btn-primary:active{
+.btn-primary:active, .btn-primary:focus{
   background-color:transparent !important;
 }
 
@@ -382,7 +387,8 @@ input[type='file']::-webkit-file-upload-button{
 }
 
 button:active .ql-stroke,
-  .ql-picker-label:active .ql-stroke {
+.ql-picker-label:active .ql-stroke,
+.ql-picker-item:active .ql-stroke {
     fill: none;
     stroke: #6262ba !important;
     background-color:#6262ba !important ;
@@ -392,18 +398,37 @@ button:active .ql-stroke,
     color: #6262ba !important;
   }
 
-.ql-active .ql-stroke {
+.ql-active .ql-stroke, .ql-selected .ql-stroke {
   fill: none;
+  color: #6262ba !important;
   stroke: #6262ba !important;
 }
 
-.ql-active .ql-fill {
+.ql-active .ql-fill,
+.ql-color-label:active,
+.ql-selected .ql-fill {
   fill: #6262ba !important;
   stroke: none;
 }
 
 .ql-active, .ql-selected{
   color: #6262ba !important;
+}
+
+button:hover .ql-stroke,
+.ql-picker-label:hover .ql-stroke {
+  fill: none;
+  stroke: #6262ba !important;
+}
+
+.ql-picker-label:hover::before, .ql-picker-item:hover::before{
+  color: #6262ba !important;
+}
+
+button:hover .ql-fill,
+.ql-picker-label:hover .ql-fill {
+  fill: #6262ba !important;
+  stroke: none;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -441,24 +466,7 @@ button:active .ql-stroke,
 }
 
 
-@media(min-width:769px){
-  button:hover .ql-stroke,
-  .ql-picker-label:hover .ql-stroke {
-    fill: none;
-    stroke: #6262ba !important;
-  }
-
-  .ql-picker-label:hover::before, .ql-picker-item:hover::before{
-    color: #6262ba !important;
-  }
-
-  button:hover .ql-fill,
-  .ql-picker-label:hover .ql-fill {
-    fill: #6262ba !important;
-    stroke: none;
-  }
-
-  .btn-primary:hover{
+@media(min-width:769px){.btn-primary:hover{
     color: #6262ba !important;
   }
   
