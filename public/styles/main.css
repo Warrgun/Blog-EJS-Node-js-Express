@@ -411,7 +411,10 @@ button:active .ql-stroke,
     background-color:#6262ba !important ;
   }
 
-  .ql-picker-label:active::before, .ql-picker-item:active::before{
+  .ql-picker-label:active::before,
+  .ql-picker-item:active::before,
+  .ql-active, .ql-selected,
+  .ql-tooltip .ql-action::after{
     color: #6262ba !important;
   }
 
@@ -428,56 +431,35 @@ button:active .ql-stroke,
   stroke: none;
 }
 
-.ql-active, .ql-selected{
-  color: #6262ba !important;
-}
-
-button:hover .ql-stroke,
-.ql-picker-label:hover .ql-stroke {
-  fill: none;
-  stroke: #6262ba !important;
-}
-
-.ql-picker-label:hover::before, .ql-picker-item:hover::before{
-  color: #6262ba !important;
-}
-
-button:hover .ql-fill,
-.ql-picker-label:hover .ql-fill {
-  fill: #6262ba !important;
-  stroke: none;
-}
-
 .ql-toolbar{
-  background-color: rgba(var(--bs-tertiary-bg-rgb));
+  background-color: var(--bs-body-bg);
   transform: scale(1.0000001);
 }
 
-@media (prefers-color-scheme: dark) {
+.ql-tooltip{
+  z-index: 1000 !important;
+  background-color: var(--bs-secondary-bg-subtle) !important;
+  color: var(--bs-secondary-text-emphasis) !important;
+}
 
-  .ql-toolbar .ql-picker-options{
-    background-color: var(--bs-secondary-bg);
-  }
+.ql-toolbar .ql-picker-options{
+  background-color: var(--bs-secondary-bg);
+}
 
-  .ql-toolbar .ql-stroke {
-    fill: none;
-    stroke: var(--bs-emphasis-color);
-  }
-  
-  .ql-toolbar .ql-fill {
-    fill: var(--bs-emphasis-color);
-    stroke: none;
-  }
-  
-  .ql-toolbar .ql-picker {
-    color: var(--bs-emphasis-color);
-  }
-  .ql-toolbar .ql-picker-options{
-    color: var(--bs-emphasis-color) !important;
-  }
-  .ql-editor::before{
-    color: var(--bs-emphasis-color) !important;
-  }
+.ql-toolbar .ql-stroke {
+  fill: none;
+  stroke: var(--bs-body-color);
+}
+
+.ql-toolbar .ql-fill {
+  fill: var(--bs-body-color);
+  stroke: none;
+}
+
+.ql-toolbar .ql-picker,
+.ql-toolbar .ql-picker-options,
+.ql-editor::before{
+  color: var(--bs-body-color) !important;
 }
 
 
@@ -488,7 +470,24 @@ button:hover .ql-fill,
 }
 
 
-@media(min-width:769px){.card-link:hover{
+@media(min-width:769px){
+  .ql-picker-label:hover::before,
+  .ql-picker-item:hover::before{
+    color: #6262ba !important;
+  }
+
+  button:hover .ql-stroke,
+  .ql-picker-label:hover .ql-stroke {
+    fill: none;
+    stroke: #6262ba !important;
+  }
+
+  button:hover .ql-fill,
+  .ql-picker-label:hover .ql-fill {
+    fill: #6262ba !important;
+    stroke: none;
+  }
+  .card-link:hover{
     text-shadow: 0px 0px 1px  #e09e8f;
   }
 

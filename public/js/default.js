@@ -253,6 +253,7 @@ if($('#editor').length){
             [{ 'color': [] }, { 'background': [] }],
             [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'align': [] }],
             ['link', 'image', 'video'],
+            ['clean'] 
           ] 
         }
     });
