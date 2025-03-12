@@ -418,13 +418,14 @@ button:active .ql-stroke,
     color: #6262ba !important;
   }
 
-.ql-active .ql-stroke, .ql-selected .ql-stroke {
+.ql-active .ql-stroke:not(.ql-color-label),
+.ql-selected .ql-stroke {
   fill: none;
   color: #6262ba !important;
   stroke: #6262ba !important;
 }
 
-.ql-active .ql-fill,
+.ql-active .ql-fill:not(.ql-color-label),
 .ql-color-label:active,
 .ql-selected .ql-fill {
   fill: #6262ba !important;
@@ -477,7 +478,8 @@ button:active .ql-stroke,
   }
 
   button:hover .ql-stroke,
-  .ql-picker-label:hover .ql-stroke {
+  .ql-picker-label:hover .ql-stroke,
+  .ql-picker-item:hover .ql-stroke  {
     fill: none;
     stroke: #6262ba !important;
   }
