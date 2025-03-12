@@ -209,9 +209,14 @@ $(document).ready(function() {
         }
     })
 
-
     let currentPath = window.location.pathname.replace(/\/$/, ''); 
     $('.nav-link').each(function() {
+        if ($(this).hasClass('dropdown-toggle')) {
+            $(this).on('click', function(event) {
+                event.preventDefault();
+            });        
+        }
+
         let href = $(this).attr('href');
         if (!href) return;
 
@@ -222,7 +227,7 @@ $(document).ready(function() {
                 $('#navbarSupportedContent').slideUp()
             })
         }
-        else if (href === '#blog') {
+        else if (href === '#bloger') {
             if (currentPath === '/blog' || currentPath === '/create-blog') {
                 $(this).addClass('active');
             }
@@ -232,20 +237,23 @@ $(document).ready(function() {
         }
     });
 
+    if($('#editor').length){
+        const quill = new Quill('#editor', {
+            theme: 'snow',
+            placeholder: 'Start typing your blog here...',
+            modules: {
+              toolbar: [
+                [{ 'font': [] }],
+                [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                ['bold', 'italic', 'underline', 'strike'],
+                [{ 'color': [] }, { 'background': [] }],
+                [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'align': [] }],
+                ['link', 'image', 'video'],
+              ] 
+            }
+        });
+    }
 
 });
 
-const quill = new Quill('#editor', {
-    theme: 'snow',
-    placeholder: 'Start typing your blog here...',
-    modules: {
-      toolbar: [
-        [{ 'font': [] }],
-        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-        ['bold', 'italic', 'underline', 'strike'],
-        [{ 'color': [] }, { 'background': [] }],
-        [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'align': [] }],
-        ['link', 'image', 'video'],
-      ] 
-    }
-  });
+

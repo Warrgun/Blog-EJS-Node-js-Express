@@ -206,7 +206,11 @@ footer{
   transition: text-shadow 100ms ease ;
 }
 
-.text-primary, .btn-outline-primary, .btn-primary:active, .btn-primary:focus{
+.text-primary, 
+.btn-outline-primary, 
+.btn-primary:active, 
+.btn-primary:focus,
+.btn-primary:hover{
   color: #6262ba !important;
 }
 
@@ -215,16 +219,25 @@ footer{
 .btn-outline-primary:focus, 
 .btn-primary:focus, 
 .btn-primary, 
-.btn-primary:active{
+.btn-primary:active,
+.btn-primary:focus,
+.btn-outline-primary:hover, 
+.btn-primary:hover{
   border-color: #6262ba !important;
 }
 
-.btn-outline-primary:active, .btn-outline-primary:focus, .btn-primary{
+.btn-outline-primary:active, 
+.btn-outline-primary:focus, 
+.btn-primary,
+.btn-outline-primary:hover, 
+.btn-primary{
   color: white !important;
   background-color: #6262ba !important;
 }
 
-.btn-primary:active, .btn-primary:focus{
+.btn-primary:active, 
+.btn-primary:focus,
+.btn-primary:hover{
   background-color:transparent !important;
 }
 
@@ -252,6 +265,10 @@ footer{
 
 .button-33:active {
   box-shadow: #d57a6659 0 -25px 18px -14px inset,#d57a6640 0 1px 2px,#d57a6640 0 2px 4px,#d57a6640 0 4px 8px,#d57a6640 0 8px 16px,#d57a6640 0 16px 32px;
+}
+
+.dropdown-menu{
+  --bs-dropdown-link-active-bg: #e09e8fc9;
 }
 
 .img-upload{
@@ -466,24 +483,7 @@ button:hover .ql-fill,
 }
 
 
-@media(min-width:769px){.btn-primary:hover{
-    color: #6262ba !important;
-  }
-  
-  .btn-outline-primary:hover, .btn-primary:hover{
-    border-color: #6262ba;
-  }
-
-  .btn-outline-primary:hover, .btn-primary{
-    color: white !important;
-    background-color: #6262ba;
-  }
-
-  .btn-primary:hover{
-    background-color:transparent !important;
-  }
-
-  .card-link:hover{
+@media(min-width:769px){.card-link:hover{
     text-shadow: 0px 0px 1px  #e09e8f;
   }
 
