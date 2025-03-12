@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Outfit:wght@100..900&display=swap');
+
+.default-font{
+    font-family: "Outfit", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+  }
+
+.default-font h1, h2, h3, h4, h5, h6{
+    line-height: 1em;
+    font-weight: 700;
+}
+
+.default-font p{
+    font-weight: 400;
+    color: rgb(100, 100, 100);
+    line-height: 1.325em;
+}
+
+
+.fancy-font {
+    font-family: "Dancing Script", cursive;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.max-width{
+    max-width: 800px;
+    padding-top: 0 !important;
+}
+
+.heading{
+    margin-bottom: 0 !important;
+}
+
+img{
+    width: 50%;
+    object-fit: cover;
+    float: right;
+}
+.float-left{
+    float: left;
+    margin-right: 1em;
+}
+.float-right{
+    float: right;
+    margin-left: 0.5em;
+}
+
+.text-bg-dark{
+    background-color: transparent !important;
+    color: var(--bs-body-color) !important;
+}
+
+.text-shadow {
+    display: none;
+}
+
+.navbar-dark{
+    --bs-navbar-color: rgba(29, 29, 29, 0.55);
+    --bs-navbar-hover-color: rgba(0, 0, 0, 0.75);
+    --bs-navbar-disabled-color: rgba(124, 86, 86, 0.25);
+    --bs-navbar-active-color: #0f0e0e;
+    --bs-navbar-brand-color: #252525;
+    --bs-navbar-brand-hover-color: #373737;
+    --bs-navbar-toggler-border-color: rgba(255, 255, 255, 0.1);
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.btn-outline-success{
+    border-color: rgb(255, 115, 0);
+    color:rgb(255, 115, 0) ;
+}
+
+.btn-outline-success:active{
+    background-color: rgb(255, 115, 0) !important;
+    border-color:rgb(255, 140, 0) !important;
+}
+
+.btn-outline-success:hover{
+    background-color: rgb(255, 115, 0);
+    border-color:rgb(255, 140, 0) ;
+}
+
+.container *{
+    overflow-wrap: break-word !important;
+    white-space: normal;
+    word-break: keep-all;
+}
+
+.container p{
+    font-size: clamp(1.3rem, 0.3333rem + 2.0833vw, 1.375rem);
+}
+
+.background{
+    margin-bottom: 0 !important;
+}
+
+
+@media(max-width:992px){
+    .container{
+        max-width: 600px;
+    }
+    .background{
+        min-height: 40vh;
+    }
+}
+
+@media(max-width:768px){
+    .lead{
+        font-size: 1rem;
+    }
+    .background{
+        height: auto;
+    }
+}
+
+@media(max-width:552px){
+    img{
+        width: 100%;
+        object-fit: cover;
+        max-height: 600px;
+        margin: 1em 0
+    }
+}
+
+@media(min-width:420px){
+    .container h1{
+        font-size: clamp(1.5rem, 0rem + 7.5vw, 3.75rem);
+    }
+    
+    .container h2{
+        font-size: clamp(1.25rem, -0.0833rem + 6.6667vw, 3.25rem);
+    }
+    
+    .container h3{
+        font-size: clamp(1.125rem, -0.125rem + 6.25vw, 3rem);
+    }
+    
+    .container h4{
+        font-size: clamp(1rem, -0.0833rem + 5.4167vw, 2.625rem);
+    }
+    
+    .container h5{
+        font-size: clamp(0.875rem, -0.0417rem + 4.5833vw, 2.25rem);
+    }
+    
+    .container h6{
+        font-size: clamp(0.75rem, -0.0833rem + 4.1667vw, 2rem);
+    }
+    
+}

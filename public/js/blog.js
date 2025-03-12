@@ -49,6 +49,14 @@ $(document).ready(function(){
             },300)
         })
     }
+    else if(style === 'magazine'){
+        const img=$('#blogContent img')
+        img.each(function(){
+            const random= Math.floor(Math.random()*100)%2;
+
+            $(this).addClass(random%2===0?'float-left':'float-right')
+        })
+    }
 })
 
 
