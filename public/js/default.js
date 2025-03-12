@@ -78,8 +78,8 @@ $(document).ready(function() {
 
     $('#new-blog').on('submit', e=>{
       e.preventDefault();
-      const html = quill.getSemanticHTML();
-      const text = quill.getText(0,400);
+      const html = quill? quill.getSemanticHTML(): "";
+      const text = quill? quill.getText(0,400): "";
 
       const formData = new FormData(e.target)
       formData.append('design', newDesignText);
@@ -236,24 +236,26 @@ $(document).ready(function() {
             $(this).addClass('active');
         }
     });
-
-    if($('#editor').length){
-        const quill = new Quill('#editor', {
-            theme: 'snow',
-            placeholder: 'Start typing your blog here...',
-            modules: {
-              toolbar: [
-                [{ 'font': [] }],
-                [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-                ['bold', 'italic', 'underline', 'strike'],
-                [{ 'color': [] }, { 'background': [] }],
-                [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'align': [] }],
-                ['link', 'image', 'video'],
-              ] 
-            }
-        });
-    }
-
+    
+    const toolbar=$('.ql-toolbar')
+    if(toolbar.length) toolbar.addClass('position-sticky top-0 z-1');
 });
+
+if($('#editor').length){
+    var quill = new Quill('#editor', {
+        theme: 'snow',
+        placeholder: 'Start typing your blog here...',
+        modules: {
+          toolbar: [
+            [{ 'font': [] }],
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+            ['bold', 'italic', 'underline', 'strike'],
+            [{ 'color': [] }, { 'background': [] }],
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'align': [] }],
+            ['link', 'image', 'video'],
+          ] 
+        }
+    });
+}
 
 

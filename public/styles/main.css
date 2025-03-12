@@ -448,6 +448,11 @@ button:hover .ql-fill,
   stroke: none;
 }
 
+.ql-toolbar{
+  background-color: rgba(var(--bs-tertiary-bg-rgb));
+  transform: scale(1.0000001);
+}
+
 @media (prefers-color-scheme: dark) {
 
   .ql-toolbar .ql-picker-options{
