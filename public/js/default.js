@@ -65,16 +65,31 @@ $(document).ready(function() {
                     $('.list-group-item').filter(function(){
                         return $(this).children('span').text().trim() === "Design";
                     }).children("strong").text(newDesignText);
+
+                    if(newDesignText ==='magazine'){
+                        $('.disclaimer').removeClass('d-none').addClass('d-block');
+                    }else{
+                        $('.disclaimer').addClass('d-none').removeClass('d-block');
+                    }
                 }
             })
+
         }
         else{
             let prev = $('.list-group-item.bg-light')
             newDesignText = prev.data('design');
             item.children("strong").text(newDesignText);
+
+            if(newDesignText ==='magazine'){
+                $('.disclaimer').removeClass('d-none').addClass('d-block');
+            }else{
+                $('.disclaimer').addClass('d-none').removeClass('d-block');
+            }
+
         }
         
     })
+
 
     $('#new-blog').on('submit', e=>{
       e.preventDefault();

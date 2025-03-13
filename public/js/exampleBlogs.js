@@ -51,6 +51,7 @@ function exampleBlogs(){
       <p>Education is another sector experiencing transformation. With online courses, virtual classrooms, and digital libraries, access to learning has become more inclusive and adaptable to individual needs.</p>
       <p>Despite these advances, rapid technological change poses its own set of challenges. Cybersecurity risks, data breaches, and ethical concerns over AI usage are issues that must be addressed as society moves forward.</p>
       <p>Looking ahead, emerging technologies like blockchain, quantum computing, and augmented reality are set to further disrupt established systems. These innovations promise to transform industries and offer new solutions to old problems.</p>
+      <img src="/images/technology.jpg" alt="Thumbnail: Digital Revolution">
       <p>The digital revolution is not just about technology—it’s about reimagining the way we live and interact with the world. It challenges us to adapt, innovate, and rethink traditional systems.</p>
       <p>As we navigate this transformative era, balancing innovation with ethical considerations will be essential to ensuring technology serves as a force for good, benefiting society as a whole.</p>
       <p>Author: John Smith</p>

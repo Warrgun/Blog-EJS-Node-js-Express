@@ -40,7 +40,6 @@
 }
 
 img{
-    max-width: 50%;
     object-fit: cover;
     float: right;
 }
@@ -128,8 +127,6 @@ footer .container{
 
 @media(max-width:552px){
     img{
-        width: 100%;
-        object-fit: cover;
         max-height: 600px;
         margin: 1em 0
     }
@@ -142,25 +139,31 @@ footer .container{
 @media(min-width:420px){
     .container h1{
         font-size: clamp(1.5rem, 0rem + 7.5vw, 3.75rem);
+        width: 100% !important;
     }
     
     .container h2{
+        width: 100% !important;
         font-size: clamp(1.25rem, -0.0833rem + 6.6667vw, 3.25rem);
     }
     
     .container h3{
+        width: 100% !important;
         font-size: clamp(1.125rem, -0.125rem + 6.25vw, 3rem);
     }
     
     .container h4{
+        width: 100% !important;
         font-size: clamp(1rem, -0.0833rem + 5.4167vw, 2.625rem);
     }
     
     .container h5{
+        width: 100% !important;
         font-size: clamp(0.875rem, -0.0417rem + 4.5833vw, 2.25rem);
     }
     
     .container h6{
+        width: 100% !important;
         font-size: clamp(0.75rem, -0.0833rem + 4.1667vw, 2rem);
     }
     

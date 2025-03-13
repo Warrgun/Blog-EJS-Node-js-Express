@@ -53,11 +53,23 @@ $(document).ready(function(){
         $('.heading').parent().removeClass('d-flex flex-grow-1 justify-content-center align-items-cente px-3 px-md-5').addClass('container px-0 px-2 px-md-0')
         $('#blogContent').removeClass('px-4').addClass('px-2')
 
+        const imageSize = ['40%','50%','60%','100%'];
         const img=$('#blogContent img')
         img.each(function(){
             const random= Math.floor(Math.random()*100)%2;
+            const randomSize =Math.floor(Math.random()*4);
+            const currentImage = $(this);
 
-            $(this).addClass(random%2===0?'float-left':'float-right')
+            currentImage.addClass(`${random%2===0?'float-left':'float-right'}`)
+            $(window).on('resize load',function(){
+                if(window.innerWidth>420){
+                    currentImage.css('max-width',`${imageSize[randomSize]}`)
+                    currentImage.removeClass('w-100')
+                }
+                else{
+                    currentImage.addClass('w-100')
+                }
+            })
         })
     }
 })
