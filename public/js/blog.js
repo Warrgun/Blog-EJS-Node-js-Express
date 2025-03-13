@@ -27,9 +27,9 @@ $(document).ready(function(){
         }
     })
 
-    let content = document.querySelector('#blogContent').innerHTML;
+    let content = $('#blogContent').html();
     content = content.replace(/&nbsp;/g, ' ');
-    document.querySelector('#blogContent').innerHTML = content;
+    $('#blogContent').html(content);
 
     const style = $('body').data('style')
 
@@ -50,6 +50,9 @@ $(document).ready(function(){
         })
     }
     else if(style === 'magazine'){
+        $('.heading').parent().removeClass('d-flex flex-grow-1 justify-content-center align-items-cente px-3 px-md-5').addClass('container px-0 px-2 px-md-0')
+        $('#blogContent').removeClass('px-4').addClass('px-2')
+
         const img=$('#blogContent img')
         img.each(function(){
             const random= Math.floor(Math.random()*100)%2;

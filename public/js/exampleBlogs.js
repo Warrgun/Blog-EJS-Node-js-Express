@@ -39,15 +39,10 @@ function exampleBlogs(){
       </footer>
     </article>
     `,`Minimalism is more than just a design choice—it’s a lifestyle shift toward clarity, purpose, and intentional living. In a world driven by consumerism, minimalism encourages people to remove unnecessary clutter, whether physical or mental, and focus on what truly matters. This blog explores the philosophy behind minimalism, its benefits in reducing stress, and practical ways to adopt a simpler, more meaningful lifestyle. From decluttering your home to prioritizing experiences over material possessions, this guide offers valuable insights into how minimalism can lead to greater happiness and fulfillment. Whether you're new to the concept or looking to refine your minimalist approach, this blog provides actionable steps to help you embrace a more intentional way of living.`,'04-10-2016'));
-    blogs.push(new BlogCreator('magazine','/images/technology.jpg','The Digital Revolution: How Technology Is Shaping Our Future',`<article>
-      <header>
-        <h1>The Digital Revolution: How Technology Is Shaping Our Future</h1>
-        <p><em>Published on: March 5, 2025</em></p>
-        <!-- Thumbnail for the blog post -->
-        <div class="thumbnail">
-          <img src="/images/technology.jpg" alt="Thumbnail: Digital Revolution">
-        </div>
-      </header>
+    blogs.push(new BlogCreator('magazine','/images/technology.jpg','The Digital Revolution: How Technology Is Shaping Our Future',`
+      <h4>The Digital Revolution: How Technology Is Shaping Our Future</h4>
+      <p><em>Published on: March 5, 2025</em></p>
+      <img src="/images/technology.jpg" alt="Thumbnail: Digital Revolution">
       <p>The digital revolution has transformed every facet of our lives, reshaping how we work, communicate, and entertain ourselves. This era of rapid technological advancement is redefining traditional boundaries and opening up a world of possibilities.</p>
       <p>At its core, the revolution is driven by the internet—a vast network that connects billions of devices and people across the globe. The instantaneous exchange of information has democratized knowledge and fostered global collaboration.</p>
       <p>Artificial intelligence and machine learning are now at the forefront, driving innovations that were once considered science fiction. These technologies automate processes, enhance decision-making, and generate insights through big data analytics.</p>
@@ -58,10 +53,7 @@ function exampleBlogs(){
       <p>Looking ahead, emerging technologies like blockchain, quantum computing, and augmented reality are set to further disrupt established systems. These innovations promise to transform industries and offer new solutions to old problems.</p>
       <p>The digital revolution is not just about technology—it’s about reimagining the way we live and interact with the world. It challenges us to adapt, innovate, and rethink traditional systems.</p>
       <p>As we navigate this transformative era, balancing innovation with ethical considerations will be essential to ensuring technology serves as a force for good, benefiting society as a whole.</p>
-      <footer>
-        <p>Author: John Smith</p>
-      </footer>
-    </article>
+      <p>Author: John Smith</p>
     `,`Artificial Intelligence (AI) is no longer a futuristic concept—it’s already deeply integrated into our daily lives. From voice assistants like Siri and Alexa to advanced machine learning in healthcare, AI is transforming the way we work, communicate, and interact with technology. But with its rapid development come questions about ethics, automation, and the future of employment. This blog dives into the evolution of AI, its most groundbreaking applications, and the debates surrounding its risks and benefits. Whether it's self-driving cars, AI-generated art, or medical breakthroughs, the influence of artificial intelligence is undeniable. If you're curious about where AI is headed and what it means for humanity, this blog provides a comprehensive look into the world of intelligent machines.`,'15-08-2019'));
     blogs.push(new BlogCreator('retro','/images/pasta.jpg','Culinary Delights: Discovering the Flavors of Italy',`<article>
       <header>

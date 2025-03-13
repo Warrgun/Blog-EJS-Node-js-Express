@@ -36,7 +36,7 @@
           </div>
         </nav>
         <div class="d-flex flex-grow-1 justify-content-center align-items-center pt-3 px-3 pt-md-5 px-md-5" >
-          <div class="my-3 py-3 px-5 text-center mx-auto heading" style="max-width: 800px;">
+          <div class="my-3 py-3 px-5 text-center mx-auto heading">
             <h2 class="display-5" ><%=blog.title %></h2>
             <p class="lead text-shadow"><%=blog.description.length>200? blog.description.slice(0,blog.description.lastIndexOf(" ",200))+'...': blog.description %></p>
           </div>
@@ -45,7 +45,7 @@
     </div>
     <div id="blogContent" class=" container max-width py-5 text-wrap default-font flex-shrink-0 px-4 px-md-0">
       <small class="text-muted"><%=blog.date %></small>
-      <%-blog.content%>
+      <div class="grid"><%-blog.content%></div>
     </div>
     <footer class="footer mt-auto py-3">
       <div class="container">

@@ -45,7 +45,7 @@ img{
     background-color: rgba(236, 215, 250, 0.233);
     border-top-left-radius: 5em;
     border-bottom-right-radius: 5em;
-    
+    max-width: 800px;
 }
 
 .text-shadow {
