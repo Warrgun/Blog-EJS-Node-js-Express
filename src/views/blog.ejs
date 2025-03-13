@@ -40,6 +40,9 @@
             <h2 class="display-5" ><%=blog.title %></h2>
             <p class="lead text-shadow"><%=blog.description.length>200? blog.description.slice(0,blog.description.lastIndexOf(" ",200))+'...': blog.description %></p>
           </div>
+          <div class="thumbnail-container">
+            <img src="<%=blog.thumbNail%>" alt="thumbnail">
+          </div>
         </div>
       </div>
     </div>

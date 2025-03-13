@@ -50,7 +50,7 @@ $(document).ready(function(){
         })
     }
     else if(style === 'magazine'){
-        $('.heading').parent().removeClass('d-flex flex-grow-1 justify-content-center align-items-cente px-3 px-md-5').addClass('container px-0 px-2 px-md-0')
+        $('.heading').parent().removeClass('d-flex flex-grow-1 justify-content-center align-items-center px-3 px-md-5').addClass('container px-0 px-2 px-md-0')
         $('#blogContent').removeClass('px-4').addClass('px-2')
 
         const imageSize = ['40%','50%','60%','100%'];
@@ -71,6 +71,10 @@ $(document).ready(function(){
                 }
             })
         })
+    }
+    else if(style === 'retro'){
+        $('.heading').parent().removeClass(' justify-content-center px-3 px-md-5').addClass('container px-0 px-2 px-md-0')
+        $('.heading').removeClass('mx-auto text-center px-5')
     }
 })
 
