@@ -1,10 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Outfit:wght@100..900&display=swap');
 
-.default-font{
-    font-family: "Outfit", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-  }
 
 .default-font h1, h2, h3, h4, h5, h6{
     line-height: 1em;
@@ -13,7 +8,6 @@
 
 .default-font p{
     font-weight: 400;
-    color: rgb(100, 100, 100);
     line-height: 1.325em;
 }
 
@@ -24,10 +18,14 @@
     font-style: normal;
 }
 
+.bg-dark-subtle{
+    background-color: rgb(10, 10, 26) !important;
+}
+
 .max-width{
     max-width: 800px
 }
-img{
+.max-width img{
     width: 100%;
     object-fit: cover;
     max-height: 600px;
@@ -45,11 +43,46 @@ img{
     max-width: 800px;
 }
 
+.heading p{
+    font-size: clamp(0.75rem, 0.6019rem + 0.7407vw, 1.25rem);
+    opacity: 50%;
+}
+
+.thumbnail-container{
+    margin:1em 0 !important;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 5em;
+
+}
+
+.thumbnail-container::before{
+        content: "";
+    display: block;
+    background: linear-gradient(
+        90deg,
+        hsla(197, 100%, 64%, 1) 0%,
+        hsla(339, 100%, 55%, 1) 100%
+    );
+    height: 800px;
+    width: 800px;
+    position: absolute;
+    animation: rotate 3s linear infinite;
+    z-index: 0;
+}
+
 .thumbnail-container img{
-    width: 100%;
-    height: 100%;
+    width: 400px;
+    height: 400px ;
     object-fit: cover;
-    
+    border: 5px solid transparent;
+    position: relative;
+    z-index: 1;
+    border-radius: 5em;
 }
 
 .text-shadow {
@@ -82,9 +115,24 @@ img{
     word-break: keep-all;
 }
 
-.container p{
-    font-size: clamp(1.3rem, 0.3333rem + 2.0833vw, 1.375rem);
+.max-width p{
+    font-size: clamp(0.75rem, 0.5648rem + 0.9259vw, 1.375rem);
+    opacity: 90%;
 }
+
+footer{
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+@keyframes rotate {
+    from {transform: rotate(0);}
+    to { transform: rotate(360deg);}
+  }
+  
+  @-moz-keyframes rotate {
+    from {-moz-transform:rotate(0deg);}
+    to {  -moz-transform:rotate(360deg);}
+  }
 
 
 @media(max-width:992px){
@@ -93,15 +141,23 @@ img{
     }
     .background{
         min-height: 40vh;
+        height: auto;
+    }
+    .filter>.d-flex{
+        flex-direction: column !important;
+    }
+
+    .thumbnail-container,.thumbnail-container img{
+        width: 100%;
     }
 }
 
 @media(max-width:768px){
-    .lead{
-        font-size: 1rem;
+    .thumbnail-container img{
+        height: 200px;
     }
-    .background{
-        height: auto;
+    .max-width img{
+        max-height: 400px;
     }
 }
 
@@ -130,4 +186,9 @@ img{
         font-size: clamp(0.75rem, -0.0833rem + 4.1667vw, 2rem);
     }
     
+}
+@media (max-width: 390px) {
+    .max-width img{
+        max-height: 300px ;
+    }
 }

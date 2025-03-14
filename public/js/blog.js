@@ -73,8 +73,16 @@ $(document).ready(function(){
         })
     }
     else if(style === 'retro'){
-        $('.heading').parent().removeClass(' justify-content-center px-3 px-md-5').addClass('container px-0 px-2 px-md-0')
+        $('.heading').parent().removeClass(' justify-content-center px-3 px-md-5').addClass('container px-0 px-2 px-md-0 justify-content-between')
         $('.heading').removeClass('mx-auto text-center px-5')
+        $('.heading p').removeClass('lead').addClass('fw-light')
+        $('#blogContent p').addClass('lead')
+        const retroImages = ['/images/retro1.jpg', '/images/retro2.jpg', '/images/retro3.jpg']
+        const randomNum = Math.floor(Math.random()*3)
+
+        $('.background').css('background',`url(${retroImages[randomNum]})`)
+        $('body').removeClass('bg-body-tertiary').addClass('bg-dark-subtle')
+        $(document.documentElement).attr('data-bs-theme','dark')
     }
 })
 

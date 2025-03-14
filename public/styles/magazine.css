@@ -131,7 +131,7 @@ footer .container{
 
 @media(max-width:552px){
     img{
-        max-height: 600px;
+        max-height: 500px;
         margin: 1em 0
     }
     .grid{
@@ -171,4 +171,10 @@ footer .container{
         font-size: clamp(0.75rem, -0.0833rem + 4.1667vw, 2rem);
     }
     
+}
+
+@media (max-width: 390px) {
+    img{
+        max-height: 300px ;
+    }
 }

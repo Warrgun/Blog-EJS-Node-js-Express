@@ -52,6 +52,11 @@ img{
     max-width: 800px;
 }
 
+.heading p{
+    font-size: clamp(0.75rem, 0.6019rem + 0.7407vw, 1.25rem);
+    opacity: 85%;
+}
+
 .text-shadow {
     text-shadow: 0px 0px 5px rgb(0, 0, 0);
   }
@@ -97,11 +102,11 @@ img{
 }
 
 @media(max-width:768px){
-    .lead{
-        font-size: 1rem;
-    }
     .background{
         height: auto;
+    }
+    img{
+        max-height: 400px;
     }
 }
 
@@ -130,4 +135,10 @@ img{
         font-size: clamp(0.75rem, -0.0833rem + 4.1667vw, 2rem);
     }
     
+}
+
+@media (max-width: 390px) {
+    img{
+        max-height: 300px ;
+    }
 }

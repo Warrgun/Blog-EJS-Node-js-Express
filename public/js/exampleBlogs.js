@@ -75,9 +75,7 @@ function exampleBlogs(){
       <p>Modern Italian chefs are innovating while still honoring traditional methods. They are reinterpreting classic recipes, infusing them with contemporary twists that surprise and delight the palate.</p>
       <p>Traveling through Italy is a journey for the senses. Every meal is an invitation to explore the rich history and vibrant culture that have shaped Italian cuisine over centuries.</p>
       <p>For those inspired to recreate Italian dishes at home, the key is to embrace simplicity and use the freshest ingredients available. In doing so, even a modest kitchen can become a gateway to the extraordinary flavors of Italy.</p>
-      <footer>
-        <p>Author: Maria Rossi</p>
-      </footer>
+      <p>Author: Maria Rossi</p>
     </article>
     `,`Success isn’t built overnight—it’s the result of small, consistent actions taken daily. From waking up early to reading a few pages of a book, daily habits shape who we are and where we’re headed. This blog explores the science behind habit formation, explaining how routines influence our productivity, mindset, and overall well-being. Learn how to break bad habits, establish positive ones, and create a system that supports long-term growth. Whether you want to improve your health, focus better, or achieve personal goals, understanding the power of habits can be life-changing. By making small adjustments to your daily routine, you can create lasting improvements in your life and set yourself up for success.`,'18-11-2022'));
     blogs.push(new BlogCreator('subtle','/images/shadow.jpg','Mindfulness and Meditation: Unlocking Inner Peace',`<article>
@@ -147,9 +145,7 @@ function exampleBlogs(){
       <p>Collaboration between the public and private sectors is fostering groundbreaking advancements in green technology. These partnerships are not only making renewable energy more accessible but also creating new job opportunities and stimulating economic growth in emerging industries.</p>
       <p>The future of energy lies in embracing sustainability. Green energy offers a promising solution to mitigate climate change, reduce environmental degradation, and build a resilient, eco-friendly infrastructure for future generations.</p>
       <p>Ultimately, the shift to renewable energy is a collective endeavor—one that requires innovation, persistence, and a shared commitment to protecting our planet. By harnessing the power of green energy, we can pave the way toward a cleaner, more sustainable future for all.</p>
-      <footer>
-        <p>Author: Liam Patel</p>
-      </footer>
+      <p>Author: Liam Patel</p>
     </article>
     `,'With climate change becoming an ever-pressing global issue, the shift to green energy has never been more crucial. Renewable resources such as solar, wind, and hydroelectric power are transforming the energy landscape and offering a sustainable path forward. Solar energy is leading the way. With significant technological improvements and falling costs, photovoltaic panels are now accessible to households and businesses alike. This democratization of solar power is reducing carbon footprints while lowering energy bills. Wind energy is rapidly emerging as a powerful alternative. Modern wind turbines are engineered to capture even the mildest breezes, generating substantial amounts of electricity in both rural and urban settings. This clean form of energy is proving to be both efficient and scalable.','13-05-2024'));
     
