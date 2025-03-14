@@ -42,7 +42,7 @@ img{
     background-position: center !important;
     background-repeat: no-repeat !important;
     background-size: cover !important;
-    height: 60vh;
+    min-height: 60vh;
 }
 
 .heading{

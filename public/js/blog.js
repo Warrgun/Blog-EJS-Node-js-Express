@@ -80,9 +80,13 @@ $(document).ready(function(){
         const retroImages = ['/images/retro1.jpg', '/images/retro2.jpg', '/images/retro3.jpg']
         const randomNum = Math.floor(Math.random()*3)
 
-        $('.background').css('background',`url(${retroImages[randomNum]})`)
+        $('.background').css('background',`url(${retroImages[randomNum]})`).removeClass('mb-5')
         $('body').removeClass('bg-body-tertiary').addClass('bg-dark-subtle')
         $(document.documentElement).attr('data-bs-theme','dark')
+
+
+        const blogContent = $('#blogContent').prop('outerHTML')
+        $('#blogContent').replaceWith(`<div class="w-100 filter pt-5">${blogContent}</div>`)
     }
 })
 
