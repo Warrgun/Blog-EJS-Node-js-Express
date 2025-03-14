@@ -84,9 +84,10 @@ $(document).ready(function(){
         $('body').removeClass('bg-body-tertiary').addClass('bg-dark-subtle')
         $(document.documentElement).attr('data-bs-theme','dark')
 
-
+        const footer= $('footer').prop('outerHTML')
         const blogContent = $('#blogContent').prop('outerHTML')
-        $('#blogContent').replaceWith(`<div class="w-100 filter pt-5">${blogContent}</div>`)
+        $('footer').replaceWith('')
+        $('#blogContent').replaceWith(`<div class="w-100 filter pt-5 d-flex flex-column flex-grow-1">${blogContent}${footer}</div>`)
     }
 })
 
