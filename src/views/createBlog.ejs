@@ -74,11 +74,18 @@
       </form>
     </div>
 </main>
-<div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true" >
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" >
-    <div class="modal-content" >
-      <div class="modal-body p-0" >
-        <iframe id="previewFrame" class="w-100 border-0" style="height: 800px"></iframe>
+<div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel"  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" >
+    <div class="modal-content bg-transparent border-0 overflow-hidden position-relative" >
+      <div class="modal-header border-0 justify-content-end">
+        <button class="fullscreen fs-5 btn-close-white">
+          <i class="bi bi-fullscreen-exit d-none"></i>
+          <i class="bi bi-fullscreen"></i>
+        </button>
+        <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-0 overflow-hidden">
+        <iframe id="previewFrame" class="w-100 border-0 modal-height rounded"></iframe>
       </div>
     </div>
   </div>

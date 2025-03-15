@@ -10,7 +10,7 @@ const blogHTML = (data)=> `<!DOCTYPE html>
 <body class="bg-body-tertiary d-flex flex-column h-100" data-style="${data.design}">
     <div class="background text-bg-dark mb-5 flex-shrink-0" data-bg="${data.thumbNail}">
       <div class="filter h-100 d-flex flex-column">
-        <nav class="navbar navbar-expand-md navbar-dark">
+        <nav class="navbar navbar-expand-md navbar-dark invisible">
           <div class="container">
             <a class="navbar-brand fancy-font" href="#">BLOG</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,6 +66,25 @@ const blogHTML = (data)=> `<!DOCTYPE html>
 `
 
 $(document).ready(function() {
+    const checkColors = ()=>{
+        if((newDesignText ==='magazine'|| newDesignText==='subtle') && $('.modal-dialog').hasClass('modal-fullscreen')){
+            $('.modal-header .btn-close').css('filter', 'none')
+            $('.modal-header .fullscreen').removeClass('btn-close-white');
+        }else{
+            $('.modal-header .fullscreen').addClass('btn-close-white');
+            $('.modal-header .btn-close').css('filter','invert(1) grayscale(100%) brightness(200%)')
+        }
+    }
+
+    $('.fullscreen').on('click', function(){
+        $('.bi-fullscreen').toggleClass('d-none');
+        $('.bi-fullscreen-exit').toggleClass('d-none')
+        $('.modal-dialog').toggleClass('modal-fullscreen')
+        $('#previewFrame').toggleClass('modal-height rounded modal-fullscreen')
+        $('.modal-header').toggleClass('position-absolute z-1 w-100 top-0 left-0')
+        checkColors()
+    })
+
     $('.dropdown').on('show.bs.dropdown', function(e){
         $(this).find('.dropdown-menu').first().stop(true, true).slideDown();
     });
@@ -78,14 +97,6 @@ $(document).ready(function() {
             $('.dropdown-toggle').removeClass('show');
             $('.dropdown').attr('aria-expanded','false');
         });
-    });
-
-    $(document).on('shown.bs.modal', '.modal', function () {
-        $('#nightMode').addClass('d-none'); 
-    });
-
-    $(document).on('shown.bs.modal', '.modal', function () {
-        $('#nightMode').removeClass('d-none');
     });
 
     if(Cookies.get('nightmode')==="true"){
@@ -171,6 +182,7 @@ $(document).ready(function() {
 
     //Preview
     $('#get-html-btn').on('click',function(){
+        checkColors();
         const html = quill? quill.getSemanticHTML(): "";
         const text = quill? quill.getText(0,400): "";
         const formData = new FormData(document.getElementById('new-blog'))
