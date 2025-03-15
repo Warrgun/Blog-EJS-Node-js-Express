@@ -1,3 +1,70 @@
+// const blogHTML = `<!DOCTYPE html>
+// <html lang="en" class="h-100">
+// <head>
+//     <meta charset="UTF-8">
+//     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+//     <link rel="stylesheet" href="/styles/${newDesignText}.css">
+//     <title><%=blog.title %></title>
+// </head>
+// <body class="bg-body-tertiary d-flex flex-column h-100" data-style="${newDesignText}">
+//     <div class="background text-bg-dark mb-5 flex-shrink-0" data-bg="${thumbNail}">
+//       <div class="filter h-100 d-flex flex-column">
+//         <nav class="navbar navbar-expand-md navbar-dark">
+//           <div class="container">
+//             <a class="navbar-brand fancy-font" href="#">BLOG</a>
+//             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+//               <span class="navbar-toggler-icon"></span>
+//             </button>
+//             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+//               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+//                 <li class="nav-item">
+//                   <a class="nav-link" href="/">Home</a>
+//                 </li>
+//                 <li class="nav-item">
+//                   <a class="nav-link" href="/blog">Other Blogs</a>
+//                 </li>
+//                 <li class="nav-item">
+//                   <a class="nav-link" href="/create-blog">Create</a>
+//                 </li>
+//               </ul>
+//               <form class="d-flex" role="search">
+//                 <button class="btn btn-outline-success me-2">Update</button>
+//                 <button class="btn btn-outline-danger delete-blog" data-id="">Delete</button>
+//               </form>
+//             </div>
+//           </div>
+//         </nav>
+//         <div class="d-flex flex-grow-1 justify-content-center align-items-center pt-3 px-3 pt-md-5 px-md-5" >
+//           <div class="my-3 py-3 px-5 text-center mx-auto heading">
+//             <h2 class="display-5" >${title}</h2>
+//             <p class="lead text-shadow">${description.length>200? description.slice(0,description.lastIndexOf(" ",200))+'...': description }</p>
+//           </div>
+//           <div class="thumbnail-container">
+//               <img src="${thumbNail}" alt="thumbnail">
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//     <div id="blogContent" class=" container max-width py-5 text-wrap default-font flex-shrink-0 px-4 px-md-0">
+//       <small class="text-muted">${today.getDate()<10?new String(0)+today.getDate():today.getDate()}-${(today.getMonth()+1)<10?new String(0)+(today.getMonth()+1):today.getMonth()+1}-${today.getFullYear()}</small>
+//       <div class="grid">${html}</div>
+//     </div>
+//     <footer class="footer mt-auto py-3">
+//       <div class="container">
+//         <span class="text-body-secondary">${today.getDate()<10?new String(0)+today.getDate():today.getDate()}-${(today.getMonth()+1)<10?new String(0)+(today.getMonth()+1):today.getMonth()+1}-${today.getFullYear()}: ${title}</span>
+//       </div>
+//     </footer>
+//     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+//     <script
+//   src="https://code.jquery.com/jquery-3.7.1.js"
+//   integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+//   crossorigin="anonymous"></script>
+//   <script src="/js/blog.js"></script>
+// </body>
+// </html>
+// `
+
 
 $('.navbar-toggler').on('click',()=>{
     $('#navbarSupportedContent').slideToggle('300')
@@ -9,6 +76,26 @@ $('.dropdown-toggle').on('click',()=>{
 
 
 $(document).ready(function() {
+    $(document).on('shown.bs.modal', '.modal', function () {
+        $('#nightMode').addClass('d-none'); // Hide when modal is shown
+    });
+
+    $(document).on('shown.bs.modal', '.modal', function () {
+        $('#nightMode').removeClass('d-none'); // Show when modal is hidden
+    });
+
+   $('#get-html-btn').on('click',function(){
+        var iframe = document.getElementById('previewFrame');
+        var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        
+        iframeDoc.open();
+        // iframeDoc.write(blogHTML);
+        iframeDoc.close();
+
+        $('#previewModal').modal('show')
+   })
+   
+
     if(Cookies.get('nightmode')==="true"){
         $('#darkSwitch').prop('checked', true);
         $(document.documentElement).attr('data-bs-theme','dark')

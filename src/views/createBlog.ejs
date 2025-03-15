@@ -69,10 +69,19 @@
             <small class="text-muted disclaimer">Magazine pictures width and wraping are random.</small>
             <hr class="mb-4">
             <button  class="btn btn-primary btn-lg" type="submit">Create</button>
-            <button class="btn btn-outline-primary btn-lg" id="get-html-btn" type="button">Preview</button>
+            <button class="btn btn-outline-primary btn-lg" id="get-html-btn" type="button" data-bs-toggle="modal" data-bs-target="#previewModal">Preview</button>
           </div>
         </div>
       </form>
     </div>
 </main>
+<div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true" >
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" >
+    <div class="modal-content" >
+      <div class="modal-body p-0" >
+        <iframe id="previewFrame" class="w-100 border-0" style="height: 800px"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
 <%-include('partials/footer.ejs')  %>
