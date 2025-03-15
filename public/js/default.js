@@ -85,6 +85,13 @@ $(document).ready(function() {
         checkColors()
     })
 
+    $('#previewModal').on('show.bs.modal', function(e){
+        $('.fullscreen, .modal .btn-close').attr('tabindex','0')
+    });
+    $('#previewModal').on('hide.bs.modal', function(e){
+        $('.fullscreen, .modal .btn-close').attr('tabindex','-1')
+    });
+
     $('.dropdown').on('show.bs.dropdown', function(e){
         $(this).find('.dropdown-menu').first().stop(true, true).slideDown();
     });
