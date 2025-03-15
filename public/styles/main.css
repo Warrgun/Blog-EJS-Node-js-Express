@@ -479,6 +479,7 @@ button:active .ql-stroke,
 
 .fullscreen:hover{
   opacity: var(--bs-btn-close-hover-opacity);
+  animation: fullscreen 300ms;
 }
 
 .fullscreen:focus{
@@ -489,8 +490,24 @@ button:active .ql-stroke,
   box-shadow: var(--bs-btn-close-focus-shadow);
 }
 
+.btn-close:hover{
+  animation: fullscreen 300ms;
+}
+
 .modal-height{
   height: 800px
+}
+
+@keyframes fullscreen{
+  0%{
+    transform: scale(1);
+  }
+  70%{
+    transform: scale(1.2);
+  }
+  100%{
+    transform: scale(1);
+  }
 }
 
 @media(max-width:991px){
