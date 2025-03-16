@@ -17,13 +17,13 @@ $('.delete-blog').on('click',function(){
 })
 
 $(document).ready(function(){
-    $('.navbar-toggler').on('click',()=>{
-        $('#navbarSupportedContent').slideToggle('300')
+    $('#updateButton').on('click',function(e){
+        $('#updateModal').modal('show')
     })
 
     $(document).on('click', function(e){
         if(!$('nav').is(e.target)&& $('nav').has(e.target).length === 0 && window.innerWidth<768){
-            $('#navbarSupportedContent').slideUp('300')
+            $('.navbar-collapse').collapse('hide');
         }
     })
 
@@ -73,8 +73,8 @@ $(document).ready(function(){
         })
     }
     else if(style === 'retro'){
-        $('.heading').parent().removeClass(' justify-content-center px-3 px-md-5').addClass('container px-0 px-2 px-md-0 justify-content-between')
-        $('.heading').removeClass('mx-auto text-center px-5')
+        $('.heading').parent().removeClass(' justify-content-center px-3 px-md-5').addClass('container px-4 px-md-0 justify-content-between')
+        $('.heading').removeClass('mx-auto text-center px-5').addClass('mx-0 mx-md-2')
         $('.heading p').removeClass('lead').addClass('fw-light')
         $('#blogContent p').addClass('lead')
         const retroImages = ['/images/retro1.jpg', '/images/retro2.jpg', '/images/retro3.jpg']
