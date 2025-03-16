@@ -468,7 +468,7 @@ button:active .ql-stroke,
     --bs-btn-close-hover-opacity: 0.75;
     --bs-btn-close-focus-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25) !important;
     --bs-btn-close-focus-opacity: 1 !important;
-    --bs-btn-close-white-filter: invert(1) grayscale(100%) brightness(200%);
+    --bs-btn-close-white-filter: invert(1) grayscale(100%) brightness(200%) drop-shadow(0 0 1px black) !important;
     box-sizing: content-box !important;
     color: var(--bs-btn-close-color) !important;
     background: transparent var(--bs-btn-close-bg) center / 1em auto no-repeat;

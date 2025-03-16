@@ -67,12 +67,19 @@ const blogHTML = (data)=> `<!DOCTYPE html>
 
 $(document).ready(function() {
     const checkColors = ()=>{
+        if($('.modal-dialog').hasClass('modal-fullscreen')){
+            $('.modal-header').css('transform','translateX(-1em)')
+        }else{
+            $('.modal-header').css('transform','translateX(0em)')
+
+        }
+
         if((newDesignText ==='magazine'|| newDesignText==='subtle') && $('.modal-dialog').hasClass('modal-fullscreen')){
             $('.modal-header .btn-close').css('filter', 'none')
             $('.modal-header .fullscreen').removeClass('btn-close-white');
         }else{
             $('.modal-header .fullscreen').addClass('btn-close-white');
-            $('.modal-header .btn-close').css('filter','invert(1) grayscale(100%) brightness(200%)')
+            $('.modal-header .btn-close').css('filter','invert(1) grayscale(100%) brightness(200%) drop-shadow(0 0 1px black)')
         }
     }
 
