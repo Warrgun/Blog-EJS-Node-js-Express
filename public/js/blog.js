@@ -1,7 +1,7 @@
 
 
 $('.delete-blog').on('click',function(){
-    const blogId=$(this).data('id');
+    const blogId=$('#blogId').data('id');
     if(confirm('Are you sure you want to delete this blog?')){
         axios.delete(`/blog/${blogId}`)
             .then(response => {
@@ -17,9 +17,107 @@ $('.delete-blog').on('click',function(){
 })
 
 $(document).ready(function(){
+    let inputFile = $('input[type="file"]')
+    let label = $('#file-content')
+    let prevLabel = label.html();
+
+    inputFile.on('change', function(e){
+        let fileName = '';
+        if(e.target.value){
+            fileName=e.target.value.split('\\').pop();
+
+            label.addClass('ms-4');
+            $('.file-name-wrap .bi-check').removeClass('d-none').addClass('d-inline');
+        }
+        else{
+            label.removeClass('ms-4');
+            $('.file-name-wrap .bi-check').removeClass('d-inline').addClass('d-none');
+        }
+        !fileName? label.html(prevLabel): fileName.length >45?label.html(fileName.slice(0,45)+"..."): label.html(fileName);
+    })
+
+    let newDesignText = ''
+
+    $('.list-group-item').each(function(){
+        let item = $(this);
+        let checkLast = item.children("span").text().trim() === "Design";
+
+        if(!checkLast){
+            item.on('click',function(){
+                let prev = $('.list-group-item.bg-light')
+
+                if(!$(this).is(prev)){
+                    prev.removeClass("bg-light").addClass('lh-condensed hover-effect')
+                    prev.find('.text-primary').removeClass('text-primary').children('small').addClass('text-muted')
+
+                    $(this).addClass("bg-light").removeClass('lh-condensed hover-effect')
+                    $(this).children('div').addClass('text-primary').children('small').removeClass('text-muted')
+                    
+                    newDesignText = $(this).data('design');
+
+                    $('.list-group-item').filter(function(){
+                        return $(this).children('span').text().trim() === "Design";
+                    }).children("strong").text(newDesignText);
+
+                    if(newDesignText ==='magazine'){
+                        $('.disclaimer').removeClass('d-none').addClass('d-block');
+                    }else{
+                        $('.disclaimer').addClass('d-none').removeClass('d-block');
+                    }
+                }
+            })
+
+        }
+        else{
+            let prev = $('.list-group-item.bg-light')
+            newDesignText = prev.data('design');
+            item.children("strong").text(newDesignText);
+
+            if(newDesignText ==='magazine'){
+                $('.disclaimer').removeClass('d-none').addClass('d-block');
+            }else{
+                $('.disclaimer').addClass('d-none').removeClass('d-block');
+            }
+
+        }
+    })
+
     $('#updateButton').on('click',function(e){
         $('#updateModal').modal('show')
     })
+
+    $('#updateFormBtn').on('click',function(){
+        console.log(true)
+        const html = quill? quill.getSemanticHTML(): "";
+        const text = quill? quill.getText(0,400): "";
+  
+        const formData = new FormData(document.getElementById('updateBlog'))
+        formData.append('design', newDesignText);
+        formData.append('content', html);
+        formData.append('description', text)
+
+        const blogId = $('#blogId').data('id')
+        axios.put(`/blog/${blogId}`, formData,{
+          headers:{
+              'Content-Type': 'multipart/form-data'
+          }
+        })
+        .then(function (response) {
+            window.location.reload() ;
+        })
+        .catch(function (error) {
+          console.log(error);
+          const errors = error.response?.data || {};
+              $('small.text-danger').each(function() {
+              const field = $(this).data('field'); 
+              $(this).text(errors[`${field}Err`] || '');
+           });
+           const firstError = $('small.text-danger:visible').first();
+              if (firstError.length) {
+                  firstError.get(0).scrollIntoView()
+              }
+        });
+      } )
 
     $(document).on('click', function(e){
         if(!$('nav').is(e.target)&& $('nav').has(e.target).length === 0 && window.innerWidth<768){
@@ -91,5 +189,21 @@ $(document).ready(function(){
     }
 })
 
-
+if($('#editor').length){
+    var quill = new Quill('#editor', {
+        theme: 'snow',
+        placeholder: 'Start typing your blog here...',
+        modules: {
+          toolbar: [
+            [{ 'font': [] }],
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+            ['bold', 'italic', 'underline', 'strike'],
+            [{ 'color': [] }, { 'background': [] }],
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'align': [] }],
+            ['link', 'image', 'video'],
+            ['clean'] 
+          ] 
+        }
+    });
+}
 

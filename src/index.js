@@ -94,7 +94,7 @@ app.post('/create-blog',upload.single('thumbNail'), (req, res)=>{
     }
 
     const today = new Date();
-    const date = `${today.getDate()<10?new String(0)+today.getDate():today.getDate()}-${(today.getMonth()+1)<10?new String(0)+(today.getMonth()+1):today.getMonth()+1}-${today.getFullYear()}`;
+    const date = `${new String(today.getDate()).padStart(2,0)}-${new String(today.getMonth()+1).padStart(2,0)}-${today.getFullYear()}`;
     let title = data.title.trim();
     title[0].toUpperCase()+title.slice(1)
 
@@ -130,15 +130,56 @@ app.get(`/blog/:id`, (req, res)=>{
 
 })
 
-app.put(`/blog/:id`, (req, res)=>{
-    const blogId = parseInt(req.params.id,10)
-    res.render(`/blog/${blogId}`);
+app.put(`/blog/:id`,upload.single('thumbNail'), (req, res)=>{
+    const checkWhiteSpace = (e) => e && e.trim().length > 0;
+    const {body, params:{id}} = req
+    const blogId = parseInt(id,10)
+    const thumbNail = req.file ? `/images/temp/${req.file.filename}` : 'https://placehold.co/600x400';
+    const isTitleValid = checkWhiteSpace(body.title);
+    const isContentValid = checkWhiteSpace(body.description);
+
+    console.log(body)
+
+    let errors = {};
+    if (!isTitleValid) {
+        errors.titleErr = "Provide a valid title!";
+    }
+    if (!isContentValid) {
+        errors.contentErr = "Your blog cannot be empty!";
+    }
+
+    if (Object.keys(errors).length > 0) {
+        return res.status(400).json(errors);
+    }
+
+    if(isNaN(blogId)) return res.status(400).json({ error: '❌ Incorrect path.' })
+
+
+    const findBlogIndex = blogs.findIndex(e=> e.id===blogId);
+    if(findBlogIndex === -1){ 
+        return res.status(404).json({ error: '❌ Blog not found.' })
+    }else{
+        const today = new Date();
+        const updateDate = `${new String(today.getDate()).padStart(2,0)}-${new String(today.getMonth()+1).padStart(2,0)}-${today.getFullYear()}`;
+        blogs[findBlogIndex] ={
+            id:blogId, 
+            design:body.design, 
+            thumbNail:thumbNail, 
+            title: body.title, 
+            content: body.content, 
+            description: body.description, 
+            date:updateDate 
+        }
+        res.status(200).json({ message: '✅ Blog updated successfully.', blog: blogs[findBlogIndex] });
+    }
+
 })
 
 app.delete(`/blog/:id`, (req, res)=>{
     const blogId = parseInt(req.params.id,10);
     const beforeLength = blogs.length;
     const thubmNailPath = path.join(__dirname,'../public');
+    if (isNaN(blogId)) return res.status(400).json({ error: '❌ Incorrect path.' });
 
     fs.unlink(path.join(thubmNailPath,blogs.filter(e=> e.id===blogId)[0].thumbNail),err=> console.log(`file ${err}`))
 

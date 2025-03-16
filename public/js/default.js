@@ -202,7 +202,7 @@ $(document).ready(function() {
         const formData = new FormData(document.getElementById('new-blog'))
         const previewData = {}
         const today = new Date();
-        const date = `${today.getDate()<10?new String(0)+today.getDate():today.getDate()}-${(today.getMonth()+1)<10?new String(0)+(today.getMonth()+1):today.getMonth()+1}-${today.getFullYear()}`;
+        const date = `${new String(today.getDate()).padStart(2,0)}-${new String(today.getMonth()+1).padStart(2,0)}-${today.getFullYear()}`;
         previewData['date']=date
 
         formData.append('design', newDesignText);
