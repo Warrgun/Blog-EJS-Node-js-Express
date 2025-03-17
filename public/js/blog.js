@@ -13,7 +13,7 @@ $(document).ready(function(){
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#dc3545',
-                confirmButtonText: 'Yes, delete it!',
+                confirmButtonText: 'Delete it!',
                 cancelButtonText: 'Cancel',
                 heightAuto: false,
                 customClass:{
@@ -35,48 +35,118 @@ $(document).ready(function(){
         });
     }
 
-    $('#updateModal').on('show.bs.modal', function(){
-        $('#title').val($('body').data('title'))
-        $('#formFile').val($('body').data('thumbNail'))
-        $('#editor .ql-editor').html($('body').data('content'))
+    const formHandler = (title, content, design)=>{
+        $('#title').val(title);
+        $('#editor .ql-editor').html( content);
 
-        const targetDesign = $('body').data('style');
-        $(`.list-group-item[data-design="${targetDesign}"]`).addClass("bg-light")
+        $(`.list-group-item[data-design="${design}"]`).addClass("bg-light")
                                                             .removeClass('lh-condensed hover-effect').children('div')
                                                             .addClass('text-primary').
                                                             children('small')
                                                             .removeClass('text-muted');
-        newDesignText = targetDesign
+        newDesignText = design
         $(".list-group-item strong").text(newDesignText);
+    }
+
+    $('#updateModal').on('show.bs.modal', function(){
+        const ifExist=$('.img-upload').find('#formFile');
+
+        if(ifExist.length ===0){
+            const fileField = document.createElement('input');
+            fileField.type = 'file';
+            fileField.id = 'formFile';
+            fileField.classList.add('form-control', 'w-auto'); // Add classes properly
+            fileField.name = 'thumbNail';
+            fileField.accept = 'image/*';
+
+            // Append the new input field to .img-upload
+            $('.img-upload').append(fileField);
+
+            let inputFile = $('input[type="file"]')
+            let label = $('#file-content')
+            let prevLabel = label.html();
+
+            inputFile.on('change', function(e){
+                let fileName = '';
+                if(e.target.value){
+                    fileName=e.target.value.split('\\').pop();
+
+                    label.addClass('ms-4');
+                    $('.file-name-wrap .bi-check').removeClass('d-none').addClass('d-inline');
+                }
+                else{
+                    label.removeClass('ms-4');
+                    $('.file-name-wrap .bi-check').removeClass('d-inline').addClass('d-none');
+                }
+                !fileName? label.html(prevLabel): fileName.length >45?label.html(fileName.slice(0,45)+"..."): label.html(fileName);
+            })
+        }
+
+        formHandler($('body').data('title'),$('body').data('content'),$('body').data('style'))
     })
 
-    $('#updateModal').on('hide.bs.modal', function(){
+    $('#updateModal').on('hide.bs.modal', function(event){
+        const modal = $(this)
+        $('#file-content').removeClass('ms-4').text('Thumbnail');
+        $('.file-name-wrap .bi-check').removeClass('d-inline').addClass('d-none');
         const item =$('.list-group-item.bg-light');
-        newDesignText = ''
-        $(".list-group-item strong").text(newDesignText);
 
         item.removeClass("bg-light").addClass('lh-condensed hover-effect');
         item.find('.text-primary').removeClass('text-primary').children('small').addClass('text-muted')
+
+        const html = quill? quill.getSemanticHTML(): "";
+  
+        const formData = new FormData(document.getElementById('updateBlog'))
+        formData.append('design', newDesignText);
+        formData.append('content', html);
+
+        const checkChanges = formData.get('design') !== $('body').data('style') || 
+            formData.get('title') !==  $('body').data('title')|| 
+            document.getElementById('formFile').files.length >0 || 
+            formData.get('content') !==$('body').data('content');
+
+        
+        if(checkChanges){
+            Swal.fire({
+                title: 'Discard changes',
+                text: 'Changes are unsaved. Do you want to save them before closing?',
+                icon: 'warning',
+                showCancelButton: true,
+                cancelButtonColor: '#dc3545',
+                confirmButtonText: 'Save As',
+                cancelButtonText: 'Close without Saving',
+                heightAuto: false,
+                customClass:{
+                    icon:'swalIconBg'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    modal.modal('show')
+                    $(`.list-group-item`).removeClass("bg-light")
+                                        .addClass('lh-condensed hover-effect').children('div')
+                                        .removeClass('text-primary').
+                                        children('small')
+                                        .addClass('text-muted');
+                    formHandler(formData.get('title'),formData.get('content'),formData.get('design'))
+                    if(document.getElementById('formFile').files.length >0){
+                        let label = $('#file-content')
+                        let fileName= document.getElementById('formFile').files[0].name
+
+                        label.addClass('ms-4');
+                        $('.file-name-wrap .bi-check').removeClass('d-none').addClass('d-inline');
+
+                        !fileName? label.html(prevLabel): fileName.length >45?label.html(fileName.slice(0,45)+"..."): label.html(fileName);
+                    }
+                }else{
+                    $('#formFile').remove();
+                }
+            });
+        }else{
+            $('#formFile').remove();
+        }
     })
 
-    let inputFile = $('input[type="file"]')
-    let label = $('#file-content')
-    let prevLabel = label.html();
-
-    inputFile.on('change', function(e){
-        let fileName = '';
-        if(e.target.value){
-            fileName=e.target.value.split('\\').pop();
-
-            label.addClass('ms-4');
-            $('.file-name-wrap .bi-check').removeClass('d-none').addClass('d-inline');
-        }
-        else{
-            label.removeClass('ms-4');
-            $('.file-name-wrap .bi-check').removeClass('d-inline').addClass('d-none');
-        }
-        !fileName? label.html(prevLabel): fileName.length >45?label.html(fileName.slice(0,45)+"..."): label.html(fileName);
-    })
+    
 
     let newDesignText = ''
 
@@ -124,8 +194,30 @@ $(document).ready(function(){
         }
     })
 
+    const updateHandler = (formData)=>{
+        axios.put(`/blog/${blogId}`, formData,{
+            headers:{
+                'Content-Type': 'multipart/form-data'
+            }
+            })
+            .then(function (response) {
+                window.location.reload() ;
+            })
+            .catch(function (error) {
+            console.log(error);
+            const errors = error.response?.data || {};
+                $('small.text-danger').each(function() {
+                const field = $(this).data('field'); 
+                $(this).text(errors[`${field}Err`] || '');
+            });
+            const firstError = $('small.text-danger:visible').first();
+                if (firstError.length) {
+                    firstError.get(0).scrollIntoView()
+                }
+            });
+    }
+
     $('#updateFormBtn').on('click',function(){
-        console.log(true)
         const html = quill? quill.getSemanticHTML(): "";
         const text = quill? quill.getText(0,400): "";
   
@@ -135,36 +227,16 @@ $(document).ready(function(){
         formData.append('description', text)
 
         Swal.fire({
-            title: 'Are you sure you want to save the changes?',
+            title: 'Are you sure you want to save these changes?',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            cancelButtonColor: '#dc3545',
             confirmButtonText: 'Yes, save it!',
             cancelButtonText: 'Cancel',
             heightAuto:false
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.put(`/blog/${blogId}`, formData,{
-                headers:{
-                    'Content-Type': 'multipart/form-data'
-                }
-                })
-                .then(function (response) {
-                    window.location.reload() ;
-                })
-                .catch(function (error) {
-                console.log(error);
-                const errors = error.response?.data || {};
-                    $('small.text-danger').each(function() {
-                    const field = $(this).data('field'); 
-                    $(this).text(errors[`${field}Err`] || '');
-                });
-                const firstError = $('small.text-danger:visible').first();
-                    if (firstError.length) {
-                        firstError.get(0).scrollIntoView()
-                    }
-                });
+                updateHandler(formData)
             }
         });
       });

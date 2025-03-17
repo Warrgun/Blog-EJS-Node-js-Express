@@ -1,3 +1,11 @@
+:root {
+  --blog-box-color: rgba(0, 0, 0, 0.5);
+}
+
+[data-bs-theme="dark"] {
+  --blog-box-color: rgba(255, 255, 255, 0.25);
+}
+
 .italiana-regular {
     font-family: "Italiana", serif;
     font-weight: 500;
@@ -605,11 +613,11 @@ button:active .ql-stroke,
 
   .blog-column-left:hover{
     transform: translateX(-1em);
-    box-shadow: 1em 0 1em rgba(0, 0, 0, 0.5);
+    box-shadow: 1em 0 1em var(--blog-box-color);
   }
   .blog-column-right:hover{
     transform: translateX(1em);
-    box-shadow: -1em 0 1em rgba(0, 0, 0, 0.5);
+    box-shadow: -1em 0 1em var(--blog-box-color);
   }
   
 }
