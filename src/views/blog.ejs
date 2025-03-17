@@ -201,84 +201,84 @@
       }
     </style>
 </head>
-<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body position-relative pt-0">
-        <form id="updateBlog" class="needs-validation flex-grow-1 d-flex flex-column pt-3">
-          <div class="row">
-            <div class="col-12 order-md-2 mb-4">
-              <h4 class="text-muted mb-3">Design selector</h4>
-              <ul class="list-group mb-3">
-                <li class="list-group-item d-flex justify-content-between bg-light" data-design ='modern'>
-                  <div class="text-primary">
-                    <h6 class="my-0">Modern</h6>
-                    <small>Sleek, minimal, bold, clean.</small>
-                  </div>
-                </li>
-                <li class="list-group-item d-flex justify-content-between lh-condensed hover-effect" data-design ='retro'>
-                  <div>
-                    <h6 class="my-0">Retro</h6>
-                    <small class="text-muted">Nostalgic and vintage aesthetics.</small>
-                  </div>
-                </li>
-                <li class="list-group-item d-flex justify-content-between lh-condensed hover-effect" data-design="subtle">
-                  <div>
-                    <h6 class="my-0">Subtle</h6>
-                    <small class="text-muted">Soft, elegant, and muted tones.</small>
-                  </div>
-                </li>
-                <li class="list-group-item d-flex justify-content-between lh-condensed hover-effect" data-design="magazine">
-                  <div>
-                    <h6 class="my-0">Magazine</h6>
-                    <small class="text-muted">Grid-based and structured.</small>
-                  </div>
-                </li>
-                <li class="list-group-item d-flex justify-content-between">
-                  <span>Design</span>
-                  <strong></strong>
-                </li>
-              </ul>
-            </div>
-            <div class="col-12 order-md-1 d-flex flex-column mb-5">
-              <h4 class="mb-3">Heading</h4>
-                <div class="mb-3">
-                  <label for="title">Title <span class="text-muted">(Required)</span></label>
-                  <input class="form-control" name="title" id="title" maxlength="50" placeholder="The way cats see the world">
-                  <small class="text-danger" data-field = 'title'></small>
-                </div>
-                <div class="img-upload bg-light-subtle d-flex align-items-center flex-column justify-content-center  flex-grow-1 rounded border border-secondary-subtle p-5">
-                  <i class="bi bi-card-image fs-1 text-secondary"></i>
-                  <div class="file-name-wrap position-relative">
-                      <i class="bi bi-check fs-4 d-none text-success position-absolute" style="transform: translateY(-6px); left: 0;top:0;"></i>
-                      <p id="file-content" class="small text-secondary d-inline">Thumbnail</p>
-                  </div>
-                  <input class="form-control w-auto" type="file" id="formFile" accept="image/*" name="thumbNail">
-                </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12">
-              <small class="text-danger" data-field = 'content'></small>
-              <div class="h-auto" style=" min-height: 25em;" id="editor">
+<body class="bg-body-tertiary d-flex flex-column vh-100" data-style="<%=blog.design%>" data-title="<%=blog.title%>" data-content="<%=blog.content %>" data-thumbNail="<%=blog.thumbNail %>">
+  <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body position-relative pt-0">
+          <form id="updateBlog" class="needs-validation flex-grow-1 d-flex flex-column pt-3">
+            <div class="row">
+              <div class="col-12 order-md-2 mb-4">
+                <h4 class="text-muted mb-3">Design selector</h4>
+                <ul class="list-group mb-3">
+                  <li class="list-group-item d-flex justify-content-between bg-light" data-design ='<%=blog.design%>'>
+                    <div class="text-primary">
+                      <h6 class="my-0">Modern</h6>
+                      <small>Sleek, minimal, bold, clean.</small>
+                    </div>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between lh-condensed hover-effect" data-design ='retro'>
+                    <div>
+                      <h6 class="my-0">Retro</h6>
+                      <small class="text-muted">Nostalgic and vintage aesthetics.</small>
+                    </div>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between lh-condensed hover-effect" data-design="subtle">
+                    <div>
+                      <h6 class="my-0">Subtle</h6>
+                      <small class="text-muted">Soft, elegant, and muted tones.</small>
+                    </div>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between lh-condensed hover-effect" data-design="magazine">
+                    <div>
+                      <h6 class="my-0">Magazine</h6>
+                      <small class="text-muted">Grid-based and structured.</small>
+                    </div>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between">
+                    <span>Design</span>
+                    <strong></strong>
+                  </li>
+                </ul>
               </div>
-              <small class="text-muted disclaimer">Magazine pictures width and wraping are random.</small>
+              <div class="col-12 order-md-1 d-flex flex-column mb-5">
+                <h4 class="mb-3">Heading</h4>
+                  <div class="mb-3">
+                    <label for="title">Title <span class="text-muted">(Required)</span></label>
+                    <input class="form-control" name="title" id="title" maxlength="50" placeholder="The way cats see the world">
+                    <small class="text-danger" data-field = 'title'></small>
+                  </div>
+                  <div class="img-upload bg-light-subtle d-flex align-items-center flex-column justify-content-center  flex-grow-1 rounded border border-secondary-subtle p-5">
+                    <i class="bi bi-card-image fs-1 text-secondary"></i>
+                    <div class="file-name-wrap position-relative">
+                        <i class="bi bi-check fs-4 d-none text-success position-absolute" style="transform: translateY(-6px); left: 0;top:0;"></i>
+                        <p id="file-content" class="small text-secondary d-inline">Thumbnail</p>
+                    </div>
+                    <input class="form-control w-auto" type="file" id="formFile" accept="image/*" name="thumbNail">
+                  </div>
+              </div>
             </div>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer" data-id="<%=blog.id%>">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" id="updateFormBtn" class="btn btn-primary">Save changes</button>
+            <div class="row">
+              <div class="col-12">
+                <small class="text-danger" data-field = 'content'></small>
+                <div class="h-auto" style=" min-height: 25em;" id="editor">
+                </div>
+                <small class="text-muted disclaimer">Magazine pictures width and wraping are random.</small>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer" data-id="<%=blog.id%>">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" id="updateFormBtn" class="btn btn-primary">Save changes</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<body class="bg-body-tertiary d-flex flex-column vh-100" data-style="<%=blog.design%>">
     <div class="background text-bg-dark mb-5 flex-shrink-0" data-bg="<%=blog.thumbNail%>">
       <div class="filter h-100 d-flex flex-column">
         <nav class="navbar navbar-expand-md navbar-dark">

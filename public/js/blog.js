@@ -34,6 +34,13 @@ $(document).ready(function(){
             });
         });
     }
+
+    $('#updateModal').on('show.bs.modal', function(){
+        $('#title').val($('body').data('title'))
+        $('#formFile').val($('body').data('thumbNail'))
+        $('#editor .ql-editor').html($('body').data('content'))
+    })
+
     let inputFile = $('input[type="file"]')
     let label = $('#file-content')
     let prevLabel = label.html();
