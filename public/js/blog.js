@@ -3,6 +3,7 @@
 $(document).ready(function(){
     const blogId =$('#blogId').data('id')
     if(blogId<6){
+        $('#blogId').addClass('d-none')
         $('#updateButton').removeAttr('data-bs-toggle data-bs-target')
     }else{
         $('.delete-blog').on('click', function () {
@@ -109,7 +110,7 @@ $(document).ready(function(){
         formData.append('description', text)
 
         Swal.fire({
-            title: 'Are you sure you want to save changes?',
+            title: 'Are you sure you want to save the changes?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
