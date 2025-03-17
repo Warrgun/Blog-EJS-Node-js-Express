@@ -513,7 +513,8 @@ button:active .ql-stroke,
 }
 
 #blog-section .card{
-  transition: transform 150ms ease-in-out;
+  transition: transform 200ms ease-in-out, box-shadow 200ms ease-in-out;
+  position: relative;
 }
 
 @keyframes fullscreen{
@@ -602,9 +603,13 @@ button:active .ql-stroke,
     box-shadow: 0 0 1em rgb(33, 33, 33);
   }
 
-  #blog-section .card:hover{
-    transform: scale(1.1);
-    z-index: 1000;
+  .blog-column-left:hover{
+    transform: translateX(-1em);
+    box-shadow: 1em 0 1em rgba(0, 0, 0, 0.5);
+  }
+  .blog-column-right:hover{
+    transform: translateX(1em);
+    box-shadow: -1em 0 1em rgba(0, 0, 0, 0.5);
   }
   
 }
