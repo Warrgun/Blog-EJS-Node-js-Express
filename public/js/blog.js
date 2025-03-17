@@ -1,22 +1,38 @@
 
 
-$('.delete-blog').on('click',function(){
-    const blogId=$('#blogId').data('id');
-    if(confirm('Are you sure you want to delete this blog?')){
-        axios.delete(`/blog/${blogId}`)
-            .then(response => {
-                console.log('🗑️ Blog deleted:', response.data);
-                window.location.href='/';
-            })
-            .catch(error => {
-                console.error('❌ Error deleting blog:', error)
-                window.location.reload();
-            });
-    }
-    
-})
-
 $(document).ready(function(){
+    const blogId =$('#blogId').data('id')
+    if(blogId<6){
+        $('#updateButton').removeAttr('data-bs-toggle data-bs-target')
+    }else{
+        $('.delete-blog').on('click', function () {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'You are about to delete this blog. This action cannot be undone!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#dc3545',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'Cancel',
+                heightAuto: false,
+                customClass:{
+                    icon:'swalIconBg'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.delete(`/blog/${blogId}`)
+                        .then(response => {
+                            console.log('🗑️ Blog deleted:', response.data);
+                            window.location.href = '/';
+                        })
+                        .catch(error => {
+                            console.error('❌ Error deleting blog:', error);
+                            window.location.reload();
+                        });
+                }
+            });
+        });
+    }
     let inputFile = $('input[type="file"]')
     let label = $('#file-content')
     let prevLabel = label.html();
@@ -82,10 +98,6 @@ $(document).ready(function(){
         }
     })
 
-    $('#updateButton').on('click',function(e){
-        $('#updateModal').modal('show')
-    })
-
     $('#updateFormBtn').on('click',function(){
         console.log(true)
         const html = quill? quill.getSemanticHTML(): "";
@@ -96,28 +108,40 @@ $(document).ready(function(){
         formData.append('content', html);
         formData.append('description', text)
 
-        const blogId = $('#blogId').data('id')
-        axios.put(`/blog/${blogId}`, formData,{
-          headers:{
-              'Content-Type': 'multipart/form-data'
-          }
-        })
-        .then(function (response) {
-            window.location.reload() ;
-        })
-        .catch(function (error) {
-          console.log(error);
-          const errors = error.response?.data || {};
-              $('small.text-danger').each(function() {
-              const field = $(this).data('field'); 
-              $(this).text(errors[`${field}Err`] || '');
-           });
-           const firstError = $('small.text-danger:visible').first();
-              if (firstError.length) {
-                  firstError.get(0).scrollIntoView()
-              }
+        Swal.fire({
+            title: 'Are you sure you want to save changes?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, save it!',
+            cancelButtonText: 'Cancel',
+            heightAuto:false
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.put(`/blog/${blogId}`, formData,{
+                headers:{
+                    'Content-Type': 'multipart/form-data'
+                }
+                })
+                .then(function (response) {
+                    window.location.reload() ;
+                })
+                .catch(function (error) {
+                console.log(error);
+                const errors = error.response?.data || {};
+                    $('small.text-danger').each(function() {
+                    const field = $(this).data('field'); 
+                    $(this).text(errors[`${field}Err`] || '');
+                });
+                const firstError = $('small.text-danger:visible').first();
+                    if (firstError.length) {
+                        firstError.get(0).scrollIntoView()
+                    }
+                });
+            }
         });
-      } )
+      });
 
     $(document).on('click', function(e){
         if(!$('nav').is(e.target)&& $('nav').has(e.target).length === 0 && window.innerWidth<768){

@@ -159,6 +159,8 @@ app.put(`/blog/:id`,upload.single('thumbNail'), (req, res)=>{
     if(findBlogIndex === -1){ 
         return res.status(404).json({ error: '❌ Blog not found.' })
     }else{
+        const thubmNailPath = path.join(__dirname,'../public');
+        fs.unlink(path.join(thubmNailPath,blogs[findBlogIndex].thumbNail),err=> console.log(`file ${err}`))
         const today = new Date();
         const updateDate = `${new String(today.getDate()).padStart(2,0)}-${new String(today.getMonth()+1).padStart(2,0)}-${today.getFullYear()}`;
         blogs[findBlogIndex] ={
