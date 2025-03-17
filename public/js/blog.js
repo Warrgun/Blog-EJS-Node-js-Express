@@ -212,6 +212,9 @@ $(document).ready(function(){
         $('footer').replaceWith('')
         $('#blogContent').replaceWith(`<div class="w-100 filter pt-5 d-flex flex-column flex-grow-1">${blogContent}${footer}</div>`)
     }
+
+    const toolbar=$('.ql-toolbar')
+    if(toolbar.length) toolbar.addClass('position-sticky top-0 z-1').css('transform','translateY(-1px)');
 })
 
 if($('#editor').length){
