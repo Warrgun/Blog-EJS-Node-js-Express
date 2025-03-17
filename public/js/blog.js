@@ -39,6 +39,24 @@ $(document).ready(function(){
         $('#title').val($('body').data('title'))
         $('#formFile').val($('body').data('thumbNail'))
         $('#editor .ql-editor').html($('body').data('content'))
+
+        const targetDesign = $('body').data('style');
+        $(`.list-group-item[data-design="${targetDesign}"]`).addClass("bg-light")
+                                                            .removeClass('lh-condensed hover-effect').children('div')
+                                                            .addClass('text-primary').
+                                                            children('small')
+                                                            .removeClass('text-muted');
+        newDesignText = targetDesign
+        $(".list-group-item strong").text(newDesignText);
+    })
+
+    $('#updateModal').on('hide.bs.modal', function(){
+        const item =$('.list-group-item.bg-light');
+        newDesignText = ''
+        $(".list-group-item strong").text(newDesignText);
+
+        item.removeClass("bg-light").addClass('lh-condensed hover-effect');
+        item.find('.text-primary').removeClass('text-primary').children('small').addClass('text-muted')
     })
 
     let inputFile = $('input[type="file"]')
