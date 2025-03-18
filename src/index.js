@@ -26,6 +26,13 @@ let blogs = []
 app.use(express.json())
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.urlencoded({extended: true}));
+//     if (err instanceof multer.MulterError) {
+//       res.status(400).send("Multer error: " + err.message);
+//     } else {
+//       res.status(500).send("ghfgh: " + err.message);
+//     }
+//   });
+
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -38,7 +45,29 @@ const storage = multer.diskStorage({
     }
 })
 
-const upload = multer({ storage: storage })
+const uploadFile = function (req,res,next){
+    const upload = multer({ storage: storage, limits:{
+        files:1,
+        fileSize: 25 * 1024 * 1024,
+        fieldSize: 25 * 1024 * 1024,
+    },}).single('thumbNail');
+
+    upload(req,res, function(err){
+        if(err instanceof multer.MulterError){
+            if (err.code === 'LIMIT_FILE_SIZE') {
+                return res.status(400).json({ contentErr: "Size of all images together is too large!" });
+            } else if (err.code === 'LIMIT_FILE_COUNT') {
+                return res.status(400).json({ contentErr: "Too many files uploaded!" });
+            } else {
+                return res.status(400).json({ contentErr: "Error: " + err.message });
+            }
+        }else if(err){
+            return res.status(400).json({ error: "Upload error: " + err.message });
+        }
+        next()
+    })
+
+}
 
 
 const BlogCreator= (()=>{  
@@ -74,7 +103,7 @@ app.get('/create-blog', (req, res)=>{
 
 })
 
-app.post('/create-blog',upload.single('thumbNail'), (req, res)=>{
+app.post('/create-blog',uploadFile, (req, res)=>{
     const checkWhiteSpace = (e) => e && e.trim().length > 0;
     const data = req.body;
     const thumbNail = req.file ? `/images/temp/${req.file.filename}` : 'https://placehold.co/600x400';
@@ -86,9 +115,8 @@ app.post('/create-blog',upload.single('thumbNail'), (req, res)=>{
         errors.titleErr = "Provide a valid title!";
     }
     if (!isContentValid) {
-        errors.contentErr = "Your blog cannot be empty!";
+        errors.contentErr = "Your blog must contain letters!";
     }
-
     if (Object.keys(errors).length > 0) {
         return res.status(400).json(errors);
     }
@@ -129,7 +157,7 @@ app.get(`/blog/:id`, (req, res)=>{
 
 })
 
-app.put(`/blog/:id`,upload.single('thumbNail'), (req, res)=>{
+app.put(`/blog/:id`,uploadFile, (req, res)=>{
     const checkWhiteSpace = (e) => e && e.trim().length > 0;
     const {body, params:{id}} = req
     const blogId = parseInt(id,10)
