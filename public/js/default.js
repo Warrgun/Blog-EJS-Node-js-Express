@@ -282,7 +282,7 @@ $(document).ready(function() {
             </li>
         `);
     
-        if (paginationElements >= 5 && currentPage > 3) {
+        if (paginationElements >= 5 && currentPage > paginationElements - 3) {
             $('.pagination').append(`
                 <li class="page-item disabled not-clicable">
                     <span class="page-link">...</span>
