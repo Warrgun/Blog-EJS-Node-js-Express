@@ -1,69 +1,143 @@
-const blogHTML = (data)=> `<!DOCTYPE html>
-<html lang="en" class="h-100">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="/styles/${data.design}.css">
-    <title><%=blog.title %></title>
-</head>
-<body class="bg-body-tertiary d-flex flex-column h-100" data-style="${data.design}">
-    <div class="background text-bg-dark mb-5 flex-shrink-0" data-bg="${data.thumbNail}">
-      <div class="filter h-100 d-flex flex-column">
-        <nav class="navbar navbar-expand-md navbar-dark invisible">
-          <div class="container">
-            <a class="navbar-brand fancy-font" href="#">BLOG</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                  <a class="nav-link" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/blog">Other Blogs</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/create-blog">Create</a>
-                </li>
-              </ul>
-              <form class="d-flex" role="search">
-                <button class="btn btn-outline-success me-2">Update</button>
-                <button class="btn btn-outline-danger delete-blog" data-id="">Delete</button>
-              </form>
+const getGeneratedPageURL = (data) => {
+    const getBlobURL = (code, type) => {
+      const blob = new Blob([code], { type })
+      return URL.createObjectURL(blob)
+    }
+  
+    const cssURL =`http://localhost:3000//styles/${data.design}.css`
+  
+    const blogHTML = `<!DOCTYPE html>
+    <html lang="en" class="h-100">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="${cssURL}">
+        <title>${data.title}</title>
+    </head>
+    <body class="bg-body-tertiary d-flex flex-column h-100" data-style="${data.design}">
+        <div class="background text-bg-dark mb-5 flex-shrink-0" data-bg="${data.thumbNail}">
+        <div class="filter h-100 d-flex flex-column">
+            <nav class="navbar navbar-expand-md navbar-dark invisible">
+            <div class="container">
+                <a class="navbar-brand fancy-font" href="#">BLOG</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="/blog">Other Blogs</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="/create-blog">Create</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <button class="btn btn-outline-success me-2">Update</button>
+                    <button class="btn btn-outline-danger delete-blog" data-id="">Delete</button>
+                </form>
+                </div>
             </div>
-          </div>
-        </nav>
-        <div class="d-flex flex-grow-1 justify-content-center align-items-center pt-3 px-3 pt-md-5 px-md-5" >
-          <div class="my-3 py-3 px-5 text-center mx-auto heading">
-            <h2 class="display-5" >${data.title}</h2>
-            <p class="lead text-shadow">${data.description.length>200? data.description.slice(0,data.description.lastIndexOf(" ",200))+'...': data.description }</p>
-          </div>
-          <div class="thumbnail-container">
-              <img src="${data.thumbNail}" alt="thumbnail">
-          </div>
+            </nav>
+            <div class="d-flex flex-grow-1 justify-content-center align-items-center pt-3 px-3 pt-md-5 px-md-5" >
+            <div class="my-3 py-3 px-5 text-center mx-auto heading">
+                <h2 class="display-5" >${data.title}</h2>
+                <p class="lead text-shadow">${data.description.length>200? data.description.slice(0,data.description.lastIndexOf(" ",200))+'...': data.description }</p>
+            </div>
+            <div class="thumbnail-container">
+                <img src="${data.thumbNail}" alt="thumbnail">
+            </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div id="blogContent" class=" container max-width py-5 text-wrap default-font flex-shrink-0 px-4 px-md-0">
-      <small class="text-muted">${data.date}</small>
-      <div class="grid">${data.content}</div>
-    </div>
-    <footer class="footer mt-auto py-3">
-      <div class="container">
-        <span class="text-body-secondary">${data.date}</span>
-      </div>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script
-  src="https://code.jquery.com/jquery-3.7.1.js"
-  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-  crossorigin="anonymous"></script>
-  <script src="/js/blog.js"></script>
-</body>
-</html>
-`
+        </div>
+        <div id="blogContent" class=" container max-width py-5 text-wrap default-font flex-shrink-0 px-4 px-md-0">
+        <small class="text-muted">${data.date}</small>
+        <div class="grid">${data.content}</div>
+        </div>
+        <footer class="footer mt-auto py-3">
+        <div class="container">
+            <span class="text-body-secondary">${data.date}</span>
+        </div>
+        </footer>
+        <script
+    src="https://code.jquery.com/jquery-3.7.1.js"
+    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
+    <script>
+            $(document).ready(function () {
+                // Replace &nbsp; with spaces
+                let content = $('#blogContent').html();
+                content = content.replace(/&nbsp;/g, ' ');
+                $('#blogContent').html(content);
+
+                const style = $('body').data('style');
+
+                if (style === 'modern') {
+                    $('.background').css('background', \`url(\${$('.background').data('bg')})\`);
+                } else if (style === 'subtle') {
+                    let scrollTimeout;
+
+                    $('.max-width').on('scroll', () => {
+                        $(':root').css('--background', 'rgba(0,0,0,0.2)');
+
+                        clearTimeout(scrollTimeout);
+
+                        scrollTimeout = setTimeout(() => {
+                            $(':root').css('--background', 'rgba(0,0,0,0)');
+                        }, 300);
+                    });
+                } else if (style === 'magazine') {
+                    $('.heading').parent().removeClass('d-flex flex-grow-1 justify-content-center align-items-center px-3 px-md-5').addClass('container px-0 px-2 px-md-0');
+                    $('#blogContent').removeClass('px-4').addClass('px-2');
+
+                    const imageSize = ['40%', '50%', '60%', '100%'];
+                    const img = $('#blogContent img');
+                    img.each(function () {
+                        const random = Math.floor(Math.random() * 100) % 2;
+                        const randomSize = Math.floor(Math.random() * 4);
+                        const currentImage = $(this);
+
+                        currentImage.addClass(\`\${random % 2 === 0 ? 'float-left' : 'float-right'}\`);
+                        $(window).on('resize load', function () {
+                            if (window.innerWidth > 420) {
+                                currentImage.css('max-width', \`\${imageSize[randomSize]}\`);
+                                currentImage.removeClass('w-100');
+                            } else {
+                                currentImage.addClass('w-100');
+                            }
+                        });
+                    });
+                } else if (style === 'retro') {
+                    $('.heading').parent().removeClass('justify-content-center px-3 px-md-5').addClass('container px-4 px-md-0 justify-content-between');
+                    $('.heading').removeClass('mx-auto text-center px-5').addClass('mx-0 mx-md-2');
+                    $('.heading p').removeClass('lead').addClass('fw-light');
+                    $('#blogContent p').addClass('lead');
+                    const retroImages = ['http://localhost:3000/images/retro1.jpg', 'http://localhost:3000/images/retro2.jpg', 'http://localhost:3000/images/retro3.jpg'];
+                    const randomNum = Math.floor(Math.random() * 3);
+
+                    $('.background').css('background', \`url(\${retroImages[randomNum]})\`).removeClass('mb-5');
+                    $('body').removeClass('bg-body-tertiary').addClass('bg-dark-subtle');
+                    $(document.documentElement).attr('data-bs-theme', 'dark');
+
+                    const footer = $('footer').prop('outerHTML');
+                    const blogContent = $('#blogContent').prop('outerHTML');
+                    $('footer').replaceWith('');
+                    $('#blogContent').replaceWith(\`<div class="w-100 filter pt-5 d-flex flex-column flex-grow-1">\${blogContent}\${footer}</div>\`);
+                }
+            });
+        </script>
+    </body>
+    </html>
+    `
+  
+    return getBlobURL(blogHTML, 'text/html')
+  }
+
+
 
 $(document).ready(function() {
     const checkColors = ()=>{
@@ -202,12 +276,12 @@ $(document).ready(function() {
         formData.append('content', html);
         formData.append('description', text)
 
+
         for (const [key, value] of formData.entries()) {
             previewData[key]=value
           }
 
         var iframe = document.getElementById('previewFrame');
-        var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
 
         var fileInput = $('#formFile')[0];
         var fileImage = fileInput.files[0]
@@ -215,17 +289,17 @@ $(document).ready(function() {
             var reader = new FileReader();
             reader.onload = function(e) {
                 previewData['thumbNail']= e.target.result
-                iframeDoc.open();
-                iframeDoc.write(blogHTML(previewData));
-                iframeDoc.close();
+                const testRunUrl = getGeneratedPageURL(previewData);
+
+                iframe.src =  testRunUrl
             };
             reader.readAsDataURL(fileImage);
         }
         else{
             previewData['thumbNail']= 'https://placehold.co/600x400';
-            iframeDoc.open();
-            iframeDoc.write(blogHTML(previewData));
-            iframeDoc.close();
+            const testRunUrl = getGeneratedPageURL(previewData);
+
+            iframe.src =  testRunUrl
         }
    })
 

@@ -55,11 +55,10 @@ $(document).ready(function(){
             const fileField = document.createElement('input');
             fileField.type = 'file';
             fileField.id = 'formFile';
-            fileField.classList.add('form-control', 'w-auto'); // Add classes properly
+            fileField.classList.add('form-control', 'w-auto');
             fileField.name = 'thumbNail';
             fileField.accept = 'image/*';
 
-            // Append the new input field to .img-upload
             $('.img-upload').append(fileField);
 
             let inputFile = $('input[type="file"]')

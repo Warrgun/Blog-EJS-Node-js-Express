@@ -47,7 +47,6 @@ const storage = multer.diskStorage({
 
 const uploadFile = function (req,res,next){
     const upload = multer({ storage: storage, limits:{
-        files:1,
         fileSize: 25 * 1024 * 1024,
         fieldSize: 25 * 1024 * 1024,
     },}).single('thumbNail');
