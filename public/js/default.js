@@ -282,7 +282,7 @@ $(document).ready(function() {
             </li>
         `);
     
-        if (paginationElements >= 5 && currentPage > paginationElements - 3) {
+        if (paginationElements >= 5 && currentPage > 3) {
             $('.pagination').append(`
                 <li class="page-item disabled not-clicable">
                     <span class="page-link">...</span>
@@ -290,7 +290,7 @@ $(document).ready(function() {
             `);
         }
     
-        for (let i = Math.max(2, currentPage -1 ); i <= Math.min(paginationElements - 1, currentPage + 1); i++) {
+        for (let i = Math.max(2, currentPage===paginationElements? currentPage-2:currentPage-1 ); i <= Math.min(paginationElements - 1, currentPage===1?currentPage + 2:currentPage+1); i++) {
             $('.pagination').append(`
                 <li class="page-item ${currentPage === i ? 'active' : 'cursor'}" data-id="${i}">
                     <span class="page-link">${i}</span>

@@ -194,7 +194,7 @@ app.delete(`/blog/:id`, (req, res)=>{
 })
 
 function cleanupOnExit() {
-    clearUploadsFolder();
+    clearFolder();
     process.exit();
 }  
 
