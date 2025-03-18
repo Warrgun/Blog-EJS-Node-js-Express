@@ -4,7 +4,7 @@
         <div id="blog-section" class="grid-container custom-width mx-auto">
             <%blogs.map((e,i) =>{%>
                 <%if(e.description && e.description.trim()){%>
-                    <div class="card mb-3 mb-md-0 rounded-0 h-100 <%= i%2===0?'blog-column-left':'blog-column-right'%> " data-current="<%=currentPage%>">
+                    <div class="card mb-3 mb-md-0 rounded-0 h-100 <%= i%2===0?'blog-column-left':'blog-column-right'%> ">
                         <a href="/blog/<%= e.id %>" target="_blank">
                             <img src="<%=e.thumbNail%>" class="card-img-top rounded-0" alt="<%=e.title%>" height="200" loading="lazy" style="object-fit: cover;">
                         </a>
@@ -24,13 +24,13 @@
         </div>
         <div class="pagination-container w-100 d-flex align-items center justify-content-center pt-5">
             <nav aria-label="Page navigation example" class="mx-auto">
-                <ul class="pagination" data-pages="<%=pages%>">
-                  <li class="page-item" data-page="-1">
+                <ul class="pagination" data-pages="<%=pages%>" data-current="<%=currentPage%>">
+                  <li class="page-item cursor" data-page="prev">
                     <span class="page-link" aria-label="Previous">
                         <i class="bi bi-caret-left-fill"></i>
                     </span>
                   </li>
-                  <li class="page-item" data-page="1">
+                  <li class="page-item cursor" data-page="next">
                     <span class="page-link" aria-label="Next">
                         <i class="bi bi-caret-right-fill"></i>
                     </span>

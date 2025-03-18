@@ -264,76 +264,112 @@ $(document).ready(function() {
       });
     } )
 
-    const paginationElements=parseInt($('.pagination').data('pages'),10)
+    const paginationElements = parseInt($('.pagination').data('pages'), 10); 
+    let currentPage = parseInt($('.pagination').data('current'), 10);
 
-    let currentPage=parseInt($('#blog-section .card').first().data('current'),10)
+    const prevButton = $('.pagination .page-item[data-page="prev"]').detach();
+    const nextButton = $('.pagination .page-item[data-page="next"]').detach();
 
-    $('.pagination .page-item').first().toggleClass('disabled', currentPage === 1 || currentPage === paginationElements);
-    if($('.pagination .page-item').first().hasClass('disabled')) $('.pagination .page-item').first().removeClass('cursor')
-    if($('.pagination .page-item').last().hasClass('disabled')) $('.pagination .page-item').last().removeClass('cursor')
+    initializePagination();
 
-
-    for(let i=1;i<=paginationElements;i++){
-        let element=$('<li>',{class:`page-item ${i === currentPage?'active':'cursor'}`,'data-id':i,}).append($('<span>',{
-            class:'page-link',
-            text: i, 
-            'aria-label': `Go to page ${i}`
-        }));
-
-        $('.pagination .page-item').last().before(element);
+    function initializePagination() {
+        $('.pagination').empty();
+        $('.pagination').append(prevButton);
+    
+        $('.pagination').append(`
+            <li class="page-item ${currentPage === 1 ? 'active' : 'cursor'}" data-id="1">
+                <span class="page-link">1</span>
+            </li>
+        `);
+    
+        if (paginationElements >= 5 && currentPage > 3) {
+            $('.pagination').append(`
+                <li class="page-item disabled not-clicable">
+                    <span class="page-link">...</span>
+                </li>
+            `);
+        }
+    
+        for (let i = Math.max(2, currentPage -1 ); i <= Math.min(paginationElements - 1, currentPage + 1); i++) {
+            $('.pagination').append(`
+                <li class="page-item ${currentPage === i ? 'active' : 'cursor'}" data-id="${i}">
+                    <span class="page-link">${i}</span>
+                </li>
+            `);
+        }
+    
+        if (paginationElements >= 5 && currentPage < paginationElements - 2) {
+            $('.pagination').append(`
+                <li class="page-item disabled not-clicable">
+                    <span class="page-link">...</span>
+                </li>
+            `);
+        }
+    
+        if (paginationElements > 1) {
+            $('.pagination').append(`
+                <li class="page-item ${currentPage === paginationElements ? 'active' : 'cursor'}" data-id="${paginationElements}">
+                    <span class="page-link">${paginationElements}</span>
+                </li>
+            `);
+        }
+    
+        $('.pagination').append(nextButton);
+        updatePrevNextButtons();
     }
 
-    $(document).on('click', '.pagination .page-item', function () {
-        currentPage=parseInt($('#blog-section .card').first().data('current'),10)
+    function updatePrevNextButtons() {
+        prevButton.toggleClass('disabled', currentPage === 1);
+        nextButton.toggleClass('disabled', currentPage === paginationElements);
+
+        if (prevButton.hasClass('disabled')) {prevButton.removeClass('cursor')}
+        else{prevButton.addClass('cursor')};
+        if (nextButton.hasClass('disabled')) nextButton.removeClass('cursor');
+        else{nextButton.addClass('cursor')};
+    }
+
+        $(document).on('click', '.pagination .page-item', function () {
         if ($(this).hasClass('disabled') || $(this).hasClass('active')) return;
-        getPageFunc(parseInt($(this).data('id')||currentPage+$(this).data('page'), 10));
-        if(window.innerWidth > 768){
-            $(document).scrollTop( 250 );
-        }
-        else{
-            $(document).scrollTop( 100 );
+
+        const page = $(this).data('id') || (currentPage + ($(this).data('page') === 'next' ? 1 : -1));
+        getPageFunc(page);
+
+        if (window.innerWidth > 768) {
+            $(document).scrollTop(250);
+        } else {
+            $(document).scrollTop(100);
         }
     });
 
-    
-
-    const getPageFunc = e=>{
-        axios.get("/blog",{
-            params:{
-                p:e
+    const getPageFunc = (e) => {
+        axios.get("/blog", {
+            params: {
+                p: e
             }
         })
-            .then(response=>{
-                console.log(response)
-                $('#blog-section').html($(response.data).find('#blog-section').html());
-                updatePaginationUI(e);
-                window.history.pushState({}, '', `/blog?p=${e}`);
-            })
-            .catch(error =>{
-                console.error(error)
-            })
+        .then(response => {
+            currentPage = e;
+
+            $('#blog-section').html($(response.data).find('#blog-section').html());
+
+            initializePagination();
+
+            window.history.pushState({}, '', `/blog?p=${e}`);
+        })
+        .catch(error => {
+            console.error(error);
+        });
     };
 
-    function updatePaginationUI(newPage) {
-        $('.pagination .page-item').removeClass('active').addClass('cursor');
-        $(`.pagination .page-item[data-id=${newPage}]`).addClass('active').removeClass('cursor');
-        $('.pagination .page-item').first().toggleClass('disabled', newPage === 1);
-        if($('.pagination .page-item').first().hasClass('disabled')) $('.pagination .page-item').first().removeClass('cursor')
-
-        $('.pagination .page-item').last().toggleClass('disabled', newPage === paginationElements);
-        if($('.pagination .page-item').last().hasClass('disabled')) $('.pagination .page-item').last().removeClass('cursor')
-    }
-
     window.addEventListener('popstate', function (event) {
-        const url = new URL(this.window.location.href) 
+        const url = new URL(window.location.href);
         if (url.hash) return;
+
         const urlParams = new URLSearchParams(window.location.search);
-        
-        const page = urlParams.get('p') || 1; 
-    
-        getPageFunc(page); 
+        const page = urlParams.get('p') || 1;
+
+        getPageFunc(page);
     });
-    
 
 
     $(window).on('resize load', function() {
