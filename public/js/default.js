@@ -5,6 +5,9 @@ const getGeneratedPageURL = (data) => {
     }
   
     const cssURL =`http://localhost:3000//styles/${data.design}.css`
+    const title = DOMPurify.sanitize(data.title);
+    const description = DOMPurify.sanitize(data.description)
+    const content = DOMPurify.sanitize(data.content)
   
     const blogHTML = `<!DOCTYPE html>
     <html lang="en" class="h-100">
@@ -13,7 +16,7 @@ const getGeneratedPageURL = (data) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link rel="stylesheet" href="${cssURL}">
-        <title>${data.title}</title>
+        <title>${title}</title>
     </head>
     <body class="bg-body-tertiary d-flex flex-column h-100" data-style="${data.design}">
         <div class="background text-bg-dark mb-5 flex-shrink-0" data-bg="${data.thumbNail}">
@@ -45,8 +48,8 @@ const getGeneratedPageURL = (data) => {
             </nav>
             <div class="d-flex flex-grow-1 justify-content-center align-items-center pt-3 px-3 pt-md-5 px-md-5" >
             <div class="my-3 py-3 px-5 text-center mx-auto heading">
-                <h2 class="display-5" >${data.title}</h2>
-                <p class="lead text-shadow">${data.description.length>200? data.description.slice(0,data.description.lastIndexOf(" ",200))+'...': data.description }</p>
+                <h2 class="display-5" >${title}</h2>
+                <p class="lead text-shadow">${description.length>200? description.slice(0,description.lastIndexOf(" ",200))+'...': description }</p>
             </div>
             <div class="thumbnail-container">
                 <img src="${data.thumbNail}" alt="thumbnail">
@@ -56,7 +59,7 @@ const getGeneratedPageURL = (data) => {
         </div>
         <div id="blogContent" class=" container max-width py-5 text-wrap default-font flex-shrink-0 px-4 px-md-0">
         <small class="text-muted">${data.date}</small>
-        <div class="grid">${data.content}</div>
+        <div class="grid">${content}</div>
         </div>
         <footer class="footer mt-auto py-3">
         <div class="container">
@@ -290,6 +293,8 @@ $(document).ready(function() {
             reader.onload = function(e) {
                 previewData['thumbNail']= e.target.result
                 const testRunUrl = getGeneratedPageURL(previewData);
+
+                console.log(testRunUrl)
 
                 iframe.src =  testRunUrl
             };
