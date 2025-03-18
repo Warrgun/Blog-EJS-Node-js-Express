@@ -214,6 +214,20 @@ footer{
   transition: text-shadow 100ms ease ;
 }
 
+.active>.page-link {
+  background-color: #df826d;
+  border-color: #df826d;
+}
+
+.page-link{
+  color: #df826d;
+}
+
+.page-item:not(.active) .page-link:hover,
+.page-item:not(.active) .page-link:active{
+  color: #ac7a6e;
+}
+
 .text-primary, 
 .btn-outline-primary, 
 .btn-primary:active, 
