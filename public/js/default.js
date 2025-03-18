@@ -266,11 +266,10 @@ $(document).ready(function() {
 
     const paginationElements=parseInt($('.pagination').data('pages'),10)
 
-    const currentPage=parseInt($('.pagination').data('current'),10)
+    let currentPage=parseInt($('#blog-section .card').first().data('current'),10)
 
-    $('.pagination .page-item').first().toggleClass('disabled', currentPage === 1);
+    $('.pagination .page-item').first().toggleClass('disabled', currentPage === 1 || currentPage === paginationElements);
     if($('.pagination .page-item').first().hasClass('disabled')) $('.pagination .page-item').first().removeClass('cursor')
-    $('.pagination .page-item').last().toggleClass('disabled', currentPage === paginationElements);
     if($('.pagination .page-item').last().hasClass('disabled')) $('.pagination .page-item').last().removeClass('cursor')
 
 
@@ -285,8 +284,9 @@ $(document).ready(function() {
     }
 
     $(document).on('click', '.pagination .page-item', function () {
+        currentPage=parseInt($('#blog-section .card').first().data('current'),10)
         if ($(this).hasClass('disabled') || $(this).hasClass('active')) return;
-        getPageFunc(parseInt($(this).data('id')||$(this).data('page'), 10));
+        getPageFunc(parseInt($(this).data('id')||currentPage+$(this).data('page'), 10));
         if(window.innerWidth > 768){
             $(document).scrollTop( 250 );
         }
@@ -324,12 +324,15 @@ $(document).ready(function() {
         if($('.pagination .page-item').last().hasClass('disabled')) $('.pagination .page-item').last().removeClass('cursor')
     }
 
-    // window.addEventListener('popstate', function (event) {
-    //     const urlParams = new URLSearchParams(window.location.search);
-    //     const page = urlParams.get('p') || 1; 
+    window.addEventListener('popstate', function (event) {
+        const url = new URL(this.window.location.href) 
+        if (url.hash) return;
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        const page = urlParams.get('p') || 1; 
     
-    //     getPageFunc(page); 
-    // });
+        getPageFunc(page); 
+    });
     
 
 

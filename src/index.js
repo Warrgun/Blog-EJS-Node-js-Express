@@ -109,7 +109,6 @@ app.post('/create-blog',upload.single('thumbNail'), (req, res)=>{
 app.get('/blog', (req, res)=>{
     const limitPerPage = 10;
     let currentPage = parseInt(req.query?.p, 10) || 1;
-    console.log(currentPage)
     res.render('blogs.ejs',{
         blogs:[...blogs].reverse().slice((currentPage-1) * limitPerPage,currentPage *limitPerPage),
         currentPage: currentPage,
