@@ -169,6 +169,19 @@ $(document).ready(function() {
         checkColors()
     })
 
+    $('#previewModal').on('show.bs.modal', function(e){
+        $('main').attr('inert','');
+        $(this).removeAttr('inert');
+
+        $(this).find('[autofocus]').focus(); 
+    });
+    $('#previewModal').on('hide.bs.modal', function(e){
+        $('main').removeAttr('inert');
+        $(this).attr('inert','');
+
+        $(e.relatedTarget).focus();
+    });
+
     $('.dropdown').on('show.bs.dropdown', function(e){
         $(this).find('.dropdown-menu').first().stop(true, true).slideDown();
     });
@@ -293,8 +306,6 @@ $(document).ready(function() {
             reader.onload = function(e) {
                 previewData['thumbNail']= e.target.result
                 const testRunUrl = getGeneratedPageURL(previewData);
-
-                console.log(testRunUrl)
 
                 iframe.src =  testRunUrl
             };

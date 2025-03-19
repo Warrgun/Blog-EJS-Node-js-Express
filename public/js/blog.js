@@ -49,6 +49,10 @@ $(document).ready(function(){
     }
 
     $('#updateModal').on('show.bs.modal', function(){
+        $('.background').attr('inert','');
+        $(this).removeAttr('inert');
+
+        $(this).find('[autofocus]').focus(); 
         const ifExist=$('.img-upload').find('#formFile');
 
         if(ifExist.length ===0){
@@ -85,6 +89,10 @@ $(document).ready(function(){
     })
 
     $('#updateModal').on('hide.bs.modal', function(event){
+        $('.background').removeAttr('inert');
+        $(this).attr('inert','');
+
+        $(event.relatedTarget).focus();
         const modal = $(this)
         $('#file-content').removeClass('ms-4').text('Thumbnail');
         $('.file-name-wrap .bi-check').removeClass('d-inline').addClass('d-none');
