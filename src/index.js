@@ -17,10 +17,12 @@ clearFolder()
 
 import express from 'express';
 import multer from 'multer';
+import { configDotenv } from 'dotenv';
 import exampleBlogs from '../public/js/exampleBlogs.js';
+configDotenv()
 
 const app=express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 let blogs = []
 
 app.use(express.json())
