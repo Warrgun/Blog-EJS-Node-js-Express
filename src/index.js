@@ -4,6 +4,10 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const tempFolder = path.join(__dirname, '../public/images/tempFolderFile');
 
+if (!fs.existsSync(tempFolder)) {
+    fs.mkdirSync(tempFolder, { recursive: true });
+}
+
 function clearFolder(){
     fs.readdir(tempFolder,(err,file)=>{
         if(err) console.error('folder'+err);
