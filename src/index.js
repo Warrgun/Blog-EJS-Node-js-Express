@@ -23,6 +23,7 @@ configDotenv()
 
 const app=express();
 const port = process.env.PORT || 3000;
+const baseURL = process.env.BASE_URL || `http://localhost:${port}`
 let blogs = []
 
 app.use(express.json())
@@ -103,7 +104,7 @@ const jsonPath = path.join(__dirname,'../public');
 
 fs.writeFile(path.join(jsonPath,'exampleBlogs.json'),exampleBlogs(), 'utf-8',(err)=>{if(err) console.error(err)})
 
-fetch('http://localhost:3000/exampleBlogs.json')
+fetch(`${baseURL}/exampleBlogs.json`)
     .then(response => response.json())
     .then(value => value.map(e=> blogs.push(new BlogCreator(e.design,e.thumbNail,e.title,e.content,e.description,e.date))))
 
@@ -113,7 +114,7 @@ app.get('/', (req, res)=>{
 })
 
 app.get('/create-blog', (req, res)=>{
-    res.render('createBlog.ejs');
+    res.render('createBlog.ejs',{baseURL});
 
 })
 

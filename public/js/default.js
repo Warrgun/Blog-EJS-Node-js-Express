@@ -1,10 +1,10 @@
-const getGeneratedPageURL = (data) => {
+const getGeneratedPageURL = (data, url) => {
     const getBlobURL = (code, type) => {
       const blob = new Blob([code], { type })
       return URL.createObjectURL(blob)
     }
   
-    const cssURL =`http://localhost:3000//styles/${data.design}.css`
+    const cssURL =`${url}/styles/${data.design}.css`
     const title = DOMPurify.sanitize(data.title);
     const description = DOMPurify.sanitize(data.description)
     const content = DOMPurify.sanitize(data.content)
@@ -119,7 +119,7 @@ const getGeneratedPageURL = (data) => {
                     $('.heading').removeClass('mx-auto text-center px-5').addClass('mx-0 mx-md-2');
                     $('.heading p').removeClass('lead').addClass('fw-light');
                     $('#blogContent p').addClass('lead');
-                    const retroImages = ['http://localhost:3000/images/retro1.jpg', 'http://localhost:3000/images/retro2.jpg', 'http://localhost:3000/images/retro3.jpg'];
+                    const retroImages = ['${url}/images/retro1.jpg', '${url}/images/retro2.jpg', '${url}/images/retro3.jpg'];
                     const randomNum = Math.floor(Math.random() * 3);
 
                     $('.background').css('background', \`url(\${retroImages[randomNum]})\`).removeClass('mb-5');
@@ -305,7 +305,7 @@ $(document).ready(function() {
             var reader = new FileReader();
             reader.onload = function(e) {
                 previewData['thumbNail']= e.target.result
-                const testRunUrl = getGeneratedPageURL(previewData);
+                const testRunUrl = getGeneratedPageURL(previewData,$('main').data('base-url'));
 
                 iframe.src =  testRunUrl
             };
@@ -313,7 +313,7 @@ $(document).ready(function() {
         }
         else{
             previewData['thumbNail']= 'https://placehold.co/600x400';
-            const testRunUrl = getGeneratedPageURL(previewData);
+            const testRunUrl = getGeneratedPageURL(previewData,$('main').data('base-url'));
 
             iframe.src =  testRunUrl
         }
