@@ -26,12 +26,9 @@ let blogs = []
 app.use(express.json())
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.urlencoded({extended: true}));
-//     if (err instanceof multer.MulterError) {
-//       res.status(400).send("Multer error: " + err.message);
-//     } else {
-//       res.status(500).send("ghfgh: " + err.message);
-//     }
-//   });
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
 
 const storage = multer.diskStorage({
@@ -51,10 +48,10 @@ const uploadFile = function (req, res, next) {
         fileFilter: function (req, file, cb) {
             const allowedExtensions = ['.png', '.jpg', '.jpeg', '.gif', '.bmp', '.apng', '.ico', '.svg', '.webp'];
             const allowedMimeTypes = ['image/png', 'image/jpeg', 'image/gif', 'image/bmp', 'image/apng', 'image/x-icon', 'image/svg+xml', 'image/webp'];
-            const ext = path.extname(file.originalname);
+            const ext = path.extname(file.originalname).toLowerCase();
             if (!allowedExtensions.includes(ext) && !allowedMimeTypes.includes(file.mimetype)) {
                 req.fileValidationError = `Invalid file type. Only ${allowedExtensions.join(', ')} are allowed.`;
-                return cb(null, true);
+                return cb(null, false);
             }       
             cb(null, true);            
         },
