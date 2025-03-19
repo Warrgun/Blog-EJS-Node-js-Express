@@ -45,28 +45,44 @@ const storage = multer.diskStorage({
     }
 })
 
-const uploadFile = function (req,res,next){
-    const upload = multer({ storage: storage, limits:{
-        fileSize: 25 * 1024 * 1024,
-        fieldSize: 25 * 1024 * 1024,
-    },}).single('thumbNail');
-
-    upload(req,res, function(err){
-        if(err instanceof multer.MulterError){
-            if (err.code === 'LIMIT_FILE_SIZE') {
-                return res.status(400).json({ contentErr: "Size of all images together is too large!" });
-            } else if (err.code === 'LIMIT_FILE_COUNT') {
-                return res.status(400).json({ contentErr: "Too many files uploaded!" });
-            } else {
-                return res.status(400).json({ contentErr: "Error: " + err.message });
-            }
-        }else if(err){
-            return res.status(400).json({ error: "Upload error: " + err.message });
+const uploadFile = function (req, res, next) {
+    const upload = multer({ 
+        storage: storage, 
+        fileFilter: function (req, file, cb) {
+            const allowedExtensions = ['.png', '.jpg', '.jpeg', '.gif', '.bmp', '.apng', '.ico', '.svg', '.webp'];
+            const allowedMimeTypes = ['image/png', 'image/jpeg', 'image/gif', 'image/bmp', 'image/apng', 'image/x-icon', 'image/svg+xml', 'image/webp'];
+            const ext = path.extname(file.originalname);
+            if (!allowedExtensions.includes(ext) && !allowedMimeTypes.includes(file.mimetype)) {
+                req.fileValidationError = `Invalid file type. Only ${allowedExtensions.join(', ')} are allowed.`;
+                return cb(null, true);
+            }       
+            cb(null, true);            
+        },
+        limits: {
+            fileSize: 25 * 1024 * 1024,
+            fieldSize: 25 * 1024 * 1024,
         }
-        next()
-    })
+    }).single('thumbNail');
 
-}
+    upload(req, res, function (err) {
+        if (err) {
+            if (err instanceof multer.MulterError) {
+                if (err.code === 'LIMIT_FILE_SIZE') {
+                    return res.status(400).json({ contentErr: "Size of all images together is too large!" });
+                } else if (err.code === 'LIMIT_FILE_COUNT') {
+                    return res.status(400).json({ contentErr: "Too many files uploaded!" });
+                } else {
+                    return res.status(400).json({ contentErr: "Error: " + err.message });
+                }
+            } else {
+                return res.status(400).json({ imageFileErr: "Upload error: " + err.message });
+            }
+        }
+
+        console.log('file uploaded')
+        next();
+    });
+};
 
 
 const BlogCreator= (()=>{  
@@ -115,6 +131,9 @@ app.post('/create-blog',uploadFile, (req, res)=>{
     }
     if (!isContentValid) {
         errors.contentErr = "Your blog must contain letters!";
+    }
+    if(req.fileValidationError){
+        errors.imageFileErr=req.fileValidationError
     }
     if (Object.keys(errors).length > 0) {
         return res.status(400).json(errors);
@@ -173,7 +192,9 @@ app.put(`/blog/:id`,uploadFile, (req, res)=>{
     if (!isContentValid) {
         errors.contentErr = "Your blog cannot be empty!";
     }
-
+    if(req.fileValidationError){
+        errors.imageFileErr=req.fileValidationError
+    }
     if (Object.keys(errors).length > 0) {
         return res.status(400).json(errors);
     }
