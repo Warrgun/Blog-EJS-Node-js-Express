@@ -2,11 +2,11 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const tempFolder = path.join(__dirname, '../public/images/temp');
+const tempFolder = path.join(__dirname, '../public/images/tempFolderFile');
 
 function clearFolder(){
     fs.readdir(tempFolder,(err,file)=>{
-        if(err) console.error('foldere'+err);
+        if(err) console.error('folder'+err);
         file.forEach(file=>{
             fs.unlink(path.join(tempFolder,file),err=> console.log(`file ${err}`))
         })
@@ -36,7 +36,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, path.join(__dirname,'../public/images/temp'))
+      cb(null, path.join(__dirname,'../public/images/tempFolderFile'))
     },
     filename: function (req, file, cb) {
       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
@@ -121,7 +121,7 @@ app.get('/create-blog', (req, res)=>{
 app.post('/create-blog',uploadFile, (req, res)=>{
     const checkWhiteSpace = (e) => e && e.trim().length > 0;
     const data = req.body;
-    const thumbNail = req.file ? `/images/temp/${req.file.filename}` : 'https://placehold.co/600x400';
+    const thumbNail = req.file ? `/images/tempFolderFile/${req.file.filename}` : 'https://placehold.co/600x400';
     const isTitleValid = checkWhiteSpace(data.title);
     const isContentValid = checkWhiteSpace(data.description);
 
@@ -179,7 +179,7 @@ app.put(`/blog/:id`,uploadFile, (req, res)=>{
     const checkWhiteSpace = (e) => e && e.trim().length > 0;
     const {body, params:{id}} = req
     const blogId = parseInt(id,10)
-    const thumbNail = req.file ? `/images/temp/${req.file.filename}` : 'https://placehold.co/600x400';
+    const thumbNail = req.file ? `/images/tempFolderFile/${req.file.filename}` : 'https://placehold.co/600x400';
     const isTitleValid = checkWhiteSpace(body.title);
     const isContentValid = checkWhiteSpace(body.description);
 
@@ -206,9 +206,9 @@ app.put(`/blog/:id`,uploadFile, (req, res)=>{
     if(findBlogIndex === -1){ 
         return res.status(404).json({ error: '❌ Blog not found.' })
     }else{
-        const thubmNailPath = path.join(__dirname,'../public');
+        const thumbNailPath = path.join(__dirname,'../public');
         const thumbNailDelete = blogs[findBlogIndex].thumbNail
-        if(thumbNailDelete != 'https://placehold.co/600x400') fs.unlink(path.join(thubmNailPath,thumbNailDelete),err=> console.log(`file ${err}`))
+        if(thumbNailDelete != 'https://placehold.co/600x400') fs.unlink(path.join(thumbNailPath,thumbNailDelete),err=> console.log(`file ${err}`))
         const today = new Date();
         const updateDate = `${new String(today.getDate()).padStart(2,0)}-${new String(today.getMonth()+1).padStart(2,0)}-${today.getFullYear()}`;
         blogs[findBlogIndex] ={
@@ -228,11 +228,11 @@ app.put(`/blog/:id`,uploadFile, (req, res)=>{
 app.delete(`/blog/:id`, (req, res)=>{
     const blogId = parseInt(req.params.id,10);
     const beforeLength = blogs.length;
-    const thubmNailPath = path.join(__dirname,'../public');
+    const thumbNailPath = path.join(__dirname,'../public');
     if (isNaN(blogId)) return res.status(400).json({ error: '❌ Incorrect path.' });
 
     const thumbNailDelete =blogs.filter(e=> e.id===blogId)[0].thumbNail
-    if(thumbNailDelete != 'https://placehold.co/600x400')fs.unlink(path.join(thubmNailPath,thumbNailDelete),err=> console.log(`file ${err}`))
+    if(thumbNailDelete != 'https://placehold.co/600x400')fs.unlink(path.join(thumbNailPath,thumbNailDelete),err=> console.log(`file ${err}`))
 
     blogs = blogs.filter(e => e.id !== blogId);
 
