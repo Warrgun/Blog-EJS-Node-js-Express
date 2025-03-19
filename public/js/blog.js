@@ -37,7 +37,7 @@ $(document).ready(function(){
 
     const formHandler = (title, content, design)=>{
         $('#title').val(title);
-        $('#editor .ql-editor').html( content);
+        quill.clipboard.dangerouslyPasteHTML(content)
 
         $(`.list-group-item[data-design="${design}"]`).addClass("bg-light")
                                                             .removeClass('lh-condensed hover-effect').children('div')
@@ -106,7 +106,7 @@ $(document).ready(function(){
         const formData = new FormData(document.getElementById('updateBlog'))
         formData.append('design', newDesignText);
         formData.append('content', html);
-
+        
         const checkChanges = formData.get('design') !== $('body').data('style') || 
             formData.get('title') !==  $('body').data('title')|| 
             document.getElementById('formFile').files.length >0 || 
