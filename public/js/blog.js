@@ -332,7 +332,7 @@ if($('#editor').length){
             ['bold', 'italic', 'underline', 'strike'],
             [{ 'color': [] }, { 'background': [] }],
             [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'align': [] }],
-            ['link', 'image', 'video'],
+            ['link', 'image'],
             ['clean'] 
           ] 
         }

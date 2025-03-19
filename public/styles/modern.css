@@ -50,6 +50,9 @@ img{
     border-top-left-radius: 5em;
     border-bottom-right-radius: 5em;
     max-width: 800px;
+    overflow-wrap: break-word !important;
+    white-space: normal;
+    word-break: keep-all;
 }
 
 .heading p{
