@@ -40,7 +40,7 @@ $(document).ready(function(){
         if (!content || typeof content !== "string" || typeof quill === "undefined") {
             console.error("Invalid content for Quill:", content);
         } else {
-            quill.clipboard.dangerouslyPasteHTML(DOMPurify.sanitize(content));
+            quill.clipboard.dangerouslyPasteHTML(content);
         }
         
 
