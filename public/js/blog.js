@@ -37,7 +37,12 @@ $(document).ready(function(){
 
     const formHandler = (title, content, design)=>{
         $('#title').val(title);
-        quill.clipboard.dangerouslyPasteHTML(content)
+        if (!content || typeof content !== "string" || typeof quill !== "undefined") {
+            console.error("Invalid content for Quill:", content);
+        } else {
+            quill.clipboard.dangerouslyPasteHTML(DOMPurify.sanitize(content));
+        }
+        
 
         $(`.list-group-item[data-design="${design}"]`).addClass("bg-light")
                                                             .removeClass('lh-condensed hover-effect').children('div')
