@@ -668,6 +668,10 @@ button:active .ql-stroke,
         gap: 2em;
     }
 
+    .italiana-regular{
+      font-size: 1.8rem !important;
+    }
+
     .custom-width{
       max-width: 300px;
     }
