@@ -143,6 +143,28 @@ const getGeneratedPageURL = (data, url) => {
 
 
 $(document).ready(function() {
+    $('#blog-section .card .card-footer').each(function(){
+        const dateFilter = (date)=>{ 
+            const [day, month, year] = date.split('-').filter(e=>parseInt(e));
+            return new Date(year, month-1,day)
+        }
+        let lastUpdate = dateFilter($(this).data('update'));
+        let countMiliSec = new Date().getTime() - lastUpdate.getTime();
+        let countDays = Math.floor(countMiliSec/(1000 * 3600 * 24));
+        let whenUpdated = `${countDays === 0 ? 'today' :
+            countDays === 1 ? 'yesterday' :
+            countDays < 7 ? `${countDays} days` :
+            countDays <14? 'a week':
+            countDays < 365 ? `${Math.floor(countDays / 7)} week${Math.floor(countDays / 7) === 1 ? '' : 's'}` :
+            countDays < 730 ? 'a year' :
+            `${Math.floor(countDays / 365)} year${Math.floor(countDays / 365) === 1 ? '' : 's'}`
+            } ${countDays>2?'ago':''}`;
+        
+        $(this).children('small.text-muted').children('span').text(whenUpdated)
+
+
+    })
+
     const checkColors = ()=>{
         if($('.modal-dialog').hasClass('modal-fullscreen')){
             $('.modal-header').css('transform','translateX(-1em)')

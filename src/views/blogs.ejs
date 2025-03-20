@@ -15,8 +15,8 @@
                             <small class=" text-secondary"><%=e.date %></small>
                             <p class="card-text trirong-light-italic mt-2"><%= e.description.length > 100? e.description.slice(0,e.description.lastIndexOf(" ",100))+"..." : e.description %></p>
                         </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Last updated 3 mins ago</small>
+                        <div class="card-footer" data-update="<%=e.date %>">
+                            <small class="text-muted">Last updated <span></span></small>
                         </div>
                     </div>
                 <%}%>
