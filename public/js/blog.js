@@ -37,7 +37,7 @@ $(document).ready(function(){
 
     const formHandler = (title, content, design)=>{
         $('#title').val(title);
-        if (!content || typeof content !== "string" || typeof quill !== "undefined") {
+        if (!content || typeof content !== "string" || typeof quill === "undefined") {
             console.error("Invalid content for Quill:", content);
         } else {
             quill.clipboard.dangerouslyPasteHTML(DOMPurify.sanitize(content));
